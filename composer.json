@@ -9,7 +9,9 @@
         }
     ],
     "autoload": {
-        "files": [],
+        "files": [
+            "src/module-test/registration.php"
+        ],
         "psr-4": {
             "Icube\\": ["src"]
         }
