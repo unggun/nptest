@@ -1,0 +1,17 @@
+{
+    "name": "unggun/nptest",
+    "type": "project",
+    "version": "1.0.0",
+    "authors": [
+        {
+            "name": "unggun",
+            "email": "andreas.unggun@gmail.com"
+        }
+    ],
+    "autoload": {
+        "files": [],
+        "psr-4": {
+            "Icube\\": ["src"]
+        }
+    }
+}
