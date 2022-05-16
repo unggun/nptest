@@ -13,5 +13,8 @@
         "psr-4": {
             "Icube\\": ["src"]
         }
+    },
+    "require-dev": {
+        "magento/magento-coding-standard": "^22.0"
     }
 }
