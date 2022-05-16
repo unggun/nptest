@@ -1,5 +1,6 @@
 {
     "name": "unggun/nptest",
+    "description": "test for automation in icube new development model",
     "type": "project",
     "version": "1.0.0",
     "authors": [
