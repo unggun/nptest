@@ -49,7 +49,7 @@ jobs:
         composer-options: "${{ matrix.composer-options }}"
 
     - name: Run unit tests suite
-      run: vendor/bin/phpunit --standard=vendor/magento/magento-coding-standard/Magento2 src/ --extensions=php
+      run: vendor/bin/phpunit src/ --extensions=php
 
     - name: Run code style suite
       run: vendor/bin/phpcs --standard=vendor/magento/magento-coding-standard/Magento2 src/
