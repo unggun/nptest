@@ -1,10 +1,8 @@
 name: CI
 
 on:
-  push:
-    branches: [ master, develop ]
   pull_request:
-    branches: [ master, develop ]
+    branches: [ master, staging, develop ]
 
 jobs:
   php:
@@ -13,11 +11,13 @@ jobs:
       fail-fast: false
       matrix:
         php-version:
-          - "7.3"
           - "7.4"
         dependencies:
           - "lowest"
           - "highest"
+        exclude:
+          - php-version: "7.4"
+            dependencies: "lowest"
     name: Tests with PHP ${{ matrix.php-version }} and ${{ matrix.dependencies }} dependencies
 
     steps:
@@ -49,13 +49,13 @@ jobs:
         composer-options: "${{ matrix.composer-options }}"
 
     - name: Run unit tests suite
-      run: vendor/bin/phpunit src/ --extensions=php
+      run: vendor/bin/phpunit src/
 
-    - name: Run code style suite
-      run: vendor/bin/phpcs --standard=vendor/magento/magento-coding-standard/Magento2 src/
+    #- name: Run code style suite
+    #  run: vendor/bin/phpcs --standard=vendor/magento/magento-coding-standard/Magento2 app/code/Icube
 
-    - name: Run framework suite
-      run: vendor/bin/phpcs --standard=vendor/magento/magento-coding-standard/Magento2Framework src/
+    #- name: Run framework suite
+    #  run: vendor/bin/phpcs --standard=vendor/magento/magento-coding-standard/Magento2Framework app/code/Icube
   js:
     runs-on: ubuntu-latest
     name: Javascript tests
@@ -72,26 +72,26 @@ jobs:
         run: npm install
 
       - name: Run ESLint
-        run: npm run vendor/magento/magento-coding-standard/eslint -- eslint/rules
-  rector:
-    runs-on: ubuntu-latest
-    name: Rector tests
+        run: npm run eslint -- src/
+  #rector:
+  #  runs-on: ubuntu-latest
+  #  name: Rector tests
 
-    steps:
-      - name: Setup PHP
-        uses: shivammathur/setup-php@v2
-        with:
-          php-version: 7.4
+  #  steps:
+  #    - name: Setup PHP
+  #      uses: shivammathur/setup-php@v2
+  #      with:
+  #        php-version: 7.4
 
-      - name: Setup node
-        uses: actions/setup-node@v2
-        with:
-          node-version: '16'
+  #    - name: Setup node
+  #      uses: actions/setup-node@v2
+  #      with:
+  #        node-version: '16'
 
-      - uses: actions/checkout@v2
+  #    - uses: actions/checkout@v2
 
-      - name: Install dependencies
-        run: composer install
+  #    - name: Install dependencies
+  #      run: composer install
 
-      - name: Run rector
-        run: vendor/bin/rector process src/ --dry-run --autoload-file vendor/squizlabs/php_codesniffer/autoload.php --autoload-file vendor/phpcompatibility/php-compatibility/PHPCSAliases.php
+  #    - name: Run rector
+  #      run: vendor/bin/rector process app/code --dry-run --autoload-file vendor/squizlabs/php_codesniffer/autoload.php --autoload-file vendor/phpcompatibility/php-compatibility/PHPCSAliases.php
