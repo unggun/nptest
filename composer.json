@@ -1,5 +1,6 @@
 {
     "name": "unggun/nptest",
+    "description": "test for automation in icube new development model",
     "type": "project",
     "version": "1.0.0",
     "authors": [
@@ -8,15 +9,20 @@
             "email": "andreas.unggun@gmail.com"
         }
     ],
+    "require": {
+        "magento/product-community-edition": "2.4.3"
+    },
     "autoload": {
         "files": [
             "src/module-test/registration.php"
         ],
         "psr-4": {
-            "Icube\\": ["src"]
+            "Icube\\": ["src"],
+            "Icube\\TestModule\\": "src/module-test"
         }
     },
     "require-dev": {
-        "magento/magento-coding-standard": "^22.0"
+        "magento/magento-coding-standard": "^22.0",
+        "phpunit/phpunit": "^9.5"
     }
 }
