@@ -9,9 +9,6 @@
             "email": "andreas.unggun@gmail.com"
         }
     ],
-    "require": {
-        "magento/product-community-edition": "2.4.3"
-    },
     "autoload": {
         "files": [
             "src/module-test/registration.php"
