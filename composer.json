@@ -9,12 +9,12 @@
             "email": "andreas.unggun@gmail.com"
         }
     ],
-    /**"repositories": {
-        "0": {
-            "type": "composer",
-            "url": "https://repo.magento.com/"
-        }
-    },*/
+    //"repositories": {
+    //    "0": {
+    //        "type": "composer",
+    //        "url": "https://repo.magento.com/"
+    //    }
+    //},
     "require": {
         "magento/product-community-edition": "2.4.3"
     },
