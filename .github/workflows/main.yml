@@ -23,6 +23,8 @@ jobs:
     steps:
       - uses: actions/checkout@v2
       - uses: extdn/github-actions-m2/magento-phpstan@master
+        with:
+          composer_name: unggun/nptest
   php:
     runs-on: ubuntu-latest
     strategy:
