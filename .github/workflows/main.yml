@@ -72,7 +72,7 @@ jobs:
         run: npm install
 
       - name: Run ESLint
-        run: npm run eslint -- src/
+        run: npm run eslint -- src
   rector:
    runs-on: ubuntu-latest
    name: Rector tests
