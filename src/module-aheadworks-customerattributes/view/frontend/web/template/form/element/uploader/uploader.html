@@ -1,0 +1,21 @@
+<div class="aw-customer-attr__file-uploader" data-role="drop-zone" css="_loading: isLoading">
+    <div class="aw-customer-attr__file-uploader-area">
+        <input type="hidden" data-bind="attr: {name: getInputName('delete')}, value: value().length ? '' : true">
+        <input type="file"
+               css="'required-entry': required"
+               afterRender="onElementRender"
+               attr="id: inputName, name: inputName, multiple: isMultipleFiles"
+               disable="disabled" />
+    </div>
+    <label class="field-error" if="error" attr="for: uid" text="error"/>
+    <div if="isMultipleFiles" class="aw-customer-attr__file-uploader-drop-zone" click="browseFile">
+        <div if="isMultipleFiles" class="aw-customer-attr__file-uploader-drop-zone-inner">
+            <span class="aw-customer-attr__file-uploader-placeholder-text" translate="'Click here or drag and drop to add files.'"/>
+        </div>
+    </div>
+    <div class="aw-customer-attr__field-note" if="$data.notice" attr="id: noticeId">
+        <span html="notice"/>
+    </div>
+    <span class="aw-customer-attr__file-uploader-spinner" translate="'File Uploading in Progress'"/>
+    <each args="data: value, as: '$file'" render="$parent.getPreviewTmpl($file)"/>
+</div>

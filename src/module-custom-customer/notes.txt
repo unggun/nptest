@@ -1,0 +1,18 @@
+// query for update customer_entity.business_type from string to id
+
+UPDATE customer_entity ce
+JOIN eav_attribute_option_value eaov ON eaov.value = ce.business_type
+JOIN eav_attribute_option eao ON eao.option_id = eaov.option_id
+JOIN eav_attribute ea ON ea.attribute_id = eao.attribute_id
+SET ce.business_type = eao.option_id
+WHERE ea.attribute_code = 'business_type'
+
+// // query for update customer_address_entity.road_access from string to id
+
+UPDATE customer_address_entity_varchar caev
+JOIN eav_attribute_option_value eaov ON LOWER(eaov.value) = LOWER(caev.value)
+JOIN eav_attribute_option eao ON eao.option_id = eaov.option_id
+JOIN eav_attribute ea ON ea.attribute_id = eao.attribute_id
+SET caev.value = eao.option_id
+WHERE ea.attribute_code = 'road_access'
+AND caev.attribute_id = ea.attribute_id

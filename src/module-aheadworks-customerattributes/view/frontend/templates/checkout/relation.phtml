@@ -1,0 +1,30 @@
+<?php
+// @codingStandardsIgnoreFile
+
+/** @var \Aheadworks\CustomerAttributes\ViewModel\Relation $viewModel */
+$viewModel = $block->getViewModel();
+$relationsData = $viewModel->getRelationsData();
+?>
+
+<?php if (!empty($relationsData)): ?>
+    <script type="text/x-magento-init">
+        {
+            "*": {
+                "awUiCustAttrRelationManager": {
+                    "relationsData": <?= /* @noEscape */ $relationsData ?>,
+                    "componentsNamespace": "checkout.steps.shipping-step.shippingAddress.shipping-address-fieldset"
+                }
+            }
+        }
+    </script>
+    <script type="text/x-magento-init">
+        {
+            "*": {
+                "awUiCustAttrRelationManager": {
+                    "relationsData": <?= /* @noEscape */ $relationsData ?>,
+                    "componentsNamespace": "checkout.steps.billing-step.payment.payments-list.checkmo-form.form-fields"
+                }
+            }
+        }
+    </script>
+<?php endif; ?>

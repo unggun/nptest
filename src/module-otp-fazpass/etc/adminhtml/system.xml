@@ -1,0 +1,43 @@
+<?xml version="1.0"?>
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:module:Magento_Config:etc/system_file.xsd">
+    <system>
+        <tab id="icube" translate="label" sortOrder="1000">
+            <label>Icube Extension</label>
+        </tab>
+        <section id="icube_fazpass" translate="label" type="text" sortOrder="101" showInDefault="1" showInWebsite="1" showInStore="1">
+            <label>OTP Fazpass</label>
+            <tab>icube</tab>
+            <resource>Icube_OtpFazpass::config</resource>
+            <group id="general" translate="label" type="text" sortOrder="10" showInDefault="1" showInWebsite="1" showInStore="1">
+                <label>General</label>
+                <field id="enable" translate="label" type="select" sortOrder="1" showInDefault="1" showInWebsite="1" showInStore="1">
+                   <label>Enable</label>
+                   <source_model>Magento\Config\Model\Config\Source\Yesno</source_model>
+                </field>
+                <field id="url_generate_otp_endpoint" translate="label" type="text" sortOrder="2" showInDefault="1" showInWebsite="1" showInStore="1">
+                    <label>URL Generate OTP Endpoint</label>
+                </field>
+				<field id="url_verify_otp_endpoint" translate="label" type="text" sortOrder="2" showInDefault="1" showInWebsite="1" showInStore="1">
+                    <label>URL Verify OTP Endpoint</label>
+                </field>                   
+                <field id="merchant_key" translate="label" type="text" sortOrder="3" showInDefault="1" showInWebsite="1" showInStore="1">
+                    <label>Merchant Key</label>
+                </field>
+				<field id="enable_otp_sms" translate="label" type="select" sortOrder="4" showInDefault="1" showInWebsite="1" showInStore="1">
+                   <label>Enable OTP SMS</label>
+                   <source_model>Magento\Config\Model\Config\Source\Yesno</source_model>
+                </field>
+                <field id="gateway_key_sms" translate="label" type="text" sortOrder="5" showInDefault="1" showInWebsite="1" showInStore="1">
+                    <label>Gateway Key SMS</label>
+                </field>
+				<field id="enable_otp_wa" translate="label" type="select" sortOrder="6" showInDefault="1" showInWebsite="1" showInStore="1">
+                   <label>Enable OTP WhatsApp</label>
+                   <source_model>Magento\Config\Model\Config\Source\Yesno</source_model>
+                </field>
+                <field id="gateway_key_wa" translate="label" type="text" sortOrder="7" showInDefault="1" showInWebsite="1" showInStore="1">
+                    <label>Gateway Key WhatsApp</label>
+                </field>
+            </group>
+        </section>
+    </system>
+</config>

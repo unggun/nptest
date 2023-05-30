@@ -1,0 +1,15 @@
+<?xml version="1.0"?>
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:framework:Acl/etc/acl.xsd">
+    <acl>
+        <resources>
+            <resource id="Magento_Backend::admin">
+                <resource id="Magento_Customer::customer">
+                    <resource id="Aheadworks_CustomerAttributes::home" title="Customer Attributes by Aheadworks" sortOrder="100">
+                        <resource id="Aheadworks_CustomerAttributes::attributes" title="Customer Attributes" sortOrder="10"/>
+                        <resource id="Aheadworks_CustomerAttributes::address_attributes" title="Customer Address Attributes" sortOrder="20"/>
+                    </resource>
+                </resource>
+            </resource>
+        </resources>
+    </acl>
+</config>

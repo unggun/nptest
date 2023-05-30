@@ -1,0 +1,20 @@
+<?php
+// @codingStandardsIgnoreFile
+
+/** @var \Aheadworks\CustomerAttributes\ViewModel\Relation $viewModel */
+$viewModel = $block->getViewModel();
+$relationsData = $viewModel->getRelationsData();
+?>
+
+<?php if (!empty($relationsData)): ?>
+    <script type="text/x-magento-init">
+        {
+            "*": {
+                "awCustAttrRelationManager": {
+                    "relationsData": <?= /* @noEscape */ $relationsData ?>,
+                    "fieldWrapperSelector": "div.field"
+                }
+            }
+        }
+    </script>
+<?php endif; ?>

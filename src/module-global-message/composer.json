@@ -1,0 +1,22 @@
+{
+    "name": "icube-mage/module-global-message",
+    "description": "Payment grouping configuration to be use in Default Magento 2 Checkout",
+    "type": "magento2-module",
+    "license": "GPL-3.0",
+    "authors": [
+        {
+            "email": "sales@icube.us",
+            "name": "ICUBE, inc."
+        }
+    ],
+    "minimum-stability": "dev",
+    "require": {},
+    "autoload": {
+        "files": [
+            "registration.php"
+        ],
+        "psr-4": {
+            "Icube\\GlobalMessage\\": ""
+        }
+    }
+}

@@ -1,0 +1,47 @@
+<?xml version="1.0"?>
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:framework:ObjectManager/etc/config.xsd">
+    <type name="Xtento\OrderImport\Logger\Handler">
+        <arguments>
+            <argument name="filesystem" xsi:type="object">Magento\Framework\Filesystem\Driver\File</argument>
+        </arguments>
+    </type>
+    <type name="Xtento\OrderImport\Logger\Logger">
+        <arguments>
+            <argument name="name" xsi:type="string">xtentoLogger</argument>
+            <argument name="handlers" xsi:type="array">
+                <item name="system" xsi:type="object">Xtento\OrderImport\Logger\Handler</item>
+            </argument>
+        </arguments>
+    </type>
+    <type name="Magento\Framework\Console\CommandList">
+        <arguments>
+            <argument name="commands" xsi:type="array">
+                <item name="xtentoOrderImportImportCommand" xsi:type="object">Xtento\OrderImport\Console\Command\ImportCommand</item>
+                <item name="xtentoOrderImportConfigExportCommand" xsi:type="object">Xtento\OrderImport\Console\Command\ConfigExportCommand</item>
+                <item name="xtentoOrderImportConfigImportCommand" xsi:type="object">Xtento\OrderImport\Console\Command\ConfigImportCommand</item>
+            </argument>
+        </arguments>
+    </type>
+    <type name="Xtento\OrderImport\Console\Command\ConfigExportCommand">
+        <arguments>
+            <argument name="toolsHelper" xsi:type="object">\Xtento\OrderImport\Helper\Tools\Proxy</argument>
+        </arguments>
+    </type>
+    <type name="Xtento\OrderImport\Console\Command\ConfigImportCommand">
+        <arguments>
+            <argument name="toolsHelper" xsi:type="object">\Xtento\OrderImport\Helper\Tools\Proxy</argument>
+        </arguments>
+    </type>
+    <type name="Magento\Framework\View\Asset\Minification">
+        <plugin name="excludeFilesFromMinification" type="Xtento\OrderImport\Plugin\ExcludeFilesFromMinification"/>
+    </type>
+</config>
+<!--
+/**
+ * Product:       Xtento_OrderImport
+ * ID:            oqsi2y9WE6C6UMS277bs1A30bLpPe+n3JPzkpe97fvg=
+ * Last Modified: 2019-08-28T12:49:29+00:00
+ * File:          app/code/Xtento/OrderImport/etc/di.xml
+ * Copyright:     Copyright (c) XTENTO GmbH & Co. KG <info@xtento.com> / All rights reserved.
+ */
+-->

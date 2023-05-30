@@ -1,0 +1,15 @@
+<?xml version="1.0" ?>
+<schema xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:framework:Setup/Declaration/Schema/etc/schema.xsd">
+    <table name="icube_sellerconfig" resource="default" engine="innodb" comment="Catalog restrictions sellerconfig Table">
+        <column xsi:type="int" name="entity_id" padding="10" unsigned="true" nullable="false" identity="true" comment="Entity Id"/>
+        <constraint xsi:type="primary" referenceId="PRIMARY">
+            <column name="entity_id"/>
+        </constraint>
+        <column name="seller_id" nullable="false" xsi:type="int" comment="seller_id" identity="false" unsigned="true"/>
+		<index referenceId="ICUBE_SELLERCONFIG_SELLER_ID" indexType="btree">
+			<column name="seller_id"/>
+		</index>
+        <column name="type" nullable="false" xsi:type="varchar" comment="type" length="255"/>
+        <column name="value" nullable="true" xsi:type="varchar" comment="value" length="255"/>
+    </table>
+</schema>

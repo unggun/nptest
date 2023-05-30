@@ -1,0 +1,17 @@
+<?xml version="1.0"?>
+<layout xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:framework:View/Layout/etc/layout_generic.xsd">
+    <update handle="xtento_orderimport_log_grid_block"/>
+    <container name="root" label="Root">
+        <block class="Xtento\OrderImport\Block\Adminhtml\Log" name="adminhtml.orderimport.log.grid.container"/>
+    </container>
+</layout>
+
+<!--
+/**
+ * Product:       Xtento_OrderImport
+ * ID:            oqsi2y9WE6C6UMS277bs1A30bLpPe+n3JPzkpe97fvg=
+ * Last Modified: 2019-03-04T14:11:23+00:00
+ * File:          app/code/Xtento/OrderImport/view/adminhtml/layout/xtento_orderimport_log_grid.xml
+ * Copyright:     Copyright (c) XTENTO GmbH & Co. KG <info@xtento.com> / All rights reserved.
+ */
+-->

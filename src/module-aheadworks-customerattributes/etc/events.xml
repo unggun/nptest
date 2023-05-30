@@ -1,0 +1,39 @@
+<?xml version="1.0"?>
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:framework:Event/etc/events.xsd">
+    <event name="sales_model_service_quote_submit_before">
+        <observer name="aheadworks_customer_attributes" instance="Aheadworks\CustomerAttributes\Observer\SalesQuoteSubmitBefore" />
+    </event>
+    <event name="sales_quote_load_after">
+        <observer name="aheadworks_customer_attributes" instance="Aheadworks\CustomerAttributes\Observer\SalesQuoteAfterLoad" />
+    </event>
+    <event name="sales_quote_save_after">
+        <observer name="aheadworks_customer_attributes" instance="Aheadworks\CustomerAttributes\Observer\SalesQuoteAfterSave" />
+    </event>
+    <event name="sales_order_load_after">
+        <observer name="aheadworks_customer_attributes" instance="Aheadworks\CustomerAttributes\Observer\SalesOrderAfterLoad" />
+    </event>
+    <event name="sales_order_save_after">
+        <observer name="aheadworks_customer_attributes" instance="Aheadworks\CustomerAttributes\Observer\SalesOrderAfterSave" />
+    </event>
+    <event name="sales_quote_address_load_after">
+        <observer name="aheadworks_customer_attributes" instance="Aheadworks\CustomerAttributes\Observer\SalesQuoteAddressAfterLoad" />
+    </event>
+    <event name="sales_quote_address_save_after">
+        <observer name="aheadworks_customer_attributes" instance="Aheadworks\CustomerAttributes\Observer\SalesQuoteAddressAfterSave" />
+    </event>
+    <event name="sales_order_address_load_after">
+        <observer name="aheadworks_customer_attributes" instance="Aheadworks\CustomerAttributes\Observer\SalesOrderAddressAfterLoad" />
+    </event>
+    <event name="sales_order_address_save_after">
+        <observer name="aheadworks_customer_attributes" instance="Aheadworks\CustomerAttributes\Observer\SalesOrderAddressAfterSave" />
+    </event>
+    <event name="sales_order_address_collection_load_after">
+        <observer name="aheadworks_customer_attributes" instance="Aheadworks\CustomerAttributes\Observer\SalesOrderAddressCollectionLoadAfter" />
+    </event>
+    <event name="sales_quote_address_collection_load_after">
+        <observer name="aheadworks_customer_attributes" instance="Aheadworks\CustomerAttributes\Observer\SalesQuoteAddressCollectionLoadAfter" />
+    </event>
+    <event name="core_copy_fieldset_order_address_to_customer_address">
+        <observer name="aheadworks_customer_attributes" instance="Aheadworks\CustomerAttributes\Observer\CoreCopyFieldsetOrderAddressToCustomerAddress" />
+    </event>
+</config>

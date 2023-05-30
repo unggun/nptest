@@ -1,0 +1,159 @@
+<?xml version="1.0"?>
+<page xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:framework:View/Layout/etc/page_configuration.xsd">
+    <body>
+        <referenceBlock name="adminhtml.orderimport.log.grid.container">
+            <block class="Xtento\OrderImport\Block\Adminhtml\Log\Grid" name="adminhtml.block.orderimport.log.grid" as="grid">
+                <arguments>
+                    <argument name="id" xsi:type="string">xtento_orderimport_log_grid</argument>
+                    <argument name="dataSource" xsi:type="object">Xtento\OrderImport\Model\ResourceModel\Log\Collection</argument>
+                    <argument name="default_sort" xsi:type="string">log_log_id</argument>
+                    <argument name="default_dir" xsi:type="string">DESC</argument>
+                    <!--<argument name="use_ajax" xsi:type="boolean">false</argument>-->
+                    <argument name="save_parameters_in_session" xsi:type="string">1</argument>
+                    <!--<argument name="grid_url" xsi:type="url" path="*/log/grid">
+                        <param name="_current">1</param>
+                    </argument>--> <!-- Only enabled when use_ajax is true, but ajax cannot be used as after filtering, mass actions don't work anymore -->
+                </arguments>
+                <block class="Magento\Backend\Block\Widget\Grid\Massaction" name="adminhtml.orderimport.log.grid.massaction" as="grid.massaction">
+                    <arguments>
+                        <argument name="massaction_id_field" xsi:type="string">log_id</argument>
+                        <argument name="form_field_name" xsi:type="string">log</argument>
+                        <argument name="use_select_all" xsi:type="string">1</argument>
+                        <argument name="options" xsi:type="array">
+                            <item name="delete" xsi:type="array">
+                                <item name="label" xsi:type="string" translate="true">Delete</item>
+                                <item name="url" xsi:type="string">*/log/massDelete</item>
+                                <item name="confirm" xsi:type="string" translate="true">Are you sure?</item>
+                            </item>
+                        </argument>
+                    </arguments>
+                </block>
+                <block class="Magento\Backend\Block\Widget\Grid\ColumnSet" as="grid.columnSet" name="adminhtml.orderimport.log.grid.columnSet">
+                    <arguments>
+                        <argument name="rowUrl" xsi:type="null"/>
+                    </arguments>
+                    <block class="Magento\Backend\Block\Widget\Grid\Column" as="log_log_id">
+                        <arguments>
+                            <argument name="header" xsi:type="string" translate="true">Import ID</argument>
+                            <argument name="type" xsi:type="string">number</argument>
+                            <argument name="id" xsi:type="string">log_id</argument>
+                            <argument name="index" xsi:type="string">log_id</argument>
+                            <argument name="column_css_class" xsi:type="string">col-id</argument>
+                            <argument name="header_css_class" xsi:type="string">col-id</argument>
+                        </arguments>
+                    </block>
+                    <block class="Magento\Backend\Block\Widget\Grid\Column" as="log_import_type">
+                        <arguments>
+                            <argument name="header" xsi:type="string" translate="true">Import Type</argument>
+                            <argument name="type" xsi:type="string">options</argument>
+                            <argument name="id" xsi:type="string">import_type</argument>
+                            <argument name="index" xsi:type="string">import_type</argument>
+                            <argument name="options" xsi:type="options" model="Xtento\OrderImport\Model\System\Config\Source\Import\Type"/>
+                        </arguments>
+                    </block>
+                    <block class="Magento\Backend\Block\Widget\Grid\Column" as="log_entity">
+                        <arguments>
+                            <argument name="header" xsi:type="string" translate="true">Entity</argument>
+                            <argument name="type" xsi:type="string">options</argument>
+                            <argument name="id" xsi:type="string">entity</argument>
+                            <argument name="index" xsi:type="string">entity</argument>
+                            <argument name="options" xsi:type="options" model="Xtento\OrderImport\Model\System\Config\Source\Import\Entity"/>
+                        </arguments>
+                    </block>
+                    <block class="Magento\Backend\Block\Widget\Grid\Column" as="log_profile">
+                        <arguments>
+                            <argument name="header" xsi:type="string" translate="true">Profile</argument>
+                            <argument name="type" xsi:type="string">text</argument>
+                            <argument name="id" xsi:type="string">profile</argument>
+                            <argument name="index" xsi:type="string">profile</argument>
+                            <argument name="filter_index" xsi:type="string">name</argument>
+                        </arguments>
+                    </block>
+                    <block class="Magento\Backend\Block\Widget\Grid\Column" as="log_files">
+                        <arguments>
+                            <argument name="header" xsi:type="string" translate="true">Imported Files</argument>
+                            <argument name="type" xsi:type="string">longtext</argument>
+                            <argument name="id" xsi:type="string">files</argument>
+                            <argument name="index" xsi:type="string">files</argument>
+                            <argument name="renderer" xsi:type="string">\Xtento\OrderImport\Block\Adminhtml\Log\Grid\Renderer\Filename</argument>
+                        </arguments>
+                    </block>
+                    <block class="Magento\Backend\Block\Widget\Grid\Column" as="log_source_ids">
+                        <arguments>
+                            <argument name="header" xsi:type="string" translate="true">Sources</argument>
+                            <argument name="type" xsi:type="string">longtext</argument>
+                            <argument name="id" xsi:type="string">source_ids</argument>
+                            <argument name="index" xsi:type="string">source_ids</argument>
+                            <argument name="filter" xsi:type="boolean">false</argument>
+                            <argument name="renderer" xsi:type="string">\Xtento\OrderImport\Block\Adminhtml\Log\Grid\Renderer\Source</argument>
+                        </arguments>
+                    </block>
+                    <block class="Magento\Backend\Block\Widget\Grid\Column" as="log_records_imported">
+                        <arguments>
+                            <argument name="header" xsi:type="string" translate="true">Record Count</argument>
+                            <argument name="type" xsi:type="string">number</argument>
+                            <argument name="id" xsi:type="string">records_imported</argument>
+                            <argument name="index" xsi:type="string">records_imported</argument>
+                        </arguments>
+                    </block>
+                    <block class="Magento\Backend\Block\Widget\Grid\Column" as="log_result">
+                        <arguments>
+                            <argument name="header" xsi:type="string" translate="true">Result</argument>
+                            <argument name="type" xsi:type="string">options</argument>
+                            <argument name="id" xsi:type="string">result</argument>
+                            <argument name="index" xsi:type="string">result</argument>
+                            <argument name="options" xsi:type="options" model="Xtento\OrderImport\Model\System\Config\Source\Log\Result"/>
+                            <argument name="renderer" xsi:type="string">\Xtento\OrderImport\Block\Adminhtml\Log\Grid\Renderer\Result</argument>
+                        </arguments>
+                    </block>
+                    <block class="Magento\Backend\Block\Widget\Grid\Column" as="log_result_message">
+                        <arguments>
+                            <argument name="header" xsi:type="string" translate="true">Result Message</argument>
+                            <argument name="type" xsi:type="string">longtext</argument>
+                            <argument name="id" xsi:type="string">result_message</argument>
+                            <argument name="index" xsi:type="string">result_message</argument>
+                            <argument name="renderer" xsi:type="string">\Xtento\OrderImport\Block\Adminhtml\Log\Grid\Renderer\ResultMessage</argument>
+                        </arguments>
+                    </block>
+                    <block class="Magento\Backend\Block\Widget\Grid\Column" as="log_created_at">
+                        <arguments>
+                            <argument name="header" xsi:type="string" translate="true">Executed At</argument>
+                            <argument name="type" xsi:type="string">datetime</argument>
+                            <argument name="id" xsi:type="string">created_at</argument>
+                            <argument name="index" xsi:type="string">created_at</argument>
+                        </arguments>
+                    </block>
+                    <block class="Magento\Backend\Block\Widget\Grid\Column" as="log_actions" name="adminhtml.orderimport.log.grid.column.actions">
+                        <arguments>
+                            <argument name="header" xsi:type="string" translate="true">Action</argument>
+                            <argument name="sortable" xsi:type="string">0</argument>
+                            <argument name="filter" xsi:type="string">0</argument>
+                            <argument name="type" xsi:type="string">action</argument>
+                            <argument name="id" xsi:type="string">actions</argument>
+                            <argument name="index" xsi:type="string">log_id</argument>
+                            <argument name="actions" xsi:type="array">
+                                <item name="delete" xsi:type="array">
+                                    <item name="caption" xsi:type="string" translate="true">Delete log</item>
+                                    <item name="url" xsi:type="array">
+                                        <item name="base" xsi:type="string">*/log/delete</item>
+                                    </item>
+                                    <item name="field" xsi:type="string">id</item>
+                                </item>
+                            </argument>
+                        </arguments>
+                    </block>
+                </block>
+            </block>
+        </referenceBlock>
+    </body>
+</page>
+
+<!--
+/**
+ * Product:       Xtento_OrderImport
+ * ID:            oqsi2y9WE6C6UMS277bs1A30bLpPe+n3JPzkpe97fvg=
+ * Last Modified: 2019-10-08T16:47:24+00:00
+ * File:          app/code/Xtento/OrderImport/view/adminhtml/layout/xtento_orderimport_log_grid_block.xml
+ * Copyright:     Copyright (c) XTENTO GmbH & Co. KG <info@xtento.com> / All rights reserved.
+ */
+-->

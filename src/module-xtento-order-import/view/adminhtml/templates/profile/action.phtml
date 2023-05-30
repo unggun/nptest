@@ -1,0 +1,37 @@
+<?php
+$formHtml = $block->getFormHtml();
+$actionHtml = $block->getActionHtml();
+if (\Magento\Framework\App\ObjectManager::getInstance()->get('Magento\Framework\Registry')->registry(
+        'orderimport_xml_action_warning'
+    ) !== null
+) {
+    echo '<div id="messages"><ul class="messages"><li class="error-msg"><ul><li><span>' . \Magento\Framework\App\ObjectManager::getInstance()->get('Magento\Framework\Registry')->registry('orderimport_xml_action_warning') . '. ' . __(
+            'Please fix and re-save profile.'
+        ) . '</span></li></ul></li></ul></div>';
+}
+?>
+<div class="entry-edit">
+    <?= $formHtml; ?>
+    <fieldset class="fieldset admin__fieldset fieldset-wide" style="padding-bottom:0">
+        <legend class="admin__legend legend">
+            <span><?= __('Import Actions') ?></span>
+        </legend>
+    </fieldset>
+    <?= $actionHtml; ?>
+</div>
+<style type="text/css">
+    #grid_action label {
+        width: 100px;
+    }
+
+    #grid_action .label {
+        width: 110px;
+    }
+
+    #grid_action .scalable {
+        width: 100%;
+        padding-left: 0 !important;
+        padding-right: 0 !important;
+    }
+</style>
+<?= $block->getChildHtml('form_after'); ?>

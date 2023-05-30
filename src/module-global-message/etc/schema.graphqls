@@ -1,0 +1,3 @@
+type Customer @doc(description: "Result of user notification list") {
+    verification_status: String @resolver(class: "\\Icube\\GlobalMessage\\Model\\Resolver\\GetCustomerVerification") 
+}

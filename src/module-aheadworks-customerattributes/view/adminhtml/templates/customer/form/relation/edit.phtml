@@ -1,0 +1,20 @@
+<?php
+// @codingStandardsIgnoreFile
+
+/** @var \Aheadworks\CustomerAttributes\ViewModel\Relation $viewModel */
+$viewModel = $block->getViewModel();
+$relationsData = $viewModel->getRelationsData();
+?>
+
+<?php if (!empty($relationsData)): ?>
+    <script type="text/x-magento-init">
+        {
+            "*": {
+                "awUiCustAttrRelationManager": {
+                    "relationsData": <?= /* @noEscape */ $relationsData ?>,
+                    "componentsNamespace": "customer_form.areas.customer.customer"
+                }
+            }
+        }
+    </script>
+<?php endif; ?>

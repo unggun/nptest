@@ -1,0 +1,12 @@
+<?php
+// @codingStandardsIgnoreFile
+
+/** @var \Aheadworks\CustomerAttributes\ViewModel\Customer\EmailData $viewModel */
+$viewModel = $block->getViewModel();
+$attributeCode = $block->getAttributeCode();
+$customer = $block->getCustomer();
+?>
+
+<span class="custom-attribute-value <?= /* @noEscape */ $attributeCode ?>">
+    <?= /* @noEscape */ $viewModel->getAttributeValue($customer, $attributeCode) ?>
+</span>

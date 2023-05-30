@@ -1,0 +1,26 @@
+{
+    "sales_order_address": {
+        "column": {
+            "road_access": true,
+            "road_access_enough": true,
+            "is_alley": true,
+            "warung_category": true,
+            "warung_name": true,
+            "ready_for_order": true,
+            "district": true,
+            "village": true
+        }
+    },
+    "quote_address": {
+        "column": {
+            "road_access": true,
+            "road_access_enough": true,
+            "is_alley": true,
+            "warung_category": true,
+            "warung_name": true,
+            "ready_for_order": true,
+            "district": true,
+            "village": true
+        }
+    }
+}

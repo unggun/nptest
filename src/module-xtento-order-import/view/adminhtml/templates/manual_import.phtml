@@ -1,0 +1,155 @@
+<div class="entry-edit admin__scope-old">
+    <form id="import_form" name="import_form" method="post" action="<?= $block->getUrl('*/*/manualPost') ?>" enctype="multipart/form-data">
+        <input name="form_key" type="hidden" value="<?= $block->getFormKey() ?>"/>
+
+        <fieldset id="my-fieldset" class="fieldset admin__fieldset">
+            <legend class="legend">
+                <span><?= __('Manual Import') ?></span>
+            </legend>
+            <table cellspacing="0" class="form-list">
+                <tr>
+                    <td class="label"><?= __('Profile') ?> <span class="required">*</span></td>
+                    <td class="input-ele">
+                        <?= $block->getProfileSelectorHtml() ?>
+                    </td>
+                </tr>
+                <tr>
+                    <td class="label"><?= __('Upload file manually') ?></td>
+                    <td class="input-ele" style="padding-top: 5px;">
+                        <input type="file" id="manual_file_upload" name="manual_file_upload" value="" class="" style=""/>
+                    </td>
+                </tr>
+                <tr>
+                    <td class="label"><?= __('Test mode (no updates will be imported)') ?>&nbsp;&nbsp;</td>
+                    <td class="input-ele" style="padding-top: 5px;">
+                        <input type="checkbox" name="test_mode" id="test_mode" style="margin-top:7px;"<?php if ($block->getRequest(
+                            )->getParam('test') !== null
+                        ): ?> checked="checked"<?php endif; ?>/>
+                    </td>
+                </tr>
+                <tr>
+                    <td class="label"><?= __('Show debug messages') ?></td>
+                    <td class="input-ele" style="padding-top: 5px;">
+                        <input type="checkbox" name="debug_mode" id="debug_mode" style="margin-top:5px;"<?php if ($block->getRequest(
+                            )->getParam('debug') !== null
+                        ): ?> checked="checked"<?php endif; ?>/>
+                    </td>
+                </tr>
+                <tr>
+                    <td class="label">&nbsp;</td>
+                    <td class="input-ele" style="padding-top: 15px;">
+                        <button class="scalable save" type="submit" id="import_button">
+                            <span><?= __('Run Import') ?></span></button>
+                    </td>
+                </tr>
+            </table>
+        </fieldset>
+    </form>
+</div>
+
+<?php $importResult = $block->getImportResult(); ?>
+<div class="entry-edit admin__scope-old" id="import_result" style="<?= $importResult ? '' : 'display:none;' ?>">
+    <fieldset id="my-fieldset" class="fieldset admin__fieldset">
+        <legend class="legend">
+            <span><?= __('Import Debug Results') ?></span>
+        </legend>
+        <div class="hor-scroll">
+            <textarea id="import_result_content" style="width:99%; height: 450px;" wrap="off"><?= $importResult ?></textarea>
+        </div>
+    </fieldset>
+</div>
+
+<script type="text/javascript">
+    require(["prototype"], function ($) {
+        <?= $block->getSelectValues() ?>
+    });
+</script>
+<script type="text/javascript">
+    require(["jquery", "prototype", "mage/cookies", "jquery/blockUI"], function (jQuery) {
+        var inputFields = ['test_mode', 'debug_mode', 'import_button'];
+        function initManualImport() {
+            <?php
+            if ($block->getRequest()->getParam('profile_id', false)) {
+            ?>
+            $('profile_id').value = '<?= $block->escapeJs($block->getRequest()->getParam('profile_id')) ?>';
+            $$('select#profile_id option').each(function (o) {
+                if (o.readAttribute('value') == $('profile_id').value) {
+                    o.selected = true;
+                    throw $break;
+                }
+            });
+            <?php
+            } else {
+            ?>
+            // If there is just one profile, select it by default
+            if ($$('select#profile_id option').length <= 2) {
+                $$('select#profile_id option').each(function (o) {
+                    if (o.readAttribute('value') !== '') {
+                        o.selected = true;
+                        throw $break;
+                    }
+                });
+            }
+            <?php
+            }
+            ?>
+            if ($('profile_id').value == '') {
+                disableFields();
+            }
+            $('profile_id').onchange = function () {
+                if (this.options[this.selectedIndex].value !== '') {
+                    enableFields();
+                } else {
+                    disableFields();
+                }
+            }
+        }
+        jQuery(document).ready(function () {
+            initManualImport();
+        });
+        function disableFields() {
+            inputFields.forEach(function (element, index, array) {
+                if ($(element)) {
+                    if (element != 'import_button') {
+                        $(element).disable();
+                    }
+                }
+            });
+        }
+
+        function enableFields() {
+            inputFields.forEach(function (element, index, array) {
+                if ($(element)) {
+                    if (element != 'import_button') {
+                        $(element).enable();
+                    }
+                }
+            });
+        }
+
+        Event.observe('import_form', 'submit', function (event) {
+            $('success-msg').hide();
+            $('warning-msg').hide();
+            jQuery.blockUI({
+                message: jQuery('#import_dialog'),
+                css: {
+                    border: 'none',
+                    padding: '15px',
+                    backgroundColor: '#000',
+                    '-webkit-border-radius': '10px',
+                    '-moz-border-radius': '10px',
+                    opacity: .6,
+                    color: '#fff'
+                }
+            });
+            jQuery('#close').click(function () {
+                jQuery.unblockUI();
+                return false;
+            });
+        });
+    });
+</script>
+<div id="import_dialog" style="display:none; z-index: 999999; cursor: default;">
+    <h2 style="color: #fff !important;"><?= __('Running import... Please wait...') ?></h2>
+    <input type="button" id="close" value="Close Progress Window" style="padding:5px; color: #000 !important;"/>
+</div>

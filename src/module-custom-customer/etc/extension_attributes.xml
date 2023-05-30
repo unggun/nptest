@@ -1,0 +1,23 @@
+<?xml version="1.0"?>
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:framework:Api/etc/extension_attributes.xsd">
+    <extension_attributes for="Magento\Customer\Api\Data\CustomerInterface">
+        <attribute code="business_type" type="Icube\CustomCustomer\Api\Data\CustomerExtensionInterface" />
+        <attribute code="other_business_type" type="Icube\CustomCustomer\Api\Data\CustomerExtensionInterface" />
+        <attribute code="wp_code" type="string"/>
+        <attribute code="referral_code" type="string"/>
+        <attribute code="referral_name" type="string"/>
+        <attribute code="ktp_number" type="string"/>
+        <attribute code="status_jds" type="string"/>
+        <attribute code="status_note" type="string"/>
+		<attribute code="warung_category" type="string"/>
+		<attribute code="warung_name" type="string"/>
+		<attribute code="ready_for_order" type="string"/>
+    </extension_attributes>
+    <extension_attributes for="Magento\Customer\Api\Data\AddressInterface">
+		<attribute code="road_access" type="string"/>
+		<attribute code="road_access_enough" type="string"/>
+		<attribute code="is_alley" type="string"/>
+		<attribute code="district" type="string"/>
+		<attribute code="village" type="string"/>
+	</extension_attributes>
+</config>

@@ -1,0 +1,62 @@
+<?xml version="1.0"?>
+<layout xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:framework:View/Layout/etc/layout_generic.xsd">
+    <update handle="xtento_orderimport_source_grid_block"/>
+    <container name="root" label="Root">
+        <block class="Xtento\OrderImport\Block\Adminhtml\Source" name="adminhtml.orderimport.source.grid.container">
+            <action method="removeButton">
+                <argument name="buttonId" xsi:type="string">add</argument>
+            </action>
+            <referenceBlock name="adminhtml.block.orderimport.source.grid">
+                <arguments>
+                    <argument name="grid_url" xsi:type="url" path="*/profile/source">
+                        <param name="_current">1</param>
+                    </argument>
+                </arguments>
+            </referenceBlock>
+            <referenceBlock name="adminhtml.orderimport.source.grid.column.actions">
+                <arguments>
+                    <argument name="actions" xsi:type="array">
+                        <item name="edit_action" xsi:type="array">
+                            <item name="target" xsi:type="string">_blank</item>
+                        </item>
+                    </argument>
+                </arguments>
+            </referenceBlock>
+            <referenceBlock name="adminhtml.orderimport.source.grid.columnSet">
+                <arguments>
+                    <argument name="rowUrl" xsi:type="null"/>
+                </arguments>
+                <block class="Xtento\OrderImport\Block\Adminhtml\Source\Grid\Column\Source" as="col_sources" before="src_source_id">
+                    <arguments>
+                        <argument name="header" xsi:type="string" translate="true">Enabled For Profile</argument>
+                        <argument name="type" xsi:type="string">checkbox</argument>
+                        <argument name="id" xsi:type="string">col_sources</argument>
+                        <argument name="index" xsi:type="string">source_id</argument>
+                        <argument name="field_name" xsi:type="string">col_sources</argument>
+                        <argument name="header_css_class" xsi:type="string">a-center</argument>
+                        <argument name="align" xsi:type="string">center</argument>
+                    </arguments>
+                </block>
+            </referenceBlock>
+            <referenceBlock name="adminhtml.orderimport.source.grid.massaction" remove="true"/>
+        </block>
+        <block class="Xtento\OrderImport\Block\Adminhtml\Widget\Grid\Serializer" name="source_grid_serializer">
+            <arguments>
+                <argument name="grid_block" xsi:type="string">adminhtml.block.orderimport.source.grid</argument>
+                <argument name="callback" xsi:type="string">getSelectedSources</argument>
+                <argument name="input_element_name" xsi:type="string">source_ids</argument>
+                <argument name="reload_param_name" xsi:type="string">profile_sources</argument>
+            </arguments>
+        </block>
+    </container>
+</layout>
+
+<!--
+/**
+ * Product:       Xtento_OrderImport
+ * ID:            oqsi2y9WE6C6UMS277bs1A30bLpPe+n3JPzkpe97fvg=
+ * Last Modified: 2019-03-04T14:11:23+00:00
+ * File:          app/code/Xtento/OrderImport/view/adminhtml/layout/xtento_orderimport_profile_source.xml
+ * Copyright:     Copyright (c) XTENTO GmbH & Co. KG <info@xtento.com> / All rights reserved.
+ */
+-->

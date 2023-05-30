@@ -1,0 +1,33 @@
+type Query {
+    getEligibleMission: GetMissionListOutput @resolver( class: "Icube\\MisiPintar\\Model\\Resolver\\GetMissionList") @doc(description: "Query get mission list.") 
+}
+
+type GetMissionOutput {
+    id: Int  @doc(description: "Mission id.")
+    name: String  @doc(description: "Mission name.")
+    rewardCaption: String @doc(description: "Caption for reward.")
+    type: MissionType  @doc(description: "Mission type.")
+    progress: MissionProgress  @doc(description: "Progress detail.")
+    status: String  @doc(description: "Mission status.")
+    details: String  @doc(description: "Mission details.")
+    target: Int @doc(description: "Target Number.")
+    startDate: String @doc(description: "Start date.")
+    expireDate: String @doc(description: "End date.")
+    tnc: String @doc(description: "Terms and conditions.")
+}
+
+type GetMissionListOutput {
+    missions: [GetMissionOutput] @doc(description: "Missions list")
+}
+
+type MissionType {
+    id: Int @doc(description: "Type id.")
+    name: String @doc(description: "Type name.")
+    actionButtonCaption: String @doc(description: "Action button caption.")
+}
+
+type MissionProgress {
+    target: Int @doc(description: "Target value.")
+    progress: Int @doc(description: "Progress value.")
+    caption: String @doc(description: "Progress caption")
+}

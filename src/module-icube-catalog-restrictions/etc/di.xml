@@ -1,0 +1,51 @@
+<?xml version="1.0"?>
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:framework:ObjectManager/etc/config.xsd">
+    <preference for="Icube\CatalogRestrictions\Api\Data\SellerConfigInterface" type="Icube\CatalogRestrictions\Model\SellerConfig"/>
+    <type name="Icube\SmsOtpGraphQl\Model\Resolver\GenerateCustomerTokenCustom">
+        <plugin name="icube_catalog_restrictions_plugin_login_custom" type="Icube\CatalogRestrictions\Plugin\CustomerTokenAvailableSeller" sortOrder="40" disabled="false" />
+    </type>
+    <type name="Icube\OtpVerification\Model\Resolver\Otp\GenerateCustomerTokenByPhoneOtp">
+        <plugin name="icube_catalog_restrictions_plugin_login_custom_otp" type="Icube\CatalogRestrictions\Plugin\CustomerTokenAvailableSellerOtp" sortOrder="40" disabled="false" />
+    </type>
+    <type name="Swiftoms\GeneralImport\Model\Webhook">
+        <plugin name="Icube_CatalogRestrictions_Plugin_Swiftoms_Webhook" type="Icube\CatalogRestrictions\Plugin\Swiftoms\WebhookSeller" sortOrder="10" disabled="false"/>
+    </type>
+
+    <!-- Custom logger written to catalog-restrictions.log -->
+    <virtualType name="Icube_CatalogRestrictions_Debug_Logger" type="Magento\Framework\Logger\Handler\Base">
+        <arguments>
+            <argument name="fileName" xsi:type="string">/var/log/catalog-restrictions.log</argument>
+         </arguments>
+    </virtualType>
+    <virtualType name="Catalog_Restrictions_Model_AvailableSellerLogger" type="Magento\Framework\Logger\Monolog">
+        <arguments>
+            <argument name="handlers" xsi:type="array">
+                <item name="debug" xsi:type="object">Icube_CatalogRestrictions_Debug_Logger</item>
+            </argument>
+        </arguments>
+    </virtualType>
+    <type name="Icube\CatalogRestrictions\Helper\Data">
+        <arguments>
+            <argument name="logger" xsi:type="object">Catalog_Restrictions_Model_AvailableSellerLogger</argument>
+        </arguments>
+    </type>
+    <!-- End of custom logger -->
+    <preference for="Icube\CatalogGraphQl\Model\Resolver\Products\DataProvider\ProductSearch" type="Icube\CatalogRestrictions\Model\Resolver\ProductDataProvider\ProductSearch"/>
+    <preference for="Icube\CatalogGraphQl\Model\Resolver\Products\Query\Search" type="Icube\CatalogRestrictions\Model\Resolver\Products\Query\Search"/>
+    <type name="Smile\ElasticsuiteCore\Index\DataSourceResolver">
+        <arguments>
+            <argument name="datasources" xsi:type="array">
+                <item name="catalog_product" xsi:type="array">
+                    <item name="seller_id_match" xsi:type="object">Icube\CatalogRestrictions\Model\Indexer\Fulltext\Datasource\SellerIdCustom</item>
+                </item>
+            </argument>
+        </arguments>
+    </type>
+    <type name="Magento\CatalogGraphQl\Model\Resolver\Products\FilterArgument\ProductEntityAttributesForAst">
+        <arguments>
+            <argument name="additionalAttributes" xsi:type="array">
+                <item name="999" xsi:type="string">seller_id_match</item>
+            </argument>
+        </arguments>
+    </type>
+</config>

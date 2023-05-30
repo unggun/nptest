@@ -1,0 +1,86 @@
+<div class="entry-edit" style="margin-top:20px;">
+    <div class="entry-edit-head">
+        <h2><?= __('Tools - Export Settings') ?></h2>
+
+        <div class="form-buttons"></div>
+    </div>
+    <form id="export_form" name="export_form" method="post" action="<?= $block->getUrl(
+        '*/tools/exportSettings'
+    ) ?>">
+        <input name="form_key" type="hidden" value="<?= $block->getFormKey() ?>"/>
+
+        <div class="fieldset fieldset-wide" id="base_fieldset">
+            <div class="hor-scroll">
+                <?= __(
+                    '<b>Note:</b> You can select profiles and sources to export here, and later on import them into another Magento installation for example.'
+                ) ?>
+                <div style="position: relative; border: 1px solid #a6a6a6; display:table; width:99.5%; margin-top: 5px;">
+                    <div style="width:48%; float: left; clear: both; padding-left: 10px; border-right: 1px solid #a6a6a6; padding-top: 3px; display:table-row;">
+                        <strong><?= __(
+                                'Select Profiles'
+                            ) ?></strong> [<a href="#" onclick="jQuery('#profiles-ul > li > input').each(function(index, el){jQuery(el).attr('checked', true)})"><?= __(
+                                'Select all'
+                            ) ?></a>]
+                        <?php
+                        $profileCollection = $block->getProfiles();
+                        ?>
+                        <ul id="profiles-ul" class="checkboxes" style="padding: 2px 8px 0;list-style-type: none;">
+                            <?php
+                            foreach ($profileCollection as $profile) {
+                                ?>
+                                <li>
+                                    <input id="profile_<?= $profile->getId(
+                                    ) ?>" type="checkbox" name="profile_ids[]" value="<?= $profile->getId() ?>">
+                                    <label for="profile_<?= $profile->getId(
+                                    ) ?>"><b><?= $profile->getName() ?></b> (<?= __(
+                                            'Entity: %1',
+                                            ucwords(
+                                                $profile->getEntity()
+                                            )
+                                        ) ?>)</label>
+                                </li>
+                                <?php
+                            }
+                            if ($profileCollection->getSize() == 0) {
+                                echo "<li>" . __('No import profiles found.') . "</li>";
+                            }
+                            ?>
+                        </ul>
+                    </div>
+                    <div style="width:48%; float: left; padding-left:9px; padding-top: 5px;">
+                        <strong><?= __(
+                                'Select Sources'
+                            ) ?></strong> [<a href="#" onclick="jQuery('#source-ul > li > input').each(function(index, el){jQuery(el).attr('checked', true)})"><?= __(
+                                'Select all'
+                            ) ?></a>]
+                        <?php
+                        $sourceCollection = $block->getSources();
+                        ?>
+                        <ul id="source-ul" class="checkboxes" style="padding: 2px 8px 0;list-style-type: none;">
+                            <?php
+                            foreach ($sourceCollection as $source) {
+                                ?>
+                                <li>
+                                    <input id="source_<?= $source->getId(
+                                    ) ?>" type="checkbox" name="source_ids[]" value="<?= $source->getId() ?>">
+                                    <label for="source_<?= $source->getId() ?>"><b><?= $source->getName(
+                                            ) ?></b> (<?= __('Type: %1', ucwords($source->getType())) ?>)</label>
+                                </li>
+                                <?php
+                            }
+                            if ($sourceCollection->getSize() == 0) {
+                                echo "<li>" . __('No import sources found.') . "</li>";
+                            }
+                            ?>
+                        </ul>
+                    </div>
+                </div>
+                <div style="padding-top:5px; clear:both;">
+                    <button class="scalable save" type="submit" onclick="jQuery('#export_form').submit();">
+                        <span><?= __('Export Settings') ?></span>
+                    </button>
+                </div>
+            </div>
+        </div>
+    </form>
+</div>

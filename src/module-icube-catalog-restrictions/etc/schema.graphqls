@@ -1,0 +1,11 @@
+type CustomerToken {
+    available_seller: [Int] @doc(description: "Available sellers for corresponding customer.")
+}
+
+type Query {
+    checkAvailableSeller: CheckAvailableSeller @resolver(class: "\\Icube\\CatalogRestrictions\\Model\\Resolver\\checkAvailableSeller") @doc(description:"get available_seller")
+}
+
+type CheckAvailableSeller {
+    available_seller: [Int] @doc(description: "Available sellers for corresponding customer.")
+}

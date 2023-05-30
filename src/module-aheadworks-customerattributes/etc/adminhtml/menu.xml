@@ -1,0 +1,28 @@
+<?xml version="1.0"?>
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:module:Magento_Backend:etc/menu.xsd">
+    <menu>
+        <add id="Aheadworks_CustomerAttributes::home"
+             title="Customer Attributes by Aheadworks"
+             translate="title"
+             module="Aheadworks_CustomerAttributes"
+             sortOrder="100"
+             parent="Magento_Customer::customer"
+             resource="Aheadworks_CustomerAttributes::home"/>
+        <add id="Aheadworks_CustomerAttributes::attributes"
+             title="Customer Attributes"
+             translate="title"
+             module="Aheadworks_CustomerAttributes"
+             sortOrder="10"
+             parent="Aheadworks_CustomerAttributes::home"
+             action="aw_customer_attributes/attribute/index/"
+             resource="Aheadworks_CustomerAttributes::attributes"/>
+        <add id="Aheadworks_CustomerAttributes::address_attributes"
+             title="Customer Address Attributes"
+             translate="title"
+             module="Aheadworks_CustomerAttributes"
+             sortOrder="20"
+             parent="Aheadworks_CustomerAttributes::home"
+             action="aw_customer_attributes/address_attribute/index/"
+             resource="Aheadworks_CustomerAttributes::address_attributes"/>
+    </menu>
+</config>

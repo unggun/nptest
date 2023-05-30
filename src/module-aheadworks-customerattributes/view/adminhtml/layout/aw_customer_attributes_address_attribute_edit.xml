@@ -1,0 +1,25 @@
+<?xml version="1.0"?>
+<page xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:framework:View/Layout/etc/page_configuration.xsd">
+    <update handle="aw_customer_attributes_default"/>
+    <body>
+        <referenceContainer name="page.main.actions">
+            <block class="Magento\Backend\Block\Store\Switcher" name="website_switcher">
+                <action method="setUseConfirm">
+                    <argument name="params" xsi:type="boolean">true</argument>
+                </action>
+                <action method="setSwitchWebsites">
+                    <argument name="params" xsi:type="boolean">true</argument>
+                </action>
+                <action method="setSwitchStoreViews">
+                    <argument name="params" xsi:type="boolean">false</argument>
+                </action>
+                <action method="setDefaultSelectionName">
+                    <argument name="params" xsi:type="string" translate="true">Default Values</argument>
+                </action>
+            </block>
+        </referenceContainer>
+        <referenceContainer name="content">
+            <uiComponent name="aw_customer_attributes_attribute_form"/>
+        </referenceContainer>
+    </body>
+</page>

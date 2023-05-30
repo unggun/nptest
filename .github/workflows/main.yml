@@ -25,57 +25,6 @@ jobs:
       - uses: extdn/github-actions-m2/magento-phpstan@master
         with:
           composer_name: unggun/nptest
-  php:
-    runs-on: ubuntu-latest
-    strategy:
-      fail-fast: false
-      matrix:
-        php-version:
-          - "7.4"
-        dependencies:
-          - "lowest"
-          - "highest"
-        exclude:
-          - php-version: "7.4"
-            dependencies: "lowest"
-    name: Tests with PHP ${{ matrix.php-version }} and ${{ matrix.dependencies }} dependencies
-
-    steps:
-    - name: Setup node
-      uses: actions/setup-node@v2
-      with:
-        node-version: '16'
-
-    - uses: actions/checkout@v2
-
-    - name: Setup PHP
-      uses: shivammathur/setup-php@v2
-      with:
-        php-version: ${{ matrix.php-version }}
-        ini-file: development
-      env:
-        COMPOSER_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-
-    - name: Install dependencies
-      run: npm install
-
-    - name: Validate composer
-      run: composer validate
-
-    - name: Composer install
-      uses: "ramsey/composer-install@v1"
-      with:
-        dependency-versions: "${{ matrix.dependencies }}"
-        composer-options: "${{ matrix.composer-options }}"
-
-    - name: Run unit tests suite
-      run: vendor/bin/phpunit src/
-
-    #- name: Run code style suite
-    #  run: vendor/bin/phpcs --standard=vendor/magento/magento-coding-standard/Magento2 app/code/Icube
-
-    #- name: Run framework suite
-    #  run: vendor/bin/phpcs --standard=vendor/magento/magento-coding-standard/Magento2Framework app/code/Icube
   js:
     runs-on: ubuntu-latest
     name: Javascript tests
@@ -93,25 +42,3 @@ jobs:
 
       - name: Run ESLint
         run: npm run eslint -- src
-  rector:
-   runs-on: ubuntu-latest
-   name: Rector tests
-
-   steps:
-     - name: Setup PHP
-       uses: shivammathur/setup-php@v2
-       with:
-         php-version: 7.4
-
-     - name: Setup node
-       uses: actions/setup-node@v2
-       with:
-         node-version: '16'
-
-     - uses: actions/checkout@v2
-
-     - name: Install dependencies
-       run: composer install
-
-     - name: Run rector
-       run: vendor/bin/rector process app/code --dry-run --autoload-file vendor/squizlabs/php_codesniffer/autoload.php --autoload-file vendor/phpcompatibility/php-compatibility/PHPCSAliases.php

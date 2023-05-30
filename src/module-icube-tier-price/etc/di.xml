@@ -1,0 +1,31 @@
+<?xml version="1.0"?>
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:framework:ObjectManager/etc/config.xsd">
+    <preference for="Icube\TierPrice\Api\TierPriceInterface" type="Icube\TierPrice\Model\Api\TierPrice"/>
+    <preference for="Icube\TierPrice\Api\TierPriceRepositoryInterface" type="Icube\TierPrice\Model\TierPriceRepository"/>
+    <preference for="Magento\QuoteGraphQl\Model\Resolver\CartPrices"
+        type="Icube\TierPrice\Model\Resolver\CartPrices" />
+    <preference for="Magento\QuoteGraphQl\Model\Resolver\CartItemPrices"
+        type="Icube\TierPrice\Model\Resolver\CartItemPrices" />
+    <preference for="Magento\Catalog\Pricing\Price\RegularPrice"
+        type="Icube\TierPrice\Model\Pricing\RegularPrice" />
+    <type name="Magento\Catalog\Pricing\Price\MinimalTierPriceCalculator">
+        <plugin name="tier_price_info" type="Icube\TierPrice\Plugin\MinimalTierPriceCalculator" sortOrder="1" disabled="false" />
+    </type>
+    <type name="Magento\ConfigurableProduct\Block\Product\View\Type\Configurable">
+        <plugin name="after_tier_price_configurable" type="Icube\TierPrice\Plugin\TierPriceConfigurable" />
+    </type>
+    <virtualType name="Icube\TierPrice\Model\ResourceModel\TierPrice\Grid\Collection" type="Magento\Framework\View\Element\UiComponent\DataProvider\SearchResult">
+        <arguments>
+            <argument name="mainTable" xsi:type="string">icube_tier_price</argument>
+            <argument name="resourceModel" xsi:type="string">Icube\TierPrice\Model\ResourceModel\TierPrice</argument>
+        </arguments>
+    </virtualType>
+
+    <type name="Magento\Framework\View\Element\UiComponent\DataProvider\CollectionFactory">
+        <arguments>
+            <argument name="collections" xsi:type="array">
+                <item name="icube_tierprice_grid_listing_data_source" xsi:type="string">Icube\TierPrice\Model\ResourceModel\TierPrice\Grid\Collection</item>
+            </argument>
+        </arguments>
+    </type>
+</config>

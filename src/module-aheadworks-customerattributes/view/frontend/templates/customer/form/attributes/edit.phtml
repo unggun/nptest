@@ -1,0 +1,18 @@
+<?php
+// @codingStandardsIgnoreFile
+
+/** @var \Aheadworks\CustomerAttributes\ViewModel\Customer\Form\Edit $viewModel */
+$viewModel = $block->getViewModel();
+$attributes = $viewModel->getAttributes();
+?>
+
+<?php if (!empty($attributes)): ?>
+    <fieldset class="fieldset additional-info">
+        <legend class="legend">
+            <span><?= $block->escapeHtml(__('Additional Information')) ?></span>
+        </legend>
+        <?php foreach ($attributes as $attribute): ?>
+            <?= /* @noEscape */ $viewModel->render($attribute); ?>
+        <?php endforeach; ?>
+    </fieldset>
+<?php endif; ?>

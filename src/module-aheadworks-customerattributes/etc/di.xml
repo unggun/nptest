@@ -1,0 +1,87 @@
+<?xml version="1.0"?>
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:framework:ObjectManager/etc/config.xsd">
+    <preference for="Aheadworks\CustomerAttributes\Api\Data\AttributeInterface" type="Aheadworks\CustomerAttributes\Model\Attribute" />
+    <preference for="Aheadworks\CustomerAttributes\Api\Data\AttributeRelationInterface" type="Aheadworks\CustomerAttributes\Model\Attribute\Relation" />
+    <preference for="Aheadworks\CustomerAttributes\Api\Data\AttributeSearchResultsInterface" type="Magento\Framework\Api\SearchResults" />
+    <preference for="Aheadworks\CustomerAttributes\Api\AttributeRepositoryInterface" type="Aheadworks\CustomerAttributes\Model\AttributeRepository" />
+
+    <virtualType name="Aheadworks\CustomerAttributes\Model\Attribute\ObjectData\ProcessorComposite" type="Aheadworks\CustomerAttributes\Model\ObjectData\ProcessorComposite">
+        <arguments>
+            <argument name="processors" xsi:type="array">
+                <item name="base" xsi:type="object">Aheadworks\CustomerAttributes\Model\Attribute\ObjectDataProcessor\Base</item>
+                <item name="validate_rules" xsi:type="object">Aheadworks\CustomerAttributes\Model\Attribute\ObjectDataProcessor\ValidateRules</item>
+                <item name="frontend_labels" xsi:type="object">Aheadworks\CustomerAttributes\Model\Attribute\ObjectDataProcessor\FrontendLabels</item>
+                <item name="options" xsi:type="object">Aheadworks\CustomerAttributes\Model\Attribute\ObjectDataProcessor\Options</item>
+            </argument>
+        </arguments>
+    </virtualType>
+    <type name="Aheadworks\CustomerAttributes\Model\Attribute">
+        <arguments>
+            <argument name="dataProcessor" xsi:type="object">Aheadworks\CustomerAttributes\Model\Attribute\ObjectData\ProcessorComposite</argument>
+        </arguments>
+    </type>
+    <type name="Magento\Framework\View\Element\UiComponent\DataProvider\CollectionFactory">
+        <arguments>
+            <argument name="collections" xsi:type="array">
+                <item name="aw_customer_attributes_attribute_listing_data_source" xsi:type="string">Aheadworks\CustomerAttributes\Model\ResourceModel\Attribute\Grid\Collection</item>
+            </argument>
+        </arguments>
+    </type>
+    <type name="Aheadworks\CustomerAttributes\Model\ResourceModel\Attribute\Grid\Collection">
+        <arguments>
+            <argument name="mainTable" xsi:type="string">aw_customer_attributes_attribute</argument>
+            <argument name="eventPrefix" xsi:type="string">aw_customer_attributes_attribute_grid_collection</argument>
+            <argument name="eventObject" xsi:type="string">attribute_grid_collection</argument>
+            <argument name="resourceModel" xsi:type="string">Aheadworks\CustomerAttributes\Model\ResourceModel\Attribute</argument>
+        </arguments>
+    </type>
+    <type name="Magento\Framework\View\Element\UiComponent\DataProvider\CollectionFactory">
+        <arguments>
+            <argument name="collections" xsi:type="array">
+                <item name="aw_customer_attributes_address_attribute_listing_data_source" xsi:type="string">Aheadworks\CustomerAttributes\Model\ResourceModel\Attribute\Address\Grid\Collection</item>
+            </argument>
+        </arguments>
+    </type>
+    <type name="Aheadworks\CustomerAttributes\Model\ResourceModel\Attribute\Address\Grid\Collection">
+        <arguments>
+            <argument name="mainTable" xsi:type="string">aw_customer_attributes_address_attribute</argument>
+            <argument name="eventPrefix" xsi:type="string">aw_customer_attributes_address_attribute_grid_collection</argument>
+            <argument name="eventObject" xsi:type="string">address_attribute_grid_collection</argument>
+            <argument name="resourceModel" xsi:type="string">Aheadworks\CustomerAttributes\Model\ResourceModel\Attribute</argument>
+        </arguments>
+    </type>
+    <type name="Magento\Quote\Model\Quote\Address">
+        <arguments>
+            <argument name="attributeList" xsi:type="object">Aheadworks\CustomerAttributes\Model\ResourceModel\Sales\Quote\Address\CustomAttributeList</argument>
+        </arguments>
+    </type>
+    <type name="Magento\Framework\DataObject\Copy\Config">
+        <plugin name="customer_attributes_copy_to_fieldset" type="Aheadworks\CustomerAttributes\Plugin\Framework\DataObject\Copy\ConfigPlugin" />
+    </type>
+    <type name="Aheadworks\CustomerAttributes\Model\Attribute\Validator\Composite">
+        <arguments>
+            <argument name="validators" xsi:type="array">
+                <item name="base" xsi:type="object">Aheadworks\CustomerAttributes\Model\Attribute\Validator\Base</item>
+            </argument>
+        </arguments>
+    </type>
+
+    <!-- Plugins -->
+    <type name="Magento\Quote\Api\Data\AddressInterface">
+        <plugin name="customer_attributes_quote_address_plugin" type="Aheadworks\CustomerAttributes\Plugin\Quote\Address"/>
+    </type>
+    <!-- Format custom attributes in shipping and billing addresses (start) -->
+    <type name="Magento\Checkout\Api\GuestPaymentInformationManagementInterface">
+        <plugin name="customer_attributes_format_custom_attributes" type="Aheadworks\CustomerAttributes\Plugin\Checkout\Model\GuestPaymentInformationServicePlugin"/>
+    </type>
+    <type name="Magento\Checkout\Api\PaymentInformationManagementInterface">
+        <plugin name="customer_attributes_format_custom_attributes" type="Aheadworks\CustomerAttributes\Plugin\Checkout\Model\PaymentInformationServicePlugin"/>
+    </type>
+    <type name="Magento\Checkout\Api\GuestShippingInformationManagementInterface">
+        <plugin name="customer_attributes_format_custom_attributes" type="Aheadworks\CustomerAttributes\Plugin\Checkout\Model\GuestShippingInformationServicePlugin"/>
+    </type>
+    <type name="Magento\Checkout\Api\ShippingInformationManagementInterface">
+        <plugin name="customer_attributes_format_custom_attributes" type="Aheadworks\CustomerAttributes\Plugin\Checkout\Model\ShippingInformationServicePlugin"/>
+    </type>
+    <!-- Format custom attributes in shipping and billing addresses (end) -->
+</config>

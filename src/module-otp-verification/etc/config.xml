@@ -1,0 +1,19 @@
+<?xml version="1.0"?>
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:module:Magento_Store:etc/config.xsd">
+    <default>
+        <icube_otp_verification>
+            <enable_otp>
+                <change_phonenumber>1</change_phonenumber>
+            </enable_otp>
+            <expired_time>
+                <change_phonenumber>300</change_phonenumber>
+            </expired_time>
+            <max_try>
+                <change_phonenumber>3</change_phonenumber>
+            </max_try>
+            <length_otp>
+                <change_phonenumber>4</change_phonenumber>
+            </length_otp>
+        </icube_otp_verification>
+    </default>
+</config>

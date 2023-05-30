@@ -1,0 +1,244 @@
+Xtento_OrderImport
+
+-------------
+  CHANGELOG
+-------------
+
+===== 2.0.0 =====
+ * Initial stable M2 release
+
+===== 2.0.1 =====
+ * Removed internal shipping method from frontend. Only needed for imports, not for customers in the frontend.
+ * Fixed issue: Call to a member function getStore() on null in Order.php:161
+
+===== 2.0.2 =====
+ * Fixed an issue if product cannot be found in store and no price is set either; default to 0 then
+ * Default value for product_type, name, sku added if product does not exist in store
+
+===== 2.0.3 =====
+ * Added warning if no item fields have been mapped / no items have been found for current record
+ * Fixed record count of updated/imported orders if an error happened
+
+===== 2.0.4 =====
+ * Added further check if items section is mapped
+ * Renamed internal default shipping method to match M1 method name
+ * Fixed an issue with certain CSV files containing "orphan" / empty rows
+
+===== 2.0.5 =====
+ + Added ability to import gift_message field on order/item level
+ + Added events (xtento_orderimport_import_order_save_before, xtento_orderimport_order_processor_after, ...) to manipulate order before it is saved.
+ + Added separate cron group for our cronjobs. Use group xtento_orderimport to set up a separate cron job for our tasks.
+ * Fixed an issue where customers weren't assigned to orders
+ * Shipping description ("name") is now retrieved from shipping_method if not set
+ * Important update if using bin/magento CLI exports: Correct area is set now, all filters should work again and URLs should be correct. The definite fix - now running in cron area
+ * Improved how error/result messages are shown in the execution log
+ * Updated Xtento_XtCore to version 2.7.0
+
+===== 2.0.6 =====
+ * Established compatibility with Magento 2.2.10 / 2.3.3
+ * Established compatibility with PHP 7.3
+ * Fixed an issue with cron groups not being used. Re-save profiles to move to separate cron group.
+ * Updated Xtento_XtCore to version 2.8.0
+
+===== 2.0.7 =====
+ + Added support for custom order number extensions: Order numbers generated now use the pattern defined by these extensions (such as XTENTO Order Number Customizer)
+ + Added default value dropdowns for order status/state
+ + Addresses of order are now imported and set in the address book of the customer if customer is created/updated
+ + Added ability to import password for customer. If a customer is imported along with a password, the customer password is hashed.
+ + Added ability to import parent/child item relations for example when importing orders with configurable products: https://support.xtento.com/wiki/Magento_2_Extensions:Order_Import_Module#Importing_parent.2Fchild_relationships_.28configurable.2C_simple_products.29
+ * Fixed an issue with tax calculation for already registered customers that are in a vat-exempt group
+ * Fixed issue for item import from XML files
+ * Fixed an issue where order status wasn't set as defined in the file
+ * Fixed issue for tax calculation for items where item qty was missing in the equation
+ * Fixed an issue for Magento MSI and other modules relying on OrderManagement->place() function, which is now being used properly
+
+===== 2.0.8 =====
+ * Fixed an issue for address imports for existing customers having addresses in Magento
+
+===== 2.0.9 =====
+ + Added ability to import customers
+ * Added validation for order status values, so only valid statuses can be set
+ * Fixed an issue when invoicing/shipping configurable products that were imported by the extension
+ * Fixed an issue where grand_total/sub_total stayed 0 even though the field was mapped
+ * Fixed error: "Following products with requested ids were not found"
+
+===== 2.1.0 =====
+ + Added further FTP compatibility feature: "Ignore IP returned by server in passive mode" - If enabled in the FTP source, the (local) IP address returned by the FTP server will be ignored (useful for servers behind NAT) and instead the servers public IP address will be used. Can help with "Operation now in progress" errors or other directory listing/transfer issues.
+ * Better logging in test mode showing mapped fields of first record in file
+ * Customer import fixes
+
+===== 2.1.1 =====
+ * Order increment_id is only generated when no increment_id is set for order in import file. That way, custom increment IDs can be set/imported.
+
+===== 2.1.2 =====
+ * Stock qty for non-MSI installations (old CatalogInventory modules) is now deducted when orders are imported
+ * Fixed issue with tax calculation for registered customers & third party tax calculation modules
+ * Fixed item import
+
+===== 2.1.3 =====
+ * Added ability to update orders without adding/importing/updating items. For example, just changing the order status.
+
+===== 2.1.4 =====
+ * Fixed a potential security issue: Reflected XSS via GET parameters in backend/manual import area. If "Add secret keys to URLs" is enabled in the backend (which should hopefully always be the case!) this should have been nearly impossible to exploit though.
+
+===== 2.1.5 =====
+ + Added ability to import payment:additional_information and item:product_options field. Provide JSON string in import file.
+ * Fixed an issue with ASCII/FLF/fixed-length-files: Multiple items were not recognized but instead only one item was recognized
+
+===== 2.1.6 =====
+ + Added ability to automatically calculate cheapest shipping method possible for item/address combination if no shipping_amount is imported
+ + Added store_id "Default Value" dropdown to make it easier to select into which store view you want to import orders into
+ * Fixed issues for customer imports (street)
+ * Added warning if customer could not be identified but import mode is customer-only & create
+ * Fixed: "The product that was requested doesn't exist. Verify the product and try again."
+
+===== 2.1.7 =====
+ * Fixed an issue where no tax was calculated for certain orders or tax was calculated even though customer was tax-exempt
+ * Tax for shipping rate is now calculated if shipping_incl_tax is not mapped
+ * Customer group is set properly now for new customer created during order import
+ * Important fix for spreadsheet file processor where 0 values weren't parsed correctly and defaulted to a default value instead
+ * Date/times imported are now in store timezone
+ * Fixed error "Warning: Illegal string offset '@root'"
+
+===== 2.1.8 =====
+ + Added ability to import payment transactions for orders
+ * Updated Xtento_XtCore to version 2.9.0
+
+===== 2.1.9 =====
+ + region_id is automatically retrieved for billing/shipping address in case only the "region" (region name) is set.
+ + Added ability to divide a field by another field. For example, map your "Qty" value to field 1, then in the Additional Configuration popup of the "Qty" field add the following to "divide" the "Qty" value in field 1 by the value in field "XYZ" (name from your import file header/XML node): <divide_by_field field="XYZ"/>
+ + Added ability to sum up multiple fields (for example, qty field is in two fields - Warehouse 1 and Warehouse 2) to combine field values (sum up, calculation) into one field such as qty. Map your "Qty" value to field 1, then in the Additional Configuration popup add the following to "add" (calculate / sum up) the value of field "Warehouse ABC" in your import file to the qty field: <calculate_sum_from_fields add_from_field="Warehouse ABC"/>
+ * Fixed an issue with payment transaction import
+ * Fixed an issue for tax calculation if price_incl_tax fields are mapped
+
+===== 2.2.0 =====
+ + Added ability to match orders by ext_order_id field
+ * Improved how addresses are associated to customers in the database
+ * Fixed an issue where region_id isn't set for customer address records
+
+===== 2.2.1 =====
+ * Fixed error "Invalid method Magento\Store\Model\Store\Interceptor::roundPrice"
+
+===== 2.2.2 =====
+ * Fixed an issue where customer addresses weren't associated to customers
+ * Fixed import failing due to error message
+
+===== 2.2.3 =====
+ + Tax rates calculated for items/orders are now stored in sales_order_tax / sales_order_tax_item tables.
+ + Added warning in case an invalid qty value is imported for items
+ * Compatibility fix for Magento <= 2.3.4 causing imports where date/time fields are mapped to fail
+ * Improved logging in Import History for objects that failed to import
+
+===== 2.2.4 =====
+ * Removed silenced errors
+
+===== 2.2.5 =====
+ * Fixed an issue that caused orders after orders that had faulty "customers" (wrong email, similar errors) to not import
+
+===== 2.2.6 =====
+ * Improved logging on object level: Exceptions are now recorded in Import History
+
+===== 2.2.7 =====
+ * Fixed an issue with "order identification" that caused duplicates to import in case "ext_order_id" was used as the field identifier.
+ * Fixed "A non-numeric value encountered in .../Model/Import/Processor/Order/Item.php on line 317"
+ * Fixed an issue if both customer_id and customer_email is mapped
+
+===== 2.2.8 =====
+ * Fixed an issue with order identification.
+
+===== 2.2.9 =====
+ * Fixed an issue for imports from XML files (nested nodes such as address weren't imported properly)
+ * Fixes for tax calculation
+ * Fixed an issue for order update profiles where they payment method eventually changed
+ * Fixed issue with exception/transaction handling
+
+===== 2.3.0 =====
+ * Improved error display in manual import
+
+===== 2.3.1 =====
+ * Fixed issue with payment information import
+
+===== 2.3.2 =====
+ + Added ability to skip out of stock products when importing orders
+ * Workaround for "Rolled back transaction has not been completed correctly"
+ * Fixed imports for customer_ids that don't exist in Magento
+
+===== 2.3.3 =====
+ * Added message showing which products are out of stock that were tried to import
+
+===== 2.3.4 =====
+ * If Magento MSI is enabled, non-existing products won't be imported as line items anymore as they cause errors
+ * Fixed an issue when updating existing orders of guests (order email changed)
+ * Fixed a bug for FTP imports where empty directories caused a warning message that shouldn't be shown
+ * Fixed price/tax calculation if importing tax_amount and price_incl_tax on item level
+
+===== 2.3.5 =====
+ * Fixed an issue where item fields such as tax_amount/tax_percent were overwritten even though one wanted to import them
+
+===== 2.3.6 =====
+ + SFTP/FTP sources: Added ability to skip empty files and stop them from processing/archiving/deletion
+ + Added ability to add custom message to order history after import/update
+ * Fixed an issue for totals calculation if importing tax amounts/shipping tax amount
+
+===== 2.3.7 =====
+ + Added ability to map customer_note and thus add a comment that can be set in the order status history for imported orders
+ * Fixed an issue with tax calculation if price_incl_tax is imported and tax is supposed to be calculated
+ * Fixed an issue where shipping rate got calculated even though it shouldn't
+ * Fixed issue when importing shipping amount incl tax, tax is calculated properly now
+ * Improved exception handling ("Rolled back transaction has not been completed...")
+
+===== 2.3.8 =====
+ * Established compatibility with Magento 2.4.0 and 2.3.5-p2
+ * Established compatibility with PHP 7.4, dropped support for PHP 5.x
+ * Updated Xtento_XtCore to version 2.10.0
+ + Added uninstall script so bin/magento module:uninstall removes database tables
+ * Fixed "Return value of Magento\Cron\Console\Command\CronCommand::execute() should always be of the type int since Symfony 4.4, NULL returned."
+ * Fixed an issue for CSV/XML processor not detecting "0" values and parsing them as NULL instead
+ * Fixed an issue for fixed-length-format files (ASCII etc.) where operations such as "calculate" or "replace" specified in "Additional Configuration" popup didn't work.
+ * [M2.4] Fixed "Product Attribute Identifier" in profile settings not working
+ * [M2.4 / PHP 7.4] Fixed "Deprecated Functionality: implode(): Passing glue string after array is deprecated."
+
+===== 2.3.9 =====
+ * Removed certain fields (related to quote/address IDs) from mapping as they could cause errors and aren't required for order imports
+ * Fixed an issue when cheapest shipping method is calculated. Also, tax amounts are properly saved in the order for calculated shipping rate.
+
+===== 2.4.0 =====
+ * Fixed an issue for tax calculation when "cheapest shipping method" retrieval is used. Tax is stored properly now.
+
+===== 2.4.1 =====
+ * Customer imports: If customer email is empty, an email will be auto-generated
+ * Fixed error "Unique constraint violation found" related to tax/order items
+ * Fixed an issue that lead to virtual orders not being importable
+ * For invoice/shipments created during order import, if "Send email" is NOT enabled, "email_sent" will be set to "1" so async email sending of Magento does not trigger email send.
+
+===== 2.4.2 =====
+ + Added ability to update existing order items, specifically, columns in the sales_order_item table. Reference order items by mapping the "item_id" field on item level. Also, it is required to provide order increment_id or entity_id as a mapped field.
+
+===== 2.4.3 =====
+ * Fixed an issue with totals calculation if tax has to be calculated and product qty greater than 1
+ * Fixed an issue with built-in default shipping method
+
+===== 2.4.4 =====
+ * Fixed an issue with correct order status in comments history not appearing
+
+===== 2.4.5 =====
+ * If products are identified using a custom attribute such as the UPC or the product ID, the correct SKU is now saved against the order item
+
+===== 2.4.6 =====
+ * Fixed an issue where extension related images/JS cannot be loaded in the Magento backend
+ * Updated Xtento_XtCore to version 2.11.0 ("Added Content Security Policy (CSP) support. XTENTO resources are whitelisted.")
+
+===== 2.4.7 =====
+ + A "quote" is created for new orders before the order is saved. This should avoid issues with modules who expect quotes to always exist, such as payment methods.
+
+===== 2.4.8 =====
+ + Improved error handler for crashes: A notification email is now sent if "debug emails" are enabled and an error has been logged
+
+===== 2.4.9 =====
+ * Fixed an issue when changing the order status: If the status one tries to set is assigned to multiple order states, the state of the current order will be selected if possible (instead of another state eventually)
+
+===== 2.5.0 =====
+ * Fixed an issue with edit profile page crashing due to broken shipping methods
+
+===== 2.5.1 =====
+ * Fixed an issue with "shutdown/crash" notices being logged about an unrelated Symfony error

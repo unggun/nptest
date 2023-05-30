@@ -1,0 +1,33 @@
+<?xml version="1.0"?>
+<page xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:framework:View/Layout/etc/page_configuration.xsd">
+    <body>
+        <referenceBlock name="checkout.cart.totals">
+            <arguments>
+                <argument name="jsLayout" xsi:type="array">
+                    <item name="components" xsi:type="array">
+                        <item name="block-totals" xsi:type="array">
+                            <item name="children" xsi:type="array">
+                                <item name="tier_price" xsi:type="array">
+                                    <item name="component" xsi:type="string">Icube_TierPrice/js/view/cart/totals/tier_price</item>
+                                    <item name="sortOrder" xsi:type="string">20</item>
+                                    <item name="config" xsi:type="array">
+                                        <item name="template" xsi:type="string">Icube_TierPrice/cart/totals/tier_price</item>
+                                        <item name="title" xsi:type="string">Tier Discount</item>
+                                    </item>
+                                </item>
+                                <item name="nett" xsi:type="array">
+                                    <item name="component" xsi:type="string">Icube_TierPrice/js/view/cart/totals/nett</item>
+                                    <item name="sortOrder" xsi:type="string">30</item>
+                                    <item name="config" xsi:type="array">
+                                        <item name="template" xsi:type="string">Icube_TierPrice/cart/totals/nett</item>
+                                        <item name="title" xsi:type="string">Nett</item>
+                                    </item>
+                                </item>
+                            </item>
+                        </item>
+                    </item>
+                </argument>
+            </arguments>
+        </referenceBlock>
+    </body>
+</page>

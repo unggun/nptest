@@ -11,21 +11,54 @@
     ],
     "autoload": {
         "files": [
-            "src/module-test/registration.php"
+            "src/module-test/registration.php",
+            "src/module-aheadworks-customerattributes/registration.php",
+            "src/module-global-message/registration.php",
+            "src/module-xtento-order-import/registration.php",
+            "src/module-otp-fazpass/registration.php",
+            "src/module-otp-verification/registration.php",
+            "src/module-icube-catalog-restrictions/registration.php",
+            "src/module-custom-customer/registration.php",
+            "src/module-icube-customer-groups/registration.php",
+            "src/module-icube-awpnotification/registration.php",
+            "src/module-icube-tier-price/registration.php",
+            "src/module-icube-overrideadvancerate/registration.php",
+            "src/module-icube-custom-multiseller/registration.php",
+            "src/module-my-voucher/registration.php",
+            "src/module-icube-custom-product/registration.php",
+            "src/module-icube-misi-pintar/registration.php",
+            "src/module-icube-customer-import/registration.php",
+            "src/module-vladflonta-webapilog/registration.php",
+            "src/module-xtento-order-overrideexport/registration.php",
+            "src/module-icube-custom-city/registration.php",
+            "src/module-icube-productimportoverride/registration.php",
+            "src/module-swift-overridecreditmemo/registration.php",
+            "src/module-icube-cart-order-log/registration.php"
         ],
         "psr-4": {
-            "Icube\\": ["src"],
-            "Icube\\TestModule\\": "src/module-test"
-        }
-    },
-    "require-dev": {
-        "magento/magento-coding-standard": "^22.0",
-        "phpunit/phpunit": "^9.5"
-    },
-    "repositories": {
-        "icube-swift": {
-            "type": "git",
-            "url": "git@github.com:icubeus/swift.git"
+            "Icube\\TestModule\\": "src/module-test",
+            "Aheadworks\\CustomerAttributes\\": "src/module-aheadworks-customerattributes",
+            "Xtento\\OrderImport\\": "src/module-xtento-order-import",
+            "Icube\\GlobalMessage\\": "src/module-global-message",
+            "Icube\\OtpFazpass\\": "src/module-otp-fazpass",
+            "Icube\\OtpVerification\\": "src/module-otp-verification",
+            "Icube\\CatalogRestrictions\\": "src/module-icube-catalog-restrictions",
+            "Icube\\CustomCustomer\\": "src/module-custom-customer",
+            "Icube\\CustomerGroups\\": "src/module-icube-customer-groups",
+            "Icube\\AwpNotification\\": "src/module-icube-awpnotification",
+            "Icube\\TierPrice\\": "src/module-icube-tier-price",
+            "Icube\\OverrideAdvancerate\\": "src/module-icube-overrideadvancerate",
+            "Icube\\CustomMultiseller\\": "src/module-icube-custom-multiseller",
+            "Icube\\MyVoucher\\": "src/module-my-voucher",
+            "Icube\\CustomProduct\\": "src/module-icube-custom-product",
+            "Icube\\MisiPintar\\": "src/module-icube-misi-pintar",
+            "Icube\\CustomerImport\\": "src/module-icube-customer-import",
+            "VladFlonta\\WebApiLog\\": "src/module-vladflonta-webapilog",
+            "Icube\\OrderExportOverride\\": "src/module-xtento-order-overrideexport",
+            "Icube\\CustomCity\\": "src/module-icube-custom-city",
+            "Icube\\ProductImportOverride\\": "src/module-icube-productimportoverride",
+            "Swift\\CreditmemoOverride\\": "src/module-swift-overridecreditmemo",
+			"Icube\\CartOrderLog\\": "src/module-icube-cart-order-log"
         }
     }
 }

@@ -1,0 +1,49 @@
+{
+    "icube_tier_price": {
+        "column": {
+            "tier_discount_id": true,
+            "erp_promo_id": true,
+            "erp_id": true,
+            "vendor_code": true,
+            "creator": true,
+            "customer_group_id": true,
+            "customer_id": true,
+            "product_sku": true,
+            "step_qty": true,
+            "discount_percentage": true,
+            "discount_amount": true,
+            "start_date": true,
+            "end_date": true,
+            "created_at": true,
+            "updated_at": true,
+            "apply_to_price": true
+        },
+        "constraint": {
+            "PRIMARY": true
+        }
+    },
+    "icube_tier_price_idx": {
+        "column": {
+            "entity_id": true,
+            "customer_id": true,
+            "product_id": true,
+            "final_price": true,
+            "step_qty": true
+        },
+        "constraint": {
+            "PRIMARY": true
+        }
+    },
+    "quote_item": {
+        "column": {
+            "tier_price_data": true,
+            "qty_tier_price": true
+        }
+    },
+    "sales_order_item": {
+        "column": {
+            "tier_price_data": true,
+            "qty_tier_price": true
+        }
+    }
+}

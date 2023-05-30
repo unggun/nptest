@@ -1,0 +1,147 @@
+type Query {
+    getCustomTierPrice(
+        filter: TierPriceFilterInput @doc(description: "The filter to use to determine which tier price to return."),
+        pageSize: Int = 10 @doc(description: "The maximum number of results to return at once. The default value is 10."),
+        currentPage: Int = 1 @doc(description: "The page of results to return. The default value is 1."),
+    ): GetTierPriceOutput
+        @resolver(class: "Icube\\TierPrice\\Model\\Resolver\\GetTierPrice")
+        @doc(description: "Get data from icube_tier_list")
+
+    getInvoiceStatusByOrder(
+        order_id: String @doc(description: "Order Increment ID")
+    ): [ItemsOfInvoices] @resolver(class: "\\Icube\\TierPrice\\Model\\Resolver\\ItemsOfInvoices") @doc(description: "Items of invoices")
+}
+
+type Mutation {
+    insertCustomTierPrice(
+        input: TierPriceInput! @doc(description: "An input object tier price input")
+    ): InsertTierPriceOutput
+        @resolver(class: "Icube\\TierPrice\\Model\\Resolver\\InsertTierPrice")
+        @doc(description: "Output object result of insert tier price")
+
+    deleteCustomTierPrice(
+        tier_discount_id: String! @doc(description: "Id of tier price")
+    ): InsertTierPriceOutput @resolver(class: "Icube\\TierPrice\\Model\\Resolver\\DeleteTierPrice") @doc(description: "Output object result of delete tier price")
+
+    bulkTierPriceUpload(
+        input: bulkTierPriceUploadInput
+    ): bulkTierPriceUploadOutput @doc(
+        description: "Bulk Tier Price Upload Using CSV."
+    ) @resolver(class: "Icube\\TierPrice\\Model\\Resolver\\BulkTierPriceUpload")
+}
+
+type GetTierPriceOutput {
+    total_count: Int @doc(description: "Total data count")
+    page_info: PageInfo @doc(description: "Pagination data")
+    data: [TierPrice] @doc(description: "Collection of tier price data")
+    status: Boolean @doc(description: "Action status")
+    message: String @doc(description: "Action message")
+}
+
+type PageInfo {
+    page_size: Int @doc(description: "Data shown per page")
+    current_page: Int @doc(description: "Currently selected page")
+    total_pages: Int @doc(description: "Total pages available")
+}
+
+type TierPrice {
+    tier_discount_id: String @doc(description: "Tier discount id of tier price")
+    erp_promo_id: String @doc(description: "ERP promo id of tier price")
+    erp_id: String @doc(description: "ERP of tier price")
+    vendor_code: String @doc(description: "Vendor code of tier price")
+    creator: String @doc(description: "Creator of tier price")
+    customer_group_id: String @doc(description: "Customer group id of tier price")
+    customer_id: String @doc(description: "Customer id of tier price")
+    product_sku: String @doc(description: "Product SKU of tier price")
+    step_qty: Int @doc(description: "Step quantity of tier price")
+    discount_percentage: Float @doc(description: "Discount percentage of tier price")
+    discount_amount: Float @doc(description: "Discount amount of tier price")
+    start_date: String @doc(description: "Start date of tier price")
+    end_date: String @doc(description: "End date of tier price")
+    apply_to_price: Boolean @doc(description: "True for tier discount apply to product price")
+}
+
+type InsertTierPriceOutput {
+    status: Boolean @doc(description: "Action status")
+    message: String @doc(description: "Action message")
+}
+
+input TierPriceFilterInput {
+    vendor_code: [String] @doc(description: "Vendor code of tier price")
+    erp_promo_id: [String] @doc(description: "ERP promo id of tier price")
+    erp_id: [String] @doc(description: "ERP of tier price")
+    email: [String] @doc(description: "Customer email of tier price")
+    customer_group_code: [String] @doc(description: "Customer group code of tier price")
+    product_sku: [String] @doc(description: "Product SKU of tier price")
+    start_date: [String] @doc(description: "Start date of tier price")
+    end_date: [String] @doc(description: "End date of tier price")
+    apply_to_price: [Boolean] @doc(description: "true for tier discount apply to product price")
+}
+
+input TierPriceInput {
+    tier_discount_id: Int @doc(description: "ID of tier price")
+    erp_promo_id: String @doc(description: "ERP promo id of tier price")
+    erp_id: String @doc(description: "ERP of tier price")
+    vendor_code: String @doc(description: "Vendor code of tier price")
+    creator: String @doc(description: "Creator of tier price")
+    customer_group_code: String @doc(description: "Customer group id of tier price")
+    email: String @doc(description: "Customer id of tier price")
+    product_sku: String @doc(description: "Product SKU of tier price")
+    step_qty: Int @doc(description: "Step quantity of tier price")
+    discount_percentage: Float @doc(description: "Discount percentage of tier price")
+    discount_amount: Float @doc(description: "Discount amount of tier price")
+    start_date: String @doc(description: "Start date of tier price")
+    end_date: String @doc(description: "End date of tier price")
+    apply_to_price: Boolean @doc(description: "True for tier discount apply to product price")
+}
+
+type ItemsOfInvoices {
+    items: [StatusInvoice]
+        @doc(description: "An array of result status invoices is pending / paid.")
+        @resolver(
+            class: "Icube\\TierPrice\\Model\\Resolver\\StatusInvoiceByOrder"
+        )
+}
+
+type StatusInvoice @doc(description: "Photos of gallery.") {
+    invoice_id: String @doc(description: "Invoice ID.")
+    status_invoice: String @doc(description: "Status Invoice.")
+}
+
+input bulkTierPriceUploadInput @doc(description: "Tier Price Upload File") {
+    file: String! @doc(description: "base64 csv, with header column erp_promo_id, customer_type, customer_value, customer_group, sku, step_qty, discount_type, discount_value, start_date, end_date")
+    vendor_code: String @doc(description: "Vendor code optional.")
+    email_user: String! @doc(description: "Creator user email who upload the file.")
+}
+
+type bulkTierPriceUploadOutput @doc(description: "List of failed while upload tier price") {
+    attachment_url: String @doc(description: "Error log URL")
+    is_success: Boolean @doc(description: "Upload success status in boolean")
+    status: String @doc(description: "Upload status")
+    message: String @doc(description: "Additional message")
+}
+
+type CartPrices  @doc(description: "Contains details about the final price of items in the cart, including discount and tax information.") {
+    tier_price: PriceFormatData @doc(description:"An array containing all discounts applied to the cart.")
+    nett: PriceFormatData @doc(description:"An array containing nett in the cart.")
+}
+
+type CartItemPrices @doc(description: "Contains details about the price of the item, including taxes and discounts.") {
+    tier_price: Money @doc(description:"An array containing all discounts applied to the cart.")
+}
+
+interface ProductInterface {
+    tier_prices_custom: [TierPriceCustom] @doc(description: "An array of ProductTierPrices objects.") @resolver(class: "Icube\\TierPrice\\Model\\Resolver\\ProductTierPrices")
+}
+
+type TierPriceCustom {
+    final_price: Money @doc(description: "The price of the product at this tier.")
+    quantity: Float @doc(description: "The minimum number of items that must be purchased to qualify for this price tier.")
+    discount: ProductDiscount @doc(description: "The price discount that this tier represents.")
+    customer_group: String
+}
+
+type PriceFormatData @doc(description:"Defines an individual discount. A discount can be applied to the cart as a whole or to an item.") {
+    label: String! @doc(description:"A description of the discount.")
+    amount: Money! @doc(description:"The amount of the discount.")
+}

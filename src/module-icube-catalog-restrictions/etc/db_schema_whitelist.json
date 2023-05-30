@@ -1,0 +1,16 @@
+{
+    "icube_sellerconfig": {
+        "column": {
+            "entity_id": true,
+            "seller_id": true,
+            "type": true,
+            "value": true
+        },
+        "index": {
+            "ICUBE_SELLERCONFIG_SELLER_ID": true
+        },
+        "constraint": {
+            "PRIMARY": true
+        }
+    }
+}

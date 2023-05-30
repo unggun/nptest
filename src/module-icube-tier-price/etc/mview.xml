@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:framework:Mview/etc/mview.xsd">
+    <view id="icube_tierprice_indexer" class="Icube\TierPrice\Model\Indexer" group="indexer">
+        <subscriptions>
+            <table name="icube_tier_price" entity_column="tier_discount_id" />
+        </subscriptions>
+    </view>
+</config>
