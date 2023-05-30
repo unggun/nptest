@@ -21,5 +21,11 @@
     "require-dev": {
         "magento/magento-coding-standard": "^22.0",
         "phpunit/phpunit": "^9.5"
+    },
+    "repositories": {
+        "icube-swift": {
+            "type": "git",
+            "url": "git@github.com:icubeus/swift.git"
+        }
     }
 }
