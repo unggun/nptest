@@ -1,0 +1,29 @@
+<?xml version="1.0"?>
+<page xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" layout="admin-2columns-left" xsi:noNamespaceSchemaLocation="urn:magento:framework:View/Layout/etc/page_configuration.xsd">
+    <body>
+        <referenceContainer name="page.content">
+            <block before="page_main_actions" class="Xtento\OrderImport\Block\Adminhtml\Widget\Menu" name="orderimport.menu"/>
+        </referenceContainer>
+        <referenceContainer name="content">
+            <block class="Xtento\OrderImport\Block\Adminhtml\Source\Edit" name="orderimport_source_edit"/>
+        </referenceContainer>
+        <referenceContainer name="left">
+            <block class="Xtento\OrderImport\Block\Adminhtml\Source\Edit\Tabs" name="orderimport_source_edit_tabs">
+                <action method="addTab">
+                    <argument name="name" xsi:type="string">general</argument>
+                    <argument name="block" xsi:type="string">Xtento\OrderImport\Block\Adminhtml\Source\Edit\Tab\Configuration</argument>
+                </action>
+            </block>
+        </referenceContainer>
+    </body>
+</page>
+
+<!--
+/**
+ * Product:       Xtento_OrderImport
+ * ID:            oqsi2y9WE6C6UMS277bs1A30bLpPe+n3JPzkpe97fvg=
+ * Last Modified: 2019-03-04T14:11:23+00:00
+ * File:          app/code/Xtento/OrderImport/view/adminhtml/layout/xtento_orderimport_source_edit.xml
+ * Copyright:     Copyright (c) XTENTO GmbH & Co. KG <info@xtento.com> / All rights reserved.
+ */
+-->

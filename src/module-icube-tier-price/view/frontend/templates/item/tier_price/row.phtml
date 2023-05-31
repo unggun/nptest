@@ -1,0 +1,39 @@
+<?php
+/**
+ * Copyright © Magento, Inc. All rights reserved.
+ * See COPYING.txt for license details.
+ */
+
+// phpcs:disable Magento2.Templates.ThisInTemplate
+
+/** @var $block \Magento\Checkout\Block\Item\Price\Renderer */
+
+$_item = $block->getItem();
+$discount = 0;
+if ($_item->getTierPriceData()) {
+    foreach (json_decode($_item->getTierPriceData(), true) as $tierPrice) {
+        if ($tierPrice['discount_percentage'] && ($tierPrice['discount_percentage'] > 0)) {
+            $tmp = ((int) $_item->getPrice() * $tierPrice['discount_percentage']) / 100;
+        } elseif ($tierPrice['discount_amount']) {
+            $tmp = $tierPrice['discount_amount'];
+        } else {
+            $tmp = 0;
+        }
+
+        $discount += $tmp * $_item->getQtyTierPrice();
+        $discount = round($discount);
+    }
+}
+?>
+<span class="price" data-label="<?= $block->escapeHtml(__('Tier Discount')) ?>">
+    <span class="cart-price">
+        <?php if ($discount > 0):?>
+            <?= $block->escapeHtml(
+                $this->helper(Magento\Checkout\Helper\Data::class)->formatPrice($discount),
+                ['span']
+            ) ?>
+        <?php else:?>
+            <?= "-" ?>
+        <?php endif;?>
+    </span>
+</span>

@@ -1,0 +1,11 @@
+<?xml version="1.0"?>
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:framework:ObjectManager/etc/config.xsd">
+	<type name="Icube\PushNotificationFirebase\Block\Adminhtml\Firebase\Edit\Form">
+        <plugin name="firebase_notification_addsubsgroup" type="Icube\AwpNotification\Plugin\Block\Adminhtml\Firebase\Edit\Form" sortOrder="1"/>
+    </type>
+    <preference for="Icube\PushNotificationFirebase\Controller\Adminhtml\Message\Save" type="Icube\AwpNotification\Controller\Adminhtml\Message\Save" />
+    <preference for="Icube\PushNotificationFirebase\Helper\sendData" type="Icube\AwpNotification\Helper\SendData" />
+    <preference for="Icube\PushNotificationFirebase\Controller\Adminhtml\Message\MassDelete" type="Icube\AwpNotification\Controller\Adminhtml\Message\MassDelete" />
+    <preference for="Icube\QueueNotification\Console\Command\SendEmail" type="Icube\AwpNotification\Console\Command\SendEmail" />
+    <preference for="Icube\NotificationGraphQl\Model\Resolver\CustomerNotificationList" type="Icube\AwpNotification\Model\Resolver\CustomerNotificationList" />
+</config>

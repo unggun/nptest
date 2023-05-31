@@ -1,0 +1,27 @@
+<?xml version="1.0" ?>
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:module:Magento_Config:etc/system_file.xsd">
+    <system>
+        <section id="misipintar" sortOrder="20" showInWebsite="1" showInStore="1" showInDefault="1" translate="label">
+            <label>Misi Pintar</label>
+            <tab>icube</tab>
+            <resource>Icube_MisiPintar::config_misipintar</resource>
+            <group id="api" sortOrder="10" showInWebsite="1" showInStore="1" showInDefault="1" translate="label">
+                <label>API Credential</label>
+                <field id="url_endpoint" type="text" sortOrder="10" showInWebsite="1" showInStore="1" showInDefault="1" translate="label">
+                    <label>URL Endpoint</label>
+                    <comment/>
+                </field>
+                <field id="auth_token" type="text" sortOrder="10" showInWebsite="1" showInStore="1" showInDefault="1" translate="label">
+                    <label>Auth Token</label>
+                    <comment/>
+                </field>
+            </group>
+            <group id="fulfillment" sortOrder="10" showInWebsite="1" showInStore="1" showInDefault="1" translate="label">
+                <label>Fulfillment Credential</label>
+                <field id="oms_notify_url_endpoint" type="text" sortOrder="10" showInWebsite="1" showInStore="1" showInDefault="1" translate="label">
+                    <label>OMS Notify URL Endpoint</label>
+                </field>
+            </group>
+        </section>
+    </system>
+</config>

@@ -1,0 +1,6 @@
+<?xml version="1.0"?>
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:module:Magento_Backend:etc/menu.xsd">
+    <menu>        
+        <add id="Icube_TierPrice::tierprice" title="Tier Price List" translate="title" module="Icube_TierPrice" sortOrder="40" parent="Magento_Catalog::inventory" resource="Icube_TierPrice::tierprice" action="custom_tierprice/grid/tierlist"/>
+    </menu>
+</config>

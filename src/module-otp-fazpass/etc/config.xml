@@ -1,0 +1,12 @@
+<?xml version="1.0"?>
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:module:Magento_Store:etc/config.xsd">
+	<default>
+		<icube_fazpass>
+			<general>
+				<enable>No</enable>
+				<url_generate_otp_endpoint>https://api.fazpass.com/v1/otp/request</url_generate_otp_endpoint>
+				<url_verify_otp_endpoint>https://api.fazpass.com/v1/otp/verify</url_verify_otp_endpoint>
+			</general>
+		</icube_fazpass>
+	</default>
+</config>

@@ -1,0 +1,20 @@
+<?xml version="1.0"?>
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:module:Magento_Backend:etc/menu.xsd">
+    <menu>
+        <add id="Xtento_OrderImport::configuration" title="Sales Import" module="Xtento_OrderImport" sortOrder="180" parent="Xtento_XtCore::extensions" action="adminhtml/system_config/edit/section/orderimport" resource="Xtento_OrderImport::configuration"/>
+        <add id="Xtento_OrderImport::menu" title="Sales Import" module="Xtento_OrderImport" sortOrder="101" parent="Magento_Sales::sales" resource="Xtento_OrderImport::menu"/>
+        <add id="Xtento_OrderImport::manual" title="Manual Import" module="Xtento_OrderImport" sortOrder="10" parent="Xtento_OrderImport::menu" action="xtento_orderimport/manual/index" resource="Xtento_OrderImport::manual"/>
+        <add id="Xtento_OrderImport::log" title="Execution Log" module="Xtento_OrderImport" sortOrder="20" parent="Xtento_OrderImport::menu" action="xtento_orderimport/log/index" resource="Xtento_OrderImport::log"/>
+        <add id="Xtento_OrderImport::profile" title="Import Profiles" module="Xtento_OrderImport" sortOrder="30" parent="Xtento_OrderImport::menu" action="xtento_orderimport/profile/index" resource="Xtento_OrderImport::profile"/>
+        <add id="Xtento_OrderImport::source" title="Import Sources" module="Xtento_OrderImport" sortOrder="40" parent="Xtento_OrderImport::menu" action="xtento_orderimport/source/index" resource="Xtento_OrderImport::source"/>
+    </menu>
+</config>
+<!--
+/**
+ * Product:       Xtento_OrderImport
+ * ID:            oqsi2y9WE6C6UMS277bs1A30bLpPe+n3JPzkpe97fvg=
+ * Last Modified: 2019-03-19T17:39:52+00:00
+ * File:          app/code/Xtento/OrderImport/etc/adminhtml/menu.xml
+ * Copyright:     Copyright (c) XTENTO GmbH & Co. KG <info@xtento.com> / All rights reserved.
+ */
+-->

@@ -1,0 +1,23 @@
+{
+  "name": "icubeus/magento2-otp-fazpass",
+  "description": "Enable shipping rate define functionality for Admin",
+  "keywords": [
+    "magento 2",
+    "otp-fazpass"
+  ],
+  "type": "magento2-module",
+  "version": "4.1.11",
+  "minimum-stability": "dev",
+  "license": [
+    "OSL-3.0",
+    "AFL-3.0"
+  ],
+  "autoload": {
+    "files": [
+      "registration.php"
+    ],
+    "psr-4": {
+      "Icube\\OtpFazpass\\": ""
+    }
+  }
+}

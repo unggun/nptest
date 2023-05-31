@@ -1,0 +1,43 @@
+<?xml version="1.0"?>
+<layout xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:framework:View/Layout/etc/layout_generic.xsd">
+    <update handle="xtento_orderimport_history_grid_block"/>
+    <container name="root" label="Root">
+        <block class="Xtento\OrderImport\Block\Adminhtml\History" name="adminhtml.orderimport.history.grid.container">
+            <action method="removeButton">
+                <argument name="buttonId" xsi:type="string">add</argument>
+            </action>
+            <referenceBlock name="adminhtml.block.orderimport.history.grid">
+                <arguments>
+                    <argument name="grid_url" xsi:type="url" path="*/profile/history">
+                        <param name="_current">1</param>
+                    </argument>
+                </arguments>
+            </referenceBlock>
+            <referenceBlock name="adminhtml.orderimport.history.grid.column.actions">
+                <arguments>
+                    <argument name="actions" xsi:type="array">
+                        <item name="download" xsi:type="array">
+                            <item name="target" xsi:type="string">_blank</item>
+                        </item>
+                    </argument>
+                </arguments>
+            </referenceBlock>
+            <referenceBlock name="adminhtml.orderimport.history.grid.columnSet">
+                <arguments>
+                    <argument name="rowUrl" xsi:type="null"/>
+                </arguments>
+            </referenceBlock>
+            <referenceBlock name="adminhtml.orderimport.history.grid.massaction" remove="true"/>
+        </block>
+    </container>
+</layout>
+
+<!--
+/**
+ * Product:       Xtento_OrderImport
+ * ID:            oqsi2y9WE6C6UMS277bs1A30bLpPe+n3JPzkpe97fvg=
+ * Last Modified: 2019-09-05T13:55:04+00:00
+ * File:          app/code/Xtento/OrderImport/view/adminhtml/layout/xtento_orderimport_profile_history.xml
+ * Copyright:     Copyright (c) XTENTO GmbH & Co. KG <info@xtento.com> / All rights reserved.
+ */
+-->

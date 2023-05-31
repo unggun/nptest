@@ -1,0 +1,36 @@
+type Mutation {
+  requestOtpLogin(phonenumber: String!,type:OtpType!): RequestOtpLoginOutput
+		@resolver(class: "\\Icube\\OtpVerification\\Model\\Resolver\\Otp\\RequestOtpLogin")
+		@doc(description: "Request otp for login")
+	checkOtpLogin(otp: String!, otp_id: String!): CheckOtpLoginOutput
+		@resolver(class: "\\Icube\\OtpVerification\\Model\\Resolver\\Otp\\CheckOtpLogin")
+		@doc(description: "Check otp for login")
+  generateCustomerTokenByPhoneOtp(phonenumber: String!,otp: String!, otp_id: String!): CustomerToken
+		@resolver(class: "\\Icube\\OtpVerification\\Model\\Resolver\\Otp\\GenerateCustomerTokenByPhoneOtp")
+		@doc(description: "Retrieve the customer token custom")
+}
+
+type RequestOtpLoginOutput {
+    info: String @doc(description: "info otp status")
+    otp_id: String @doc(description: "otp id from pasfazz to verify OTP")
+    is_registered: Boolean @doc(description: "Check if rcustomer is already registered")
+    wp_code: String @doc(description: "WP code")
+}
+
+type CheckOtpLoginOutput {
+    is_valid_otp: Boolean @doc(description: "info otp status")
+    message: String @doc(description: "info otp status")
+}
+
+enum OtpType {
+  wa
+  sms
+}
+
+type Query {
+    checkOtpType: CheckOtpType @resolver(class: "\\Icube\\OtpVerification\\Model\\Resolver\\Otp\\CheckOtpConfig") @doc(description:"get available_seller")
+}
+
+type CheckOtpType {
+  otp_type : [String]
+}

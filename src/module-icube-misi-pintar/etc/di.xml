@@ -1,0 +1,11 @@
+<?xml version="1.0"?>
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:framework:ObjectManager/etc/config.xsd">
+    <preference for="Swiftoms\Shipment\Helper\CreateShipment" type="Icube\MisiPintar\Helper\CreateShipmentOverride" />
+    <type name="Icube\MisiPintar\Model\Resolver\DataProvider\DataProcessorPool">
+        <arguments>
+            <argument name="dataProcessors" xsi:type="array">
+                <item name="rewardcaption_data_processor" xsi:type="object">Icube\MisiPintar\Model\Modifier\CaptionModifier</item>
+            </argument>
+        </arguments>
+    </type>
+</config>

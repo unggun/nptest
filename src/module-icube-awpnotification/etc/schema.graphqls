@@ -1,0 +1,13 @@
+type Mutation {
+    setFirebaseToken(input: SetFirebaseTokenInput!): FirebaseTokenOutput @resolver(class: "\\Icube\\AwpNotification\\Model\\Resolver\\SetFirebaseToken") @doc(description:"save firebase token for notification")
+}
+
+input SetFirebaseTokenInput {
+    token: String @doc(description: "Firebase Token")
+    device: String @doc(description: "Device name")
+    phonenumber: String @doc(description: "Customer Phonenumber")
+}
+
+type FirebaseTokenOutput {
+    status: String @doc(description: "status")
+}

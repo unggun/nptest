@@ -1,0 +1,32 @@
+<?php
+/**
+ * Copyright © Magento, Inc. All rights reserved.
+ * See COPYING.txt for license details.
+ */
+?>
+
+<?php
+// phpcs:disable Magento2.Templates.ThisInTemplate
+// phpcs:disable Generic.WhiteSpace.ScopeIndent
+
+/** @var \Magento\Catalog\Pricing\Render\PriceBox $block */
+/** @var \Magento\Framework\View\Helper\SecureHtmlRenderer $secureRenderer */
+
+/** @var \Magento\Catalog\Pricing\Price\TierPrice $tierPriceModel */
+// $tierPriceModel = $block->getPrice();
+// $tierPrices = $tierPriceModel->getTierPriceList();
+$msrpShowOnGesture = $block->getPriceType('msrp_price')->isShowPriceOnGesture();
+$product = $block->getSaleableItem();
+$helper = $this->helper('Icube\TierPrice\Helper\Data');
+$tierPrices = $helper->getTierPriceDetailsByProduct($block->getSaleableItem());
+?>
+<ul class="<?= $block->escapeHtmlAttr(($block->hasListClass() ? $block->getListClass() : 'prices-tier items')) ?>"></ul>
+<script type="text/x-magento-init">
+    {
+        ".prices-tier.items": {
+            "Icube_TierPrice/js/product/tier_price": {
+                "sku": "<?= $product->getSku() ?>"
+            }
+        }
+    }
+</script>

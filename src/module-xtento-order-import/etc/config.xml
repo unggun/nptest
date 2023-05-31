@@ -1,0 +1,23 @@
+<?xml version="1.0"?>
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:module:Magento_Store:etc/config.xsd">
+    <default>
+        <carriers>
+            <xtentodefaultmethod>
+                <active>0</active>
+                <sallowspecific>0</sallowspecific>
+                <model>\Xtento\OrderImport\Model\DefaultMethod\Shipping</model>
+                <name>Shipping Method</name>
+                <title>Imported Order</title>
+            </xtentodefaultmethod>
+        </carriers>
+    </default>
+</config>
+<!--
+/**
+ * Product:       Xtento_OrderImport
+ * ID:            oqsi2y9WE6C6UMS277bs1A30bLpPe+n3JPzkpe97fvg=
+ * Last Modified: 2019-09-25T18:17:09+00:00
+ * File:          app/code/Xtento/OrderImport/etc/config.xml
+ * Copyright:     Copyright (c) XTENTO GmbH & Co. KG <info@xtento.com> / All rights reserved.
+ */
+-->

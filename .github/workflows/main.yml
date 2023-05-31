@@ -1,63 +1,30 @@
 name: CI
 
 on:
-  push:
-    branches: [ master, develop ]
   pull_request:
     branches: [ master, staging, develop ]
 
 jobs:
-  php:
+  static:
+    name: M2 Coding Standard
     runs-on: ubuntu-latest
-    strategy:
-      fail-fast: false
-      matrix:
-        php-version:
-          - "7.4"
-        dependencies:
-          - "lowest"
-          - "highest"
-        exclude:
-          - php-version: "7.4"
-            dependencies: "lowest"
-    name: Tests with PHP ${{ matrix.php-version }} and ${{ matrix.dependencies }} dependencies
-
     steps:
-    - name: Setup node
-      uses: actions/setup-node@v2
-      with:
-        node-version: '16'
-
-    - uses: actions/checkout@v2
-
-    - name: Setup PHP
-      uses: shivammathur/setup-php@v2
-      with:
-        php-version: ${{ matrix.php-version }}
-        ini-file: development
-      env:
-        COMPOSER_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-
-    - name: Install dependencies
-      run: npm install
-
-    - name: Validate composer
-      run: composer validate
-
-    - name: Composer install
-      uses: "ramsey/composer-install@v1"
-      with:
-        dependency-versions: "${{ matrix.dependencies }}"
-        composer-options: "${{ matrix.composer-options }}"
-
-    - name: Run unit tests suite
-      run: vendor/bin/phpunit src/
-
-    #- name: Run code style suite
-    #  run: vendor/bin/phpcs --standard=vendor/magento/magento-coding-standard/Magento2 app/code/Icube
-
-    #- name: Run framework suite
-    #  run: vendor/bin/phpcs --standard=vendor/magento/magento-coding-standard/Magento2Framework app/code/Icube
+      - uses: actions/checkout@v2
+      - uses: extdn/github-actions-m2/magento-coding-standard@master
+  phpmd:
+    name: M2 Mess Detector
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v2
+      - uses: extdn/github-actions-m2/magento-mess-detector@master
+  phpstan:
+    name: M2 PHPStan
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v2
+      - uses: extdn/github-actions-m2/magento-phpstan@master
+        with:
+          composer_name: unggun/nptest
   js:
     runs-on: ubuntu-latest
     name: Javascript tests
@@ -74,26 +41,32 @@ jobs:
         run: npm install
 
       - name: Run ESLint
-        run: npm run eslint -- src/
-  #rector:
-  #  runs-on: ubuntu-latest
-  #  name: Rector tests
-
-  #  steps:
-  #    - name: Setup PHP
-  #      uses: shivammathur/setup-php@v2
-  #      with:
-  #        php-version: 7.4
-
-  #    - name: Setup node
-  #      uses: actions/setup-node@v2
-  #      with:
-  #        node-version: '16'
-
-  #    - uses: actions/checkout@v2
-
-  #    - name: Install dependencies
-  #      run: composer install
-
-  #    - name: Run rector
-  #      run: vendor/bin/rector process app/code --dry-run --autoload-file vendor/squizlabs/php_codesniffer/autoload.php --autoload-file vendor/phpcompatibility/php-compatibility/PHPCSAliases.php
+        run: npm run eslint -- src
+  integration-tests:
+    name: Magento 2 Integration Tests
+    runs-on: ubuntu-latest
+    services:
+      mysql:
+        image: mysql:5.7
+        env:
+          MYSQL_ROOT_PASSWORD: root
+        ports:
+          - 3306:3306
+        options: --tmpfs /tmp:rw --tmpfs /var/lib/mysql:rw --health-cmd="mysqladmin ping" --health-interval=10s --health-timeout=5s --health-retries=3
+      es:
+        image: docker.io/wardenenv/elasticsearch:7.8
+        ports:
+          - 9200:9200
+        env:
+          'discovery.type': single-node
+          'xpack.security.enabled': false
+          ES_JAVA_OPTS: "-Xms64m -Xmx512m"
+        options: --health-cmd="curl localhost:9200/_cluster/health?wait_for_status=yellow&timeout=60s" --health-interval=10s --health-timeout=5s --health-retries=3
+    steps:
+      - uses: actions/checkout@v2
+      - name: M2 Integration Tests with Magento 2 (Php7.4)
+        uses: extdn/github-actions-m2/magento-integration-tests/7.4@master
+        with:
+          module_name: Icube_MisiPintar Icube_TierPrice
+          composer_name: unggun/nptest
+          ce_version: '2.4.4'

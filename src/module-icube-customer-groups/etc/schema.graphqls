@@ -1,0 +1,11 @@
+type Query {
+    getListCustomerGroups: [getListCustomerGroupsOutput]
+        @resolver(class:"Icube\\CustomerGroups\\Model\\Resolver\\GetListCustomerGroups")
+        @doc(description:"Get list of customer groups")
+        @cache(cacheable: true)
+}
+
+type getListCustomerGroupsOutput {
+    customer_group_id: Int @doc(description: "Group ID")
+    customer_group_code: String @doc(description: "Group code")
+}

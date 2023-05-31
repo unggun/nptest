@@ -1,0 +1,25 @@
+<?php
+// @codingStandardsIgnoreFile
+
+/** @var \Aheadworks\CustomerAttributes\ViewModel\Relation $viewModel */
+$viewModel = $block->getViewModel();
+$relationsData = $viewModel->getRelationsData();
+?>
+
+<?php if (!empty($relationsData)): ?>
+    <script type="text/x-magento-init">
+        {
+            ".fieldset-wrapper": {
+                "awUiCustAttrRelationManager": {
+                    "relationsData": <?= /* @noEscape */ $relationsData ?>,
+                    "componentsNamespace": "customer_address_form.customer_address_form.general"
+                }
+            }
+        }
+    </script>
+    <script type="text/javascript">
+        require(['jquery'], function ($) {
+            $('body').trigger('contentUpdated');
+        });
+    </script>
+<?php endif; ?>

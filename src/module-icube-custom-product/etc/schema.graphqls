@@ -1,0 +1,12 @@
+interface ProductInterface {
+    uom: String
+        @resolver(
+            class: "\\Icube\\CustomProduct\\Model\\Resolver\\Uom"
+        )
+        @doc(description: "An attribute that define the product Unit of Measurement")
+}
+
+type OrderDetailItem {
+	uom: String
+        @doc(description: "An attribute that define the product Unit of Measurement")
+}

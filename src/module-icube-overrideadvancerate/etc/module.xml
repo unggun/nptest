@@ -1,0 +1,9 @@
+<?xml version="1.0"?>
+<config>
+    <module name="Icube_OverrideAdvancerate" setup_version="1.0.1">
+      <sequence>
+        <module name="Ced_Advancerate"/>
+        <module name="Icube_ShipmentRate"/>
+      </sequence>
+    </module>
+</config>

@@ -1,0 +1,41 @@
+<?xml version="1.0" ?>
+<schema xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:framework:Setup/Declaration/Schema/etc/schema.xsd">
+    <table name="icube_tier_price">
+        <column xsi:type="int" name="tier_discount_id" padding="10" unsigned="true" nullable="false" identity="true" comment="Tier Discount Id"/>
+        <constraint xsi:type="primary" referenceId="PRIMARY">
+            <column name="tier_discount_id"/>
+        </constraint>
+        <column name="erp_promo_id" nullable="true" xsi:type="varchar" length="255" comment="ERP Promo Id"/>
+        <column name="erp_id" nullable="true" xsi:type="varchar" length="255" comment="ERP Id"/>
+        <column name="vendor_code" nullable="true" xsi:type="varchar" length="100" comment="Vendor Code"/>
+        <column name="creator" nullable="true" xsi:type="varchar" length="255" comment="Creator (admin/seller)"/>
+        <column xsi:type="varchar" name="customer_group_id" length="40" nullable="true" comment="Customer Group ID"/>
+        <column xsi:type="varchar" name="customer_id" length="200" nullable="true" comment="Customer ID"/>
+        <column xsi:type="varchar" name="product_sku" length="200" nullable="true" comment="SKU Product"/>
+        <column xsi:type="int" name="step_qty" padding="11" unsigned="true" nullable="true" comment="Step Quantity"/>
+        <column xsi:type="decimal" name="discount_percentage" scale="4" precision="12" comment="Discount Percentage"/>
+        <column xsi:type="decimal" name="discount_amount" scale="4" precision="20" comment="Discount Amount"/>
+        <column xsi:type="int" name="apply_to_price" padding="2" unsigned="true" nullable="false" default="0" comment="Apply To Base Price"/>
+        <column xsi:type="date" name="start_date" nullable="true" comment="Start Date"/>
+        <column xsi:type="date" name="end_date" nullable="true" comment="End Date"/>
+        <column name="created_at" nullable="false" xsi:type="datetime" default="CURRENT_TIMESTAMP" on_update="false" comment="Created date"/>
+        <column name="updated_at" nullable="true" xsi:type="datetime" default="CURRENT_TIMESTAMP" on_update="true" comment="Updated date"/>
+    </table>
+    <table name="icube_tier_price_idx">
+        <column xsi:type="int" name="entity_id" padding="10" unsigned="true" nullable="false" identity="true" comment="Entity Id"/>
+        <constraint xsi:type="primary" referenceId="PRIMARY">
+            <column name="entity_id"/>
+        </constraint>
+        <column xsi:type="int" name="customer_id" padding="11" unsigned="true" nullable="true" comment="Customer ID"/>
+        <column xsi:type="int" name="product_id" padding="11" unsigned="true" nullable="true" comment="Product ID"/>
+        <column xsi:type="decimal" name="final_price" scale="4" precision="12" nullable="true" comment="Final Price"/>
+    </table>
+    <table name="quote_item">
+        <column xsi:type="int" name="qty_tier_price" padding="11" unsigned="true" nullable="true" comment="Tier Price Item Quantity"/>
+        <column xsi:type="text" name="tier_price_data" nullable="true" comment="Tier Price Data"/>
+    </table>
+    <table name="sales_order_item">
+        <column xsi:type="int" name="qty_tier_price" padding="11" unsigned="true" nullable="true" comment="Tier Price Item Quantity"/>
+        <column xsi:type="text" name="tier_price_data" nullable="true" comment="Tier Price Data"/>
+    </table>
+</schema>

@@ -1,0 +1,17 @@
+<?xml version="1.0"?>
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:framework:App/etc/routes.xsd">
+    <router id="admin">
+        <route id="xtento_orderimport" frontName="xtento_orderimport">
+            <module name="Xtento_OrderImport" before="Magento_Backend"/>
+        </route>
+    </router>
+</config>
+<!--
+/**
+ * Product:       Xtento_OrderImport
+ * ID:            oqsi2y9WE6C6UMS277bs1A30bLpPe+n3JPzkpe97fvg=
+ * Last Modified: 2019-03-04T14:08:38+00:00
+ * File:          app/code/Xtento/OrderImport/etc/adminhtml/routes.xml
+ * Copyright:     Copyright (c) XTENTO GmbH & Co. KG <info@xtento.com> / All rights reserved.
+ */
+-->

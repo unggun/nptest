@@ -1,0 +1,90 @@
+<?xml version="1.0"?>
+<page xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" layout="admin-2columns-left" xsi:noNamespaceSchemaLocation="urn:magento:framework:View/Layout/etc/page_configuration.xsd">
+    <head>
+        <link src="Xtento_OrderImport::js/profile.js"/>
+    </head>
+    <body>
+        <referenceContainer name="page.content">
+            <block before="page_main_actions" class="Xtento\OrderImport\Block\Adminhtml\Widget\Menu" name="orderimport.menu"/>
+        </referenceContainer>
+        <referenceContainer name="content">
+            <block class="Xtento\OrderImport\Block\Adminhtml\Profile\Edit" name="orderimport_profile_edit"/>
+        </referenceContainer>
+        <referenceContainer name="left">
+            <block class="Xtento\OrderImport\Block\Adminhtml\Profile\Edit\Tabs" name="orderimport_profile_edit_tabs">
+                <action method="addTab">
+                    <argument name="name" xsi:type="string">general</argument>
+                    <argument name="block" xsi:type="string">Xtento\OrderImport\Block\Adminhtml\Profile\Edit\Tab\General</argument>
+                </action>
+                <action method="addTab">
+                    <argument name="name" xsi:type="string">settings</argument>
+                    <argument name="block" xsi:type="string">Xtento\OrderImport\Block\Adminhtml\Profile\Edit\Tab\Settings</argument>
+                </action>
+                <action method="addTab">
+                    <argument name="name" xsi:type="string">mapping</argument>
+                    <argument name="block" xsi:type="string">Xtento\OrderImport\Block\Adminhtml\Profile\Edit\Tab\Mapping</argument>
+                </action>
+                <action method="addTab">
+                    <argument name="name" xsi:type="string">actions</argument>
+                    <argument name="block" xsi:type="string">Xtento\OrderImport\Block\Adminhtml\Profile\Edit\Tab\Actions</argument>
+                </action>
+                <block class="Magento\Backend\Block\Widget\Tab" name="orderimport.source">
+                    <arguments>
+                        <argument name="label" xsi:type="string" translate="true">Import Sources</argument>
+                        <argument name="url" xsi:type="url" path="*/*/source">
+                            <param name="ajax_enabled">1</param>
+                            <param name="_current">1</param>
+                        </argument>
+                        <argument name="class" xsi:type="string">ajax</argument>
+                    </arguments>
+                </block>
+                <action method="addTab">
+                    <argument name="name" xsi:type="string">source</argument>
+                    <argument name="block" xsi:type="string">orderimport.source</argument>
+                </action>
+                <action method="addTab">
+                    <argument name="name" xsi:type="string">automatic</argument>
+                    <argument name="block" xsi:type="string">Xtento\OrderImport\Block\Adminhtml\Profile\Edit\Tab\Automatic</argument>
+                </action>
+                <block class="Magento\Backend\Block\Widget\Tab" name="orderimport.log">
+                    <arguments>
+                        <argument name="label" xsi:type="string" translate="true">Profile Execution Log</argument>
+                        <argument name="url" xsi:type="url" path="*/*/log">
+                            <param name="ajax_enabled">1</param>
+                            <param name="_current">1</param>
+                        </argument>
+                        <argument name="class" xsi:type="string">ajax</argument>
+                    </arguments>
+                </block>
+                <action method="addTab">
+                    <argument name="name" xsi:type="string">execution_log</argument>
+                    <argument name="block" xsi:type="string">orderimport.log</argument>
+                </action>
+                <block class="Magento\Backend\Block\Widget\Tab" name="orderimport.history">
+                    <arguments>
+                        <argument name="label" xsi:type="string" translate="true">Profile Import History</argument>
+                        <argument name="url" xsi:type="url" path="*/*/history">
+                            <param name="ajax_enabled">1</param>
+                            <param name="_current">1</param>
+                        </argument>
+                        <argument name="class" xsi:type="string">ajax</argument>
+                    </arguments>
+                </block>
+                <action method="addTab">
+                    <argument name="name" xsi:type="string">import_history</argument>
+                    <argument name="block" xsi:type="string">orderimport.history</argument>
+                </action>
+            </block>
+        </referenceContainer>
+    </body>
+</page>
+
+<!--
+/**
+ * Product:       Xtento_OrderImport
+ * ID:            oqsi2y9WE6C6UMS277bs1A30bLpPe+n3JPzkpe97fvg=
+ * Last Modified: 2019-03-19T09:26:36+00:00
+ * File:          app/code/Xtento/OrderImport/view/adminhtml/layout/xtento_orderimport_profile_edit.xml
+ * Copyright:     Copyright (c) XTENTO GmbH & Co. KG <info@xtento.com> / All rights reserved.
+ */
+-->

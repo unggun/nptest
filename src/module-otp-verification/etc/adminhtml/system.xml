@@ -1,0 +1,31 @@
+<?xml version="1.0"?>
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:module:Magento_Config:etc/system_file.xsd">
+    <system>
+        <section id="icube_otp_verification">
+            <group id="enable_otp">
+                <field id="change_phonenumber" translate="label" type="select" sortOrder="4" showInDefault="1" showInWebsite="1" showInStore="1">
+                   <label>Change Phonenumber</label>
+                   <source_model>Magento\Config\Model\Config\Source\Yesno</source_model>
+                </field>
+            </group>
+            
+            <group id="expired_time">
+                <field id="change_phonenumber" translate="label" type="text" sortOrder="4" showInDefault="1" showInWebsite="1" showInStore="1">
+                   <label>Change Phonenumber</label>
+                </field>
+            </group>
+            
+            <group id="max_try">
+                <field id="change_phonenumber" translate="label" type="text" sortOrder="4" showInDefault="1" showInWebsite="1" showInStore="1">
+                   <label>Change Phonenumber</label>
+                </field>
+            </group>
+            
+            <group id="length_otp">
+                <field id="change_phonenumber" translate="label" type="text" sortOrder="4" showInDefault="1" showInWebsite="1" showInStore="1">
+                   <label>Change Phonenumber</label>
+                </field>
+            </group>
+        </section>
+    </system>
+</config>

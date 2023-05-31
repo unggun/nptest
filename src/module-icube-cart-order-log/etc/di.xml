@@ -1,0 +1,9 @@
+<?xml version="1.0" ?>
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:framework:ObjectManager/etc/config.xsd">
+	<preference for="Icube\QuoteGraphQl\Model\Resolver\AddConfigurableProductsToCart" type="Icube\CartOrderLog\Model\Resolver\AddConfigurableProductsToCart" />
+	<preference for="Icube\QuoteGraphQl\Model\Resolver\AddProductsToCart" type="Icube\CartOrderLog\Model\Resolver\AddProductsToCart" />
+	<preference for="Icube\QuoteGraphQl\Model\Resolver\AddSimpleProductsToCart" type="Icube\CartOrderLog\Model\Resolver\AddSimpleProductsToCart" />
+	<preference for="Swiftoms\Multiseller\Model\Resolver\UpdateCartItems" type="Icube\CartOrderLog\Model\Resolver\UpdateCartItems" />
+	<preference for="Swiftoms\Multiseller\Model\Resolver\RemoveItemFromCart" type="Icube\CartOrderLog\Model\Resolver\RemoveItemFromCart" />
+	<preference for="Swiftoms\Multiseller\Model\Checkout\Multiseller" type="Icube\CartOrderLog\Model\Checkout\Multiseller" />
+</config>

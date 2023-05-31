@@ -1,0 +1,92 @@
+<?php
+$formHtml = $block->getFormHtml();
+$mappingHtml = $block->getMappingHtml();
+if (\Magento\Framework\App\ObjectManager::getInstance()->get('Magento\Framework\Registry')->registry(
+        'orderimport_xml_fields_warning'
+    ) !== null
+) {
+    echo '<div id="messages"><ul class="messages"><li class="error-msg"><ul><li><span>' . \Magento\Framework\App\ObjectManager::getInstance()->get('Magento\Framework\Registry')->registry('orderimport_xml_fields_warning') . '. ' . __(
+            'Please fix and re-save profile.'
+        ) . '</span></li></ul></li></ul></div>';
+}
+?>
+<div class="entry-edit">
+    <?= $formHtml; ?>
+    <!-- Quick Mapper -->
+    <fieldset class="fieldset admin__fieldset fieldset-wide" style="padding-bottom:0">
+        <legend class="admin__legend legend">
+            <span><?= __('Add Field To Mapping (Quick Mapper)') ?></span>
+        </legend>
+    </fieldset>
+    <div class="fieldset fieldset-wide" id="base_fieldset">
+        <div class="hor-scroll">
+            <?php $mappingFields = $this->getMappingFields(); ?>
+
+            <div class="grid" style="position:relative;">
+                <table cellpadding="0" cellspacing="0" class="border">
+                    <tbody>
+                    <tr class="headings">
+                        <th><?= __('Magento Field') ?></th>
+                        <th><?= __('File Field Name / Index') ?></th>
+                        <th><?= __('Default Value') ?></th>
+                        <th colspan="2"></th>
+                    </tr>
+                    <tr>
+                        <td>
+                            <select name="quick_map_select" id="quick_map_select" size="<?= count($mappingFields) ?>" style="height:250px;width:99%;padding:3px;background:none;">
+                                <?php foreach ($mappingFields as $field => $fieldInfo): ?>
+                                    <?php
+                                    $tooltip = '';
+                                    if (isset($fieldInfo['tooltip'])) {
+                                        $tooltip = $fieldInfo['tooltip'];
+                                    }
+                                    ?>
+                                    <?php if (isset($fieldInfo['start_optgroup']) && $fieldInfo['start_optgroup'] == true): ?>
+                                        <optgroup label="<?= $fieldInfo['label']; ?>">
+                                    <?php elseif (isset($fieldInfo['stop_optgroup']) && $fieldInfo['stop_optgroup'] == true): ?>
+                                        </optgroup>
+                                    <?php else: ?>
+                                        <option value="<?= $field ?>" title="<?= $tooltip ?>"><?= $fieldInfo['label']; ?></option>
+                                    <?php endif; ?>
+                                <?php endforeach; ?>
+                            </select>
+                        </td>
+                        <td style="vertical-align: middle;">
+                            <input type="text" style="width:98%;" class="input-text" value="" name="field_name" id="field_name"/></td>
+                        <td style="vertical-align: middle;">
+                            <input type="text" style="width:98%;" class="input-text" value="" name="default_value" id="default_value"/></td>
+                        <td style="vertical-align: middle;" colspan="2">
+                            <button id="mapButton" type="button" class="scalable add" onclick="mappingMapField()" style="width:98%">
+                                <span>Map</span>
+                            </button>
+                        </td>
+                    </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+    <!-- Mapper -->
+    <fieldset class="fieldset admin__fieldset fieldset-wide" style="padding-bottom:0">
+        <legend class="admin__legend legend">
+            <span><?= __('File Mapping') ?></span>
+        </legend>
+    </fieldset>
+    <?= $mappingHtml; ?>
+</div>
+<style type="text/css">
+    #row_mapping label {
+        width: 100px;
+    }
+
+    #row_mapping .label {
+        width: 110px;
+    }
+
+    #grid_mapping .scalable {
+        width: 100%;
+        padding-left: 0 !important;
+        padding-right: 0 !important;
+    }
+</style>
+<?= $block->getChildHtml('form_after'); ?>

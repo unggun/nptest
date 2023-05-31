@@ -1,0 +1,12 @@
+<?xml version="1.0"?>
+<page xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:framework:View/Layout/etc/page_configuration.xsd">
+    <body>
+        <referenceBlock name="gift_options">
+            <block class="Magento\Framework\View\Element\Template" name="aw.customer_attributes.additional.form.relation" template="Aheadworks_CustomerAttributes::customer/form/relation/create_order.phtml">
+                <arguments>
+                    <argument name="view_model" xsi:type="object">Aheadworks\CustomerAttributes\ViewModel\Relation</argument>
+                </arguments>
+            </block>
+        </referenceBlock>
+    </body>
+</page>

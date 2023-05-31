@@ -1,0 +1,43 @@
+<?php
+// @codingStandardsIgnoreFile
+
+/** @var \Aheadworks\CustomerAttributes\ViewModel\Relation $viewModel */
+$viewModel = $block->getViewModel();
+$relationsData = $viewModel->getRelationsData();
+?>
+
+<?php if (!empty($relationsData)): ?>
+    <script type="text/x-magento-init">
+        {
+            "*": {
+                "awUiCustAttrRelationManager": {
+                    "relationsData": <?= /* @noEscape */ $relationsData ?>,
+                    "componentsNamespace": "checkout.customer-information.customer-info-fields.customer-info-fieldset",
+                    "componentsCustomScope": "customerInfo"
+                }
+            }
+        }
+    </script>
+    <script type="text/x-magento-init">
+        {
+            "*": {
+                "awUiCustAttrRelationManager": {
+                    "relationsData": <?= /* @noEscape */ $relationsData ?>,
+                    "componentsNamespace": "checkout.shippingAddress.shipping-address-fieldset",
+                    "componentsCustomScope": "shippingAddress"
+                }
+            }
+        }
+    </script>
+    <script type="text/x-magento-init">
+        {
+            "*": {
+                "awUiCustAttrRelationManager": {
+                    "relationsData": <?= /* @noEscape */ $relationsData ?>,
+                    "componentsNamespace": "checkout.paymentMethod.billingAddress.billing-address-fieldset",
+                    "componentsCustomScope": "billingAddress"
+                }
+            }
+        }
+    </script>
+<?php endif; ?>

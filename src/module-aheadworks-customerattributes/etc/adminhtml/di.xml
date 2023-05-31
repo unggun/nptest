@@ -1,0 +1,98 @@
+<?xml version="1.0"?>
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:framework:ObjectManager/etc/config.xsd">
+    <virtualType name="Aheadworks\CustomerAttributes\Controller\Adminhtml\Attribute\PostDataProcessorComposite" type="Aheadworks\CustomerAttributes\Model\PostData\ProcessorComposite">
+        <arguments>
+            <argument name="processors" xsi:type="array">
+                <item name="common" xsi:type="object">Aheadworks\CustomerAttributes\Controller\Adminhtml\Attribute\PostDataProcessor\Common</item>
+                <item name="frontend_labels" xsi:type="object">Aheadworks\CustomerAttributes\Controller\Adminhtml\Attribute\PostDataProcessor\FrontendLabels</item>
+                <item name="validate_rules" xsi:type="object">Aheadworks\CustomerAttributes\Controller\Adminhtml\Attribute\PostDataProcessor\ValidateRules</item>
+                <item name="website" xsi:type="object">Aheadworks\CustomerAttributes\Controller\Adminhtml\Attribute\PostDataProcessor\Website</item>
+                <item name="relations" xsi:type="object">Aheadworks\CustomerAttributes\Controller\Adminhtml\Attribute\PostDataProcessor\Relations</item>
+                <item name="visibility" xsi:type="object">Aheadworks\CustomerAttributes\Controller\Adminhtml\Attribute\PostDataProcessor\Visibility</item>
+            </argument>
+        </arguments>
+    </virtualType>
+    <type name="Aheadworks\CustomerAttributes\Controller\Adminhtml\Attribute\Save">
+        <arguments>
+            <argument name="postDataProcessorComposite" xsi:type="object">Aheadworks\CustomerAttributes\Controller\Adminhtml\Attribute\PostDataProcessorComposite</argument>
+        </arguments>
+    </type>
+
+    <virtualType name="Aheadworks\CustomerAttributes\Ui\DataProvider\Modifier\Pool" type="Magento\Ui\DataProvider\Modifier\Pool">
+        <arguments>
+            <argument name="modifiers" xsi:type="array">
+                <item name="common" xsi:type="array">
+                    <item name="class" xsi:type="string">Aheadworks\CustomerAttributes\Ui\DataProvider\Attribute\FormDataProvider\Modifier\Common</item>
+                    <item name="sortOrder" xsi:type="number">10</item>
+                </item>
+                <item name="frontend_labels" xsi:type="array">
+                    <item name="class" xsi:type="string">Aheadworks\CustomerAttributes\Ui\DataProvider\Attribute\FormDataProvider\Modifier\FrontendLabels</item>
+                    <item name="sortOrder" xsi:type="number">20</item>
+                </item>
+                <item name="validate_rules" xsi:type="array">
+                    <item name="class" xsi:type="string">Aheadworks\CustomerAttributes\Ui\DataProvider\Attribute\FormDataProvider\Modifier\ValidateRules</item>
+                    <item name="sortOrder" xsi:type="number">30</item>
+                </item>
+                <item name="options" xsi:type="array">
+                    <item name="class" xsi:type="string">Aheadworks\CustomerAttributes\Ui\DataProvider\Attribute\FormDataProvider\Modifier\Options</item>
+                    <item name="sortOrder" xsi:type="number">40</item>
+                </item>
+                <item name="use_default" xsi:type="array">
+                    <item name="class" xsi:type="string">Aheadworks\CustomerAttributes\Ui\DataProvider\Attribute\FormDataProvider\Modifier\UseDefault</item>
+                    <item name="sortOrder" xsi:type="number">50</item>
+                </item>
+                <item name="visibility" xsi:type="array">
+                    <item name="class" xsi:type="string">Aheadworks\CustomerAttributes\Ui\DataProvider\Attribute\FormDataProvider\Modifier\Visibility</item>
+                    <item name="sortOrder" xsi:type="number">60</item>
+                </item>
+            </argument>
+        </arguments>
+    </virtualType>
+    <virtualType name="Aheadworks\CustomerAttributes\Ui\Component\Attribute\Listing\Column\Actions" type="Aheadworks\CustomerAttributes\Ui\Component\Listing\Column\AbstractActions"/>
+    <type name="Aheadworks\CustomerAttributes\Ui\DataProvider\Attribute\FormDataProvider">
+        <arguments>
+            <argument name="pool" xsi:type="object">Aheadworks\CustomerAttributes\Ui\DataProvider\Modifier\Pool</argument>
+        </arguments>
+    </type>
+    <type name="Aheadworks\CustomerAttributes\Ui\DataProvider\Attribute\FormDataProvider\Modifier\UseDefault">
+        <arguments>
+            <argument name="componentNames" xsi:type="array">
+                <item name="0" xsi:type="string">is_required</item>
+                <item name="1" xsi:type="string">multiline_count</item>
+                <item name="2" xsi:type="string">default_value_text</item>
+                <item name="3" xsi:type="string">default_value_textarea</item>
+                <item name="4" xsi:type="string">default_value_yesno</item>
+                <item name="5" xsi:type="string">is_visible</item>
+                <item name="6" xsi:type="string">default_value_date</item>
+            </argument>
+        </arguments>
+    </type>
+    <virtualType name="Aheadworks\CustomerAttributes\Block\Adminhtml\Address\Relation" type="Magento\Framework\View\Element\Template">
+        <arguments>
+            <argument name="data" xsi:type="array">
+                <item name="template" xsi:type="string">Aheadworks_CustomerAttributes::customer/address/form/relation/edit.phtml</item>
+                <item name="view_model" xsi:type="object">Aheadworks\CustomerAttributes\ViewModel\Relation</item>
+            </argument>
+        </arguments>
+    </virtualType>
+    <type name="Magento\Framework\View\Element\UiComponent\DataProvider\CollectionFactory">
+        <plugin name="customer_attributes_collection_factory" type="Aheadworks\CustomerAttributes\Plugin\Framework\View\Element\UiComponent\DataProvider\CollectionFactoryPlugin" />
+    </type>
+    <type name="Magento\Customer\Model\AttributeMetadataResolver">
+        <plugin name="customer_attributes_fileuploaderresolver" type="Aheadworks\CustomerAttributes\Plugin\Customer\Model\AttributeMetadataResolverPlugin" />
+    </type>
+    <type name="Magento\Sales\Block\Adminhtml\Order\Create\Form\Account">
+        <arguments>
+            <argument name="metadataFormFactory" xsi:type="object">Aheadworks\CustomerAttributes\Model\Metadata\FormFactory</argument>
+        </arguments>
+    </type>
+    <type name="Magento\Ui\Model\Export\MetadataProvider">
+        <plugin name="aw_customer_attributes_prepare_to_export" type="Aheadworks\CustomerAttributes\Plugin\Export\MetadataProviderPlugin" />
+    </type>
+    <type name="Magento\Customer\Ui\Component\ColumnFactory">
+        <plugin name="aw_customer_attributes_change_timezone" type="Aheadworks\CustomerAttributes\Plugin\Ui\Component\ColumnFactoryPlugin" />
+    </type>
+    <type name="Magento\Sales\Model\Order\AddressRepository">
+        <plugin name="aw_customer_after_save_address" type="Aheadworks\CustomerAttributes\Plugin\Sales\Model\Order\PluginAddressRepository" />
+    </type>
+</config>

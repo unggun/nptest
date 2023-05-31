@@ -1,0 +1,22 @@
+<?php
+// @codingStandardsIgnoreFile
+
+/** @var \Aheadworks\CustomerAttributes\ViewModel\Relation $viewModel */
+$viewModel = $block->getViewModel();
+$relationsData = $viewModel->getRelationsData();
+?>
+
+<?php if (!empty($relationsData)): ?>
+    <div class="aw-customer-attr__init-element"
+         data-mage-init='{
+               "awCustAttrRelationManager": {
+                   "relationsData": <?= /* @noEscape */ $relationsData ?>,
+                   "fieldWrapperSelector": "div.admin__field",
+                   "fieldInputSelectorPatterns": [
+                        "[id={attr_code}]",
+                        "[id=order-billing_address_{attr_code}]",
+                        "[id=order-shipping_address_{attr_code}]"
+                   ]
+               }}'>
+    </div>
+<?php endif; ?>

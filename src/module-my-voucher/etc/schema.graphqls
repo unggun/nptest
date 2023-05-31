@@ -1,0 +1,22 @@
+type Query {
+    listCouponCode(
+        currentPage: Int = 1 @doc(description: "Specifies which page of results to return. The default value is 1.")
+        pageSize: Int = 20 @doc(description: "Specifies the maximum number of results to return at once. The default value is 20.")
+        ): listCouponCodeOutput @resolver (class: "Icube\\MyVoucher\\Model\\Resolver\\ListCouponCode") @doc(description:"Get All Coupon Code") @cache(cacheable: false)
+}
+
+type listCouponCodeOutput {
+    items: [listCouponCodeData]! @doc(description: "An array of coupon code.")
+    page_info: SearchResultPageInfo @doc(description: "Contains pagination metadata.")
+    total_count: Int @doc(description: "The total count of coupon code.")
+}
+
+type listCouponCodeData {
+    bannerImage : String  @doc(description: "Banner Image")
+    name : String  @doc(description: "Name")
+    startDate : String  @doc(description: "Start Date")
+    dueDate : String  @doc(description: "End Date")
+    couponCode : String  @doc(description: "Coupon Code")
+    couponQty : String  @doc(description: "Coupon Quantity")
+    detail : String  @doc(description: "Detail Coupon")
+}

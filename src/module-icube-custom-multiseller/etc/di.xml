@@ -1,0 +1,11 @@
+<?xml version="1.0"?>
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:framework:ObjectManager/etc/config.xsd">
+    <preference for="Swiftoms\Multiseller\Model\Resolver\PlaceOrder" type="Icube\CustomMultiseller\Model\Resolver\PlaceOrder"/>
+    <preference for="Swiftoms\Multiseller\Model\Resolver\Seller" type="Icube\CustomMultiseller\Model\Resolver\Seller"/>
+    <preference for="Icube\SalesGraphQl\Model\Resolver\CustomerOrderDetail" type="Icube\CustomMultiseller\Model\Resolver\CustomerOrderDetail" />
+    <preference for="Icube\SalesGraphQl\Model\Resolver\Orders" type="Icube\CustomMultiseller\Model\Resolver\Orders" />
+    <preference for="Icube\SalesGraphQl\Model\Resolver\OrdersFilter" type="Icube\CustomMultiseller\Model\Resolver\OrdersFilter" />
+    <type name="Icube\PwaCheckout\Model\Resolver\SetShippingAddressesOnCart">
+        <plugin name="Icube_CustomMultiseller_Plugin_Handle_Exception_Multishipping" type="Icube\CustomMultiseller\Plugin\SetShippingAddressesOnCart" disabled="false"/>
+    </type>
+</config>

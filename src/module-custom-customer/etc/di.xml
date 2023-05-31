@@ -1,0 +1,23 @@
+<?xml version="1.0"?>
+<!--
+/**
+ * Copyright © Magento, Inc. All rights reserved.
+ * See COPYING.txt for license details.
+ */
+-->
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:framework:ObjectManager/etc/config.xsd">
+    <preference for="Icube\CustomCustomer\Api\CustomerRepositoryInterface"
+                type="Icube\CustomCustomer\Model\ResourceModel\CustomerRepository" />
+
+    <type name="Magento\Customer\Model\AccountManagement">
+        <plugin name="Icube_CustomCustomer_Plugin_Set_CustomerGroup" type="Icube\CustomCustomer\Plugin\CustomerGroup" sortOrder="498"/>
+        <plugin name="setVerificationStatusMapping" type="Icube\CustomCustomer\Plugin\CustomerVerificationStatus" sortOrder="499"/>
+        <plugin name="setFirstNameAndLastName" type="Icube\CustomCustomer\Plugin\CustomerSetName" sortOrder="500"/>
+    </type>
+    <type name="Magento\Integration\Model\Oauth\Token">
+        <plugin name="token_plugin_created_at" type="Icube\CustomCustomer\Plugin\Oauth\Token" sortOrder="1" disabled="false"/>
+    </type>
+
+    <preference for="Icube\CustomerGraphQl\Model\Resolver\CreateCustomer" type="Icube\CustomCustomer\Model\Resolver\CreateCustomer" />
+    <preference for="Icube\SmsOtp\Controller\Adminhtml\Customer\ResetOtp" type="Icube\CustomCustomer\Controller\Adminhtml\Customer\ResetOtp" />
+</config>

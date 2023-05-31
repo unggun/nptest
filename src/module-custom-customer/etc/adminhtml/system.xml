@@ -1,0 +1,21 @@
+<?xml version="1.0"?>
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:module:Magento_Config:etc/system_file.xsd">
+    <system>
+        <tab id="icube" translate="label" sortOrder="1000">
+            <label>Icube Extension</label>
+        </tab>
+        <section id="icube_customcustomer" sortOrder="110" type="text" showInDefault="1" showInWebsite="1" showInStore="1">
+            <label>Custom Customer</label>
+            <tab>icube</tab>
+            <resource>Icube_CustomCustomer::config</resource>
+            <group id="business_type" translate="label" sortOrder="11" type="text" showInDefault="1">
+                <label>Business Type</label>
+                <field id="option" translate="label" sortOrder="11" showInDefault="1">
+                    <label>Option</label>
+                    <frontend_model>Icube\CustomCustomer\Block\Adminhtml\Form\Field\Option</frontend_model>
+                    <backend_model>Magento\Config\Model\Config\Backend\Serialized\ArraySerialized</backend_model>
+                </field>
+            </group>
+        </section>
+    </system>
+</config>

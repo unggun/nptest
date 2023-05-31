@@ -1,0 +1,23 @@
+<div class="aw-customer-attr__file-uploader-summary">
+    <div class="aw-customer-attr__file-uploader-preview">
+        <a attr="href: $parent.getFilePreview($file)" class="title" target="_blank">
+            <img if="$file.previewType === 'image'"
+                tabindex="0"
+                event="load: $parent.onPreviewLoad.bind($parent)"
+                attr="src: $parent.getFilePreview($file), alt: $file.name">
+            <span><text args="$file.name"/></span>
+        </a>
+        <div class="actions">
+            <button
+                type="button"
+                class="action-remove"
+                data-role="delete-button"
+                attr="title: $t('Delete')"
+                click="$parent.removeFile.bind($parent, $file)">
+                <span translate="'Delete'"/>
+            </button>
+        </div>
+        <input type="hidden" data-bind="attr: {name: $parent.getInputName('name')}, value: $file.name">
+        <input type="hidden" data-bind="attr: {name: $parent.getInputName('file_name')}, value: $file.file">
+    </div>
+</div>

@@ -1,0 +1,17 @@
+<?xml version="1.0" ?>
+<schema xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:framework:Setup/Declaration/Schema/etc/schema.xsd">
+	<table name="sales_order_address">
+		<column name="road_access" nullable="true" xsi:type="varchar" comment="Road access" length="255"/>
+		<column name="road_access_enough" nullable="true" xsi:type="varchar" comment="Road access enough" length="255"/>
+		<column name="is_alley" nullable="true" xsi:type="varchar" comment="Is alley" length="255"/>
+		<column name="district" nullable="true" xsi:type="varchar" comment="District" length="255"/>
+		<column name="village" nullable="true" xsi:type="varchar" comment="Village" length="255"/>
+	</table>
+	<table name="quote_address">
+		<column name="road_access" nullable="true" xsi:type="varchar" comment="Road access" length="255"/>
+		<column name="road_access_enough" nullable="true" xsi:type="varchar" comment="Road access enough" length="255"/>
+		<column name="is_alley" nullable="true" xsi:type="varchar" comment="Is alley" length="255"/>
+		<column name="district" nullable="true" xsi:type="varchar" comment="District" length="255"/>
+		<column name="village" nullable="true" xsi:type="varchar" comment="Village" length="255"/>
+	</table>
+</schema>

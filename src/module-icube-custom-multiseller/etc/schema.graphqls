@@ -1,0 +1,40 @@
+type SellerCart {
+  seller_id: Int @doc(description: "The product seller_id")
+  seller_name: String @doc(description: "The product seller_name")
+  seller_city: String @doc(description: "The product seller_city")
+  seller_max_order: Int @doc(description: "The amount of min order")
+  seller_min_order: Int @doc(description: "The amount of max order")
+  seller_min_order_status: Boolean @doc(description: "The product seller_city")
+  seller_max_order_status: Boolean @doc(description: "The product seller_city")
+  seller_type: String @doc(description: "The product seller model")
+  seller_sla_delivery: String @doc(description: "The delivery SLA")
+}
+
+type Seller {
+    seller_type: String @doc(description: "Seller model text.")
+    seller_sla_delivery: String @doc(description: "The delivery SLA")
+}
+
+type CustomerOrder {
+    seller_type: String @doc(description: "Seller model text.")
+    seller_sla_delivery: String @doc(description: "The delivery SLA")
+    is_delta: Boolean @doc(description: "Is Delta Order")
+}
+
+type OrderDetailItem {
+    seller_type: String @doc(description: "Seller model text.")
+    seller_sla_delivery: String @doc(description: "The delivery SLA")
+}
+
+type Cart {
+  seller: [SellerCart]
+    @doc(description: "The product seller_city")
+    @resolver(
+      class: "\\Icube\\CustomMultiseller\\Model\\Resolver\\SellerCart"
+    )
+    @doc(description: "save firebase token for notification")
+}
+
+input OrderList @doc(description: "filter order history" ) {
+    status: String @doc(description: "Status of Order, ex:pending")
+}

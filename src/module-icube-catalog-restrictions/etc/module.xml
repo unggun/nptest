@@ -1,0 +1,12 @@
+<?xml version="1.0" ?>
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:framework:Module/etc/module.xsd">
+    <module name="Icube_CatalogRestrictions">
+        <sequence>
+            <module name="Icube_CatalogGraphQl"/>
+            <module name="Icube_SmsOtpGraphQl"/>
+            <module name="Icube_OtpVerification"/>
+            <module name="Swiftoms_GeneralImport"/>
+            <module name="Swiftoms_Multiseller"/>
+        </sequence>
+    </module>
+</config>

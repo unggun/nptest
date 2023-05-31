@@ -1,0 +1,49 @@
+<?xml version="1.0"?>
+<page xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+      xsi:noNamespaceSchemaLocation="urn:magento:framework:View/Layout/etc/page_configuration.xsd">
+    <body>
+        <referenceContainer name="page.main.actions">
+            <block class="Aheadworks\CustomerAttributes\Block\Adminhtml\Page\Menu" name="aw_customer_attributes_menu">
+                <block class="Aheadworks\CustomerAttributes\Block\Adminhtml\Page\Menu\Item" name="aw_customer_attributes_menu_item.attributes">
+                    <arguments>
+                        <argument name="path" xsi:type="string">*/attribute/index</argument>
+                        <argument name="label" xsi:type="string">Customer Attributes</argument>
+                        <argument name="resource" xsi:type="string">Aheadworks_CustomerAttributes::attributes</argument>
+                        <argument name="controllers" xsi:type="array">
+                            <item name="0" xsi:type="string">attribute</item>
+                        </argument>
+                    </arguments>
+                </block>
+                <block class="Aheadworks\CustomerAttributes\Block\Adminhtml\Page\Menu\Item" name="aw_customer_attributes_menu_item.address_attributes">
+                    <arguments>
+                        <argument name="path" xsi:type="string">*/address_attribute/index</argument>
+                        <argument name="label" xsi:type="string">Customer Address Attributes</argument>
+                        <argument name="resource" xsi:type="string">Aheadworks_CustomerAttributes::address_attributes</argument>
+                        <argument name="controllers" xsi:type="array">
+                            <item name="0" xsi:type="string">address_attribute</item>
+                        </argument>
+                    </arguments>
+                </block>
+                <block class="Aheadworks\CustomerAttributes\Block\Adminhtml\Page\Menu\Item" name="aw_customer_attributes_menu_item.readme">
+                    <arguments>
+                        <argument name="label" xsi:type="string">Readme</argument>
+                        <argument name="link_attributes" xsi:type="array">
+                            <item name="href" xsi:type="string">https://aheadworks.com/resources/customer-attributes/user-manual-customer-attributes</item>
+                            <item name="target" xsi:type="string">_blank</item>
+                            <item name="class" xsi:type="string">separator</item>
+                        </argument>
+                    </arguments>
+                </block>
+                <block class="Aheadworks\CustomerAttributes\Block\Adminhtml\Page\Menu\Item" name="aw_customer_attributes_menu_item.support">
+                    <arguments>
+                        <argument name="label" xsi:type="string">Get Support</argument>
+                        <argument name="link_attributes" xsi:type="array">
+                            <item name="href" xsi:type="string">https://aheadworks.com/contact</item>
+                            <item name="target" xsi:type="string">_blank</item>
+                        </argument>
+                    </arguments>
+                </block>
+            </block>
+        </referenceContainer>
+    </body>
+</page>

@@ -1,0 +1,115 @@
+type Query {
+    getAdvanceRate(
+        filter: GetAdvanceRateFilter
+        pageSize: Int = 20 @doc(description: "Specifies the maximum number of results to return at once. This attribute is optional.")
+        currentPage: Int = 1 @doc(description: "Specifies which page of results to return. The default value is 1.")
+    ): GetAdvanceRateListOutput
+        @doc(description: "Get advance rate by vendor_id or wilayah")
+        @resolver(class: "\\Icube\\OverrideAdvancerate\\Model\\Resolver\\GetAdvanceRate")
+    getAdvanceRateById(id: Int!): GetAdvanceRateOutput
+        @doc(description: "Get advance rate by id")
+        @resolver(class: "\\Icube\\OverrideAdvancerate\\Model\\Resolver\\GetAdvanceRateById")
+}
+
+type Mutation {
+    addAdvanceRate(input: AddAdvanceRateInput): GetAdvanceRateOutput
+        @doc(description: "Add advance rate")
+        @resolver(class: "\\Icube\\OverrideAdvancerate\\Model\\Resolver\\SaveAdvanceRate")
+    updateAdvanceRate(input: UpdateAdvanceRateInput): GetAdvanceRateOutput
+        @doc(description: "Update advance rate")
+        @resolver(class: "\\Icube\\OverrideAdvancerate\\Model\\Resolver\\SaveAdvanceRate")
+    deleteAdvanceRate(id: Int!): AddAdvanceRateMessage
+        @doc(description: "Delete advance rate")
+        @resolver(class: "\\Icube\\OverrideAdvancerate\\Model\\Resolver\\DeleteAdvanceRate")
+    importAdvanceRate(file: InputAttachments): ImportAdvanceRateOutput
+        @doc(description: "Import CSV advance rate")
+        @resolver(class: "\\Icube\\OverrideAdvancerate\\Model\\Resolver\\ImportAdvanceRate")
+}
+
+input GetAdvanceRateFilter {
+    vendor_id: Int @doc(description: "Vendor ID")
+    wilayah: Int @doc(description: "Wilayah")
+    customer_group: Int @doc(description: "Customer Group")
+}
+
+input AddAdvanceRateInput {
+    vendor_id: Int!
+    dest_country_id: String!
+    dest_region_id: Int!
+    city: String
+    dest_zip: String!
+    weight_from: Float!
+    weight_to: Float!
+    price_from: Float!
+    price_to: Float!
+    qty_from: Int!
+    qty_to: Int!
+    price: Float!
+    shipping_method: String!
+    shipping_label: String!
+    etd: String
+    wilayah: Int
+    customer_group: Int!
+}
+
+input UpdateAdvanceRateInput {
+    id: Int!
+    vendor_id: Int
+    dest_country_id: String
+    dest_region_id: Int
+    city: String
+    dest_zip: String
+    weight_from: Float
+    weight_to: Float
+    price_from: Float
+    price_to: Float
+    qty_from: Int
+    qty_to: Int
+    price: Float
+    shipping_method: String
+    shipping_label: String
+    etd: String
+    wilayah: Int
+    customer_group: Int!
+}
+
+input InputAttachments {  
+    file_name: String @doc(description: "File Name Attachments")
+    binary: String @doc(description: "Binary Data Attachments")
+}
+
+type GetAdvanceRateOutput {
+    id: Int
+    website_id: Int
+    vendor_id: Int
+    dest_country_id: String
+    dest_region_id: Int
+    city: String
+    dest_zip: String
+    weight_from: Float
+    weight_to: Float
+    price_from: Float
+    price_to: Float
+    qty_from: Int
+    qty_to: Int
+    price: Float
+    shipping_method: String
+    shipping_label: String
+    etd: String
+    wilayah: Int
+    customer_group: Int
+}
+
+type GetAdvanceRateListOutput @doc(description: "A collection of advance rate and pagination information.") {
+    items: [GetAdvanceRateOutput] @doc(description: "A list of advance rate.")
+    page_info: SearchResultPageInfo @doc(description: "An object that includes the page_info and currentPage values specified in the query.")
+    total_count: Int @doc(description: "The total number of categories that match the criteria.")
+}
+
+type AddAdvanceRateMessage {
+    message: String
+}
+
+type ImportAdvanceRateOutput {
+    status: String
+}

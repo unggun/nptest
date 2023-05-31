@@ -1,0 +1,17 @@
+<?xml version="1.0"?>
+<page xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:framework:View/Layout/etc/page_configuration.xsd">
+    <body>
+        <referenceBlock name="customer_address_edit">
+            <block class="Magento\Framework\View\Element\Template" name="aw.customer_attributes.additional.form.attributes" as="additional_attributes" template="Aheadworks_CustomerAttributes::customer/address/form/attributes/edit.phtml">
+                <arguments>
+                    <argument name="view_model" xsi:type="object">Aheadworks\CustomerAttributes\ViewModel\Customer\Address\Form</argument>
+                </arguments>
+            </block>
+            <block class="Magento\Framework\View\Element\Template" name="aw.customer_attributes.additional.form.relation" as="relation" template="Aheadworks_CustomerAttributes::customer/address/form/relation/edit.phtml">
+                <arguments>
+                    <argument name="view_model" xsi:type="object">Aheadworks\CustomerAttributes\ViewModel\Relation</argument>
+                </arguments>
+            </block>
+        </referenceBlock>
+    </body>
+</page>

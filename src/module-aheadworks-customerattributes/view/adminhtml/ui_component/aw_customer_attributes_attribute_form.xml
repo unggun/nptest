@@ -1,0 +1,1072 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<form xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:module:Magento_Ui:etc/ui_configuration.xsd">
+    <argument name="data" xsi:type="array">
+        <item name="js_config" xsi:type="array">
+            <item name="provider" xsi:type="string">aw_customer_attributes_attribute_form.aw_customer_attributes_attribute_form_data_source</item>
+            <item name="deps" xsi:type="string">aw_customer_attributes_attribute_form.aw_customer_attributes_attribute_form_data_source</item>
+        </item>
+        <item name="label" xsi:type="string" translate="true">Attribute</item>
+        <item name="config" xsi:type="array">
+            <item name="dataScope" xsi:type="string">data</item>
+            <item name="namespace" xsi:type="string">aw_customer_attributes_attribute_form</item>
+        </item>
+        <item name="template" xsi:type="string">templates/form/collapsible</item>
+        <item name="buttons" xsi:type="array">
+            <item name="back" xsi:type="string">Aheadworks\CustomerAttributes\Block\Adminhtml\Attribute\Edit\Button\Back</item>
+            <item name="delete" xsi:type="string">Aheadworks\CustomerAttributes\Block\Adminhtml\Attribute\Edit\Button\Delete</item>
+            <item name="reset" xsi:type="string">Aheadworks\CustomerAttributes\Block\Adminhtml\Attribute\Edit\Button\Reset</item>
+            <item name="save" xsi:type="string">Aheadworks\CustomerAttributes\Block\Adminhtml\Attribute\Edit\Button\Save</item>
+        </item>
+    </argument>
+    <dataSource name="aw_customer_attributes_attribute_form_data_source">
+        <argument name="dataProvider" xsi:type="configurableObject">
+            <argument name="class" xsi:type="string">Aheadworks\CustomerAttributes\Ui\DataProvider\Attribute\FormDataProvider</argument>
+            <argument name="name" xsi:type="string">aw_customer_attributes_attribute_form_data_source</argument>
+            <argument name="primaryFieldName" xsi:type="string">attribute_id</argument>
+            <argument name="requestFieldName" xsi:type="string">attribute_id</argument>
+        </argument>
+        <argument name="data" xsi:type="array">
+            <item name="js_config" xsi:type="array">
+                <item name="component" xsi:type="string">Magento_Ui/js/form/provider</item>
+            </item>
+        </argument>
+    </dataSource>
+    <fieldset name="attribute_properties">
+        <argument name="data" xsi:type="array">
+            <item name="config" xsi:type="array">
+                <item name="label" xsi:type="string" translate="true">Attribute Properties</item>
+                <item name="collapsible" xsi:type="boolean">true</item>
+                <item name="opened" xsi:type="boolean">true</item>
+            </item>
+        </argument>
+        <field name="attribute_id">
+            <argument name="data" xsi:type="array">
+                <item name="config" xsi:type="array">
+                    <item name="visible" xsi:type="boolean">false</item>
+                    <item name="dataType" xsi:type="string">text</item>
+                    <item name="formElement" xsi:type="string">input</item>
+                    <item name="source" xsi:type="string">attribute</item>
+                    <item name="dataScope" xsi:type="string">attribute_id</item>
+                </item>
+            </argument>
+        </field>
+        <field name="is_system">
+            <argument name="data" xsi:type="array">
+                <item name="config" xsi:type="array">
+                    <item name="visible" xsi:type="boolean">false</item>
+                    <item name="dataType" xsi:type="string">text</item>
+                    <item name="formElement" xsi:type="string">input</item>
+                    <item name="source" xsi:type="string">attribute</item>
+                    <item name="dataScope" xsi:type="string">is_system</item>
+                    <item name="default" xsi:type="number">0</item>
+                </item>
+            </argument>
+        </field>
+        <field name="entity_type_code">
+            <argument name="data" xsi:type="array">
+                <item name="options" xsi:type="object">Aheadworks\CustomerAttributes\Model\Source\Attribute\EntityType</item>
+                <item name="config" xsi:type="array">
+                    <item name="dataType" xsi:type="string">text</item>
+                    <item name="formElement" xsi:type="string">select</item>
+                    <item name="visible" xsi:type="boolean">false</item>
+                    <item name="source" xsi:type="string">attribute</item>
+                    <item name="dataScope" xsi:type="string">entity_type_code</item>
+                    <item name="switcherConfig" xsi:type="array">
+                        <item name="enabled" xsi:type="boolean">true</item>
+                        <item name="rules" xsi:type="array">
+                            <item name="0" xsi:type="array">
+                                <item name="value" xsi:type="string">customer</item>
+                                <item name="actions" xsi:type="array">
+                                    <item name="0" xsi:type="array">
+                                        <item name="target" xsi:type="string">${ $.ns }.${ $.ns }.storefront_properties.used_in_forms</item>
+                                        <item name="callback" xsi:type="string">filterOptions</item>
+                                        <item name="params" xsi:type="array">
+                                            <item name="0" xsi:type="array">
+                                                <item name="0" xsi:type="string">customer_account_create</item>
+                                                <item name="1" xsi:type="string">customer_account_edit</item>
+                                                <item name="2" xsi:type="string">adminhtml_checkout</item>
+                                            </item>
+                                            <item name="1" xsi:type="string">value</item>
+                                        </item>
+                                    </item>
+                                </item>
+                            </item>
+                            <item name="1" xsi:type="array">
+                                <item name="value" xsi:type="string">customer_address</item>
+                                <item name="actions" xsi:type="array">
+                                    <item name="0" xsi:type="array">
+                                        <item name="target" xsi:type="string">${ $.ns }.${ $.ns }.storefront_properties.used_in_forms</item>
+                                        <item name="callback" xsi:type="string">filterOptions</item>
+                                        <item name="params" xsi:type="array">
+                                            <item name="0" xsi:type="array">
+                                                <item name="0" xsi:type="string">customer_address_edit</item>
+                                                <item name="1" xsi:type="string">customer_register_address</item>
+                                            </item>
+                                            <item name="1" xsi:type="string">value</item>
+                                        </item>
+                                    </item>
+                                    <item name="1" xsi:type="array">
+                                        <item name="target" xsi:type="string">${ $.ns }.${ $.ns }.attribute_properties.used_in_order_view</item>
+                                        <item name="callback" xsi:type="string">visible</item>
+                                        <item name="params" xsi:type="array">
+                                            <item name="0" xsi:type="boolean">false</item>
+                                        </item>
+                                    </item>
+                                    <item name="2" xsi:type="array">
+                                        <item name="target" xsi:type="string">${ $.ns }.${ $.ns }.attribute_properties.used_in_order_grid</item>
+                                        <item name="callback" xsi:type="string">visible</item>
+                                        <item name="params" xsi:type="array">
+                                            <item name="0" xsi:type="boolean">false</item>
+                                        </item>
+                                    </item>
+                                </item>
+                            </item>
+                        </item>
+                    </item>
+                </item>
+            </argument>
+        </field>
+        <field name="frontend_label">
+            <argument name="data" xsi:type="array">
+                <item name="config" xsi:type="array">
+                    <item name="dataType" xsi:type="string">text</item>
+                    <item name="label" xsi:type="string" translate="true">Default Label</item>
+                    <item name="formElement" xsi:type="string">input</item>
+                    <item name="source" xsi:type="string">attribute</item>
+                    <item name="dataScope" xsi:type="string">frontend_label</item>
+                    <item name="validation" xsi:type="array">
+                        <item name="required-entry" xsi:type="boolean">true</item>
+                    </item>
+                </item>
+            </argument>
+        </field>
+        <field name="attribute_code">
+            <argument name="data" xsi:type="array">
+                <item name="config" xsi:type="array">
+                    <item name="dataType" xsi:type="string">text</item>
+                    <item name="label" xsi:type="string" translate="true">Attribute Code</item>
+                    <item name="formElement" xsi:type="string">input</item>
+                    <item name="source" xsi:type="string">attribute</item>
+                    <item name="dataScope" xsi:type="string">attribute_code</item>
+                    <item name="validation" xsi:type="array">
+                        <item name="required-entry" xsi:type="boolean">true</item>
+                        <item name="validate-code" xsi:type="boolean">true</item>
+                    </item>
+                    <item name="imports" xsi:type="array">
+                        <item name="disabled" xsi:type="string">${ $.provider }:data.isEdit</item>
+                    </item>
+                </item>
+            </argument>
+        </field>
+        <field name="frontend_input">
+            <argument name="data" xsi:type="array">
+                <item name="options" xsi:type="object">Aheadworks\CustomerAttributes\Model\Source\Attribute\InputType</item>
+                <item name="config" xsi:type="array">
+                    <item name="dataType" xsi:type="string">number</item>
+                    <item name="formElement" xsi:type="string">select</item>
+                    <item name="label" xsi:type="string" translate="true">Input Type</item>
+                    <item name="source" xsi:type="string">attribute</item>
+                    <item name="dataScope" xsi:type="string">frontend_input</item>
+                    <item name="imports" xsi:type="array">
+                        <item name="disabled" xsi:type="string">${ $.provider }:data.isEdit</item>
+                    </item>
+                    <item name="switcherConfig" xsi:type="array">
+                        <item name="enabled" xsi:type="boolean">true</item>
+                        <item name="rules" xsi:type="array">
+                            <item name="0" xsi:type="array">
+                                <item name="value" xsi:type="string">text</item>
+                                <item name="actions" xsi:type="array">
+                                    <item name="0" xsi:type="array">
+                                        <item name="target" xsi:type="string">${ $.ns }.${ $.ns }.attribute_properties.input_validation</item>
+                                        <item name="callback" xsi:type="string">filterOptions</item>
+                                        <item name="params" xsi:type="array">
+                                            <item name="0" xsi:type="array">
+                                                <item name="0" xsi:type="string">alphanumeric</item>
+                                                <item name="1" xsi:type="string">alphanum-with-spaces</item>
+                                                <item name="2" xsi:type="string">numeric</item>
+                                                <item name="3" xsi:type="string">alpha</item>
+                                                <item name="4" xsi:type="string">url</item>
+                                                <item name="5" xsi:type="string">email</item>
+                                                <item name="6" xsi:type="string">length</item>
+                                            </item>
+                                            <item name="1" xsi:type="string">value</item>
+                                        </item>
+                                    </item>
+                                    <item name="1" xsi:type="array">
+                                        <item name="target" xsi:type="string">${ $.ns }.${ $.ns }.attribute_properties.input_filter</item>
+                                        <item name="callback" xsi:type="string">filterOptions</item>
+                                        <item name="params" xsi:type="array">
+                                            <item name="0" xsi:type="array">
+                                                <item name="0" xsi:type="string">striptags</item>
+                                                <item name="1" xsi:type="string">escapehtml</item>
+                                            </item>
+                                            <item name="1" xsi:type="string">value</item>
+                                        </item>
+                                    </item>
+                                </item>
+                            </item>
+                            <item name="1" xsi:type="array">
+                                <item name="value" xsi:type="string">textarea</item>
+                                <item name="actions" xsi:type="array">
+                                    <item name="0" xsi:type="array">
+                                        <item name="target" xsi:type="string">${ $.ns }.${ $.ns }.attribute_properties.input_validation</item>
+                                        <item name="callback" xsi:type="string">filterOptions</item>
+                                        <item name="params" xsi:type="array">
+                                            <item name="0" xsi:type="array">
+                                                <item name="0" xsi:type="string">alphanumeric</item>
+                                                <item name="1" xsi:type="string">alphanum-with-spaces</item>
+                                                <item name="2" xsi:type="string">numeric</item>
+                                                <item name="3" xsi:type="string">alpha</item>
+                                                <item name="4" xsi:type="string">url</item>
+                                                <item name="5" xsi:type="string">email</item>
+                                                <item name="6" xsi:type="string">length</item>
+                                            </item>
+                                            <item name="1" xsi:type="string">value</item>
+                                        </item>
+                                    </item>
+                                    <item name="1" xsi:type="array">
+                                        <item name="target" xsi:type="string">${ $.ns }.${ $.ns }.attribute_properties.input_filter</item>
+                                        <item name="callback" xsi:type="string">filterOptions</item>
+                                        <item name="params" xsi:type="array">
+                                            <item name="0" xsi:type="array">
+                                                <item name="0" xsi:type="string">striptags</item>
+                                                <item name="1" xsi:type="string">escapehtml</item>
+                                            </item>
+                                            <item name="1" xsi:type="string">value</item>
+                                        </item>
+                                    </item>
+                                </item>
+                            </item>
+                            <item name="2" xsi:type="array">
+                                <item name="value" xsi:type="string">date</item>
+                                <item name="actions" xsi:type="array">
+                                    <item name="0" xsi:type="array">
+                                        <item name="target" xsi:type="string">${ $.ns }.${ $.ns }.attribute_properties.input_validation</item>
+                                        <item name="callback" xsi:type="string">filterOptions</item>
+                                        <item name="params" xsi:type="array">
+                                            <item name="0" xsi:type="array">
+                                                <item name="0" xsi:type="string">date</item>
+                                            </item>
+                                            <item name="1" xsi:type="string">value</item>
+                                        </item>
+                                    </item>
+                                    <item name="1" xsi:type="array">
+                                        <item name="target" xsi:type="string">${ $.ns }.${ $.ns }.attribute_properties.input_filter</item>
+                                        <item name="callback" xsi:type="string">filterOptions</item>
+                                        <item name="params" xsi:type="array">
+                                            <item name="0" xsi:type="array">
+                                                <item name="0" xsi:type="string">date</item>
+                                            </item>
+                                            <item name="1" xsi:type="string">value</item>
+                                        </item>
+                                    </item>
+                                </item>
+                            </item>
+                            <item name="3" xsi:type="array">
+                                <item name="value" xsi:type="string">multiline</item>
+                                <item name="actions" xsi:type="array">
+                                    <item name="0" xsi:type="array">
+                                        <item name="target" xsi:type="string">${ $.ns }.${ $.ns }.attribute_properties.input_filter</item>
+                                        <item name="callback" xsi:type="string">filterOptions</item>
+                                        <item name="params" xsi:type="array">
+                                            <item name="0" xsi:type="array">
+                                                <item name="0" xsi:type="string">striptags</item>
+                                                <item name="1" xsi:type="string">escapehtml</item>
+                                            </item>
+                                            <item name="1" xsi:type="string">value</item>
+                                        </item>
+                                    </item>
+                                </item>
+                            </item>
+                        </item>
+                    </item>
+                </item>
+            </argument>
+        </field>
+        <field name="is_required" class="Aheadworks\CustomerAttributes\Ui\Component\Form\Element\ScopeField">
+            <argument name="data" xsi:type="array">
+                <item name="options" xsi:type="object">Magento\Config\Model\Config\Source\Yesno</item>
+                <item name="config" xsi:type="array">
+                    <item name="dataType" xsi:type="string">number</item>
+                    <item name="formElement" xsi:type="string">select</item>
+                    <item name="label" xsi:type="string" translate="true">Values Required</item>
+                    <item name="source" xsi:type="string">attribute</item>
+                    <item name="scopeLabel" xsi:type="string">[website]</item>
+                    <item name="dataScope" xsi:type="string">is_required</item>
+                </item>
+            </argument>
+        </field>
+        <field name="input_validation">
+            <argument name="data" xsi:type="array">
+                <item name="options" xsi:type="object">Aheadworks\CustomerAttributes\Model\Source\Attribute\InputValidation</item>
+                <item name="config" xsi:type="array">
+                    <item name="dataType" xsi:type="string">number</item>
+                    <item name="formElement" xsi:type="string">select</item>
+                    <item name="component" xsi:type="string">Aheadworks_CustomerAttributes/js/ui/form/attribute/element/visible-on/select</item>
+                    <item name="label" xsi:type="string" translate="true">Input Validation</item>
+                    <item name="source" xsi:type="string">attribute</item>
+                    <item name="dataScope" xsi:type="string">validate_rules.0.input_validation.input_validation</item>
+                    <item name="caption" xsi:type="string" translate="true">None</item>
+                    <item name="valuesForOptions" xsi:type="array">
+                        <item name="text" xsi:type="string">text</item>
+                        <item name="textarea" xsi:type="string">textarea</item>
+                        <item name="date" xsi:type="string">date</item>
+                        <item name="multiline" xsi:type="string">multiline</item>
+                    </item>
+                    <item name="imports" xsi:type="array">
+                        <item name="toggleVisibility" xsi:type="string">${ $.ns }.${ $.ns }.attribute_properties.frontend_input:value</item>
+                        <item name="reset" xsi:type="string">${ $.ns }.${ $.ns }.attribute_properties.frontend_input:value</item>
+                    </item>
+                </item>
+            </argument>
+        </field>
+        <field name="input_filter">
+            <argument name="data" xsi:type="array">
+                <item name="options" xsi:type="object">Aheadworks\CustomerAttributes\Model\Source\Attribute\InputFilter</item>
+                <item name="config" xsi:type="array">
+                    <item name="dataType" xsi:type="string">number</item>
+                    <item name="formElement" xsi:type="string">select</item>
+                    <item name="component" xsi:type="string">Aheadworks_CustomerAttributes/js/ui/form/attribute/element/input-filter</item>
+                    <item name="label" xsi:type="string" translate="true">Input/Output Filter</item>
+                    <item name="source" xsi:type="string">attribute</item>
+                    <item name="dataScope" xsi:type="string">input_filter</item>
+                    <item name="caption" xsi:type="string" translate="true">None</item>
+                    <item name="valuesForOptions" xsi:type="array">
+                        <item name="text" xsi:type="string">text</item>
+                        <item name="date" xsi:type="string">date</item>
+                        <item name="multiline" xsi:type="string">multiline</item>
+                    </item>
+                    <item name="imports" xsi:type="array">
+                        <item name="toggleVisibility" xsi:type="string">${ $.ns }.${ $.ns }.attribute_properties.frontend_input:value</item>
+                    </item>
+                </item>
+            </argument>
+        </field>
+        <field name="multiline_count" class="Aheadworks\CustomerAttributes\Ui\Component\Form\Element\ScopeField">
+            <argument name="data" xsi:type="array">
+                <item name="config" xsi:type="array">
+                    <item name="dataType" xsi:type="string">text</item>
+                    <item name="formElement" xsi:type="string">input</item>
+                    <item name="component" xsi:type="string">Magento_Catalog/js/components/visible-on-option/input</item>
+                    <item name="label" xsi:type="string" translate="true">Lines Count</item>
+                    <item name="source" xsi:type="string">attribute</item>
+                    <item name="scopeLabel" xsi:type="string">[website]</item>
+                    <item name="dataScope" xsi:type="string">multiline_count</item>
+                    <item name="notice" xsi:type="string" translate="true">Valid range from 2 to 20.</item>
+                    <item name="visible" xsi:type="boolean">false</item>
+                    <item name="validation" xsi:type="array">
+                        <item name="required-entry" xsi:type="boolean">true</item>
+                        <item name="validate-integer" xsi:type="boolean">true</item>
+                        <item name="validate-number-range" xsi:type="string">2-20</item>
+                    </item>
+                    <item name="valuesForOptions" xsi:type="array">
+                        <item name="multiline" xsi:type="string">multiline</item>
+                    </item>
+                    <item name="imports" xsi:type="array">
+                        <item name="toggleVisibility" xsi:type="string">${ $.ns }.${ $.ns }.attribute_properties.frontend_input:value</item>
+                        <item name="disabled" xsi:type="string">${ $.provider }:data.is_disabled.multiline_count</item>
+                    </item>
+                </item>
+            </argument>
+        </field>
+        <field name="max_file_size">
+            <argument name="data" xsi:type="array">
+                <item name="config" xsi:type="array">
+                    <item name="dataType" xsi:type="string">text</item>
+                    <item name="formElement" xsi:type="string">input</item>
+                    <item name="component" xsi:type="string">Magento_Catalog/js/components/visible-on-option/input</item>
+                    <item name="label" xsi:type="string" translate="true">Maximum File Size (bytes)</item>
+                    <item name="source" xsi:type="string">attribute</item>
+                    <item name="dataScope" xsi:type="string">validate_rules.0.max_file_size.max_file_size</item>
+                    <item name="visible" xsi:type="boolean">false</item>
+                    <item name="validation" xsi:type="array">
+                        <item name="validate-integer" xsi:type="boolean">true</item>
+                    </item>
+                    <item name="valuesForOptions" xsi:type="array">
+                        <item name="file" xsi:type="string">file</item>
+                        <item name="image" xsi:type="string">image</item>
+                    </item>
+                    <item name="imports" xsi:type="array">
+                        <item name="toggleVisibility" xsi:type="string">${ $.ns }.${ $.ns }.attribute_properties.frontend_input:value</item>
+                    </item>
+                </item>
+            </argument>
+        </field>
+        <field name="max_image_width">
+            <argument name="data" xsi:type="array">
+                <item name="config" xsi:type="array">
+                    <item name="dataType" xsi:type="string">text</item>
+                    <item name="formElement" xsi:type="string">input</item>
+                    <item name="component" xsi:type="string">Magento_Catalog/js/components/visible-on-option/input</item>
+                    <item name="label" xsi:type="string" translate="true">Maximum Image Width (px)</item>
+                    <item name="source" xsi:type="string">attribute</item>
+                    <item name="dataScope" xsi:type="string">validate_rules.0.max_image_width.max_image_width</item>
+                    <item name="visible" xsi:type="boolean">false</item>
+                    <item name="validation" xsi:type="array">
+                        <item name="validate-integer" xsi:type="boolean">true</item>
+                    </item>
+                    <item name="valuesForOptions" xsi:type="array">
+                        <item name="image" xsi:type="string">image</item>
+                    </item>
+                    <item name="imports" xsi:type="array">
+                        <item name="toggleVisibility" xsi:type="string">${ $.ns }.${ $.ns }.attribute_properties.frontend_input:value</item>
+                    </item>
+                </item>
+            </argument>
+        </field>
+        <field name="max_image_height">
+            <argument name="data" xsi:type="array">
+                <item name="config" xsi:type="array">
+                    <item name="dataType" xsi:type="string">text</item>
+                    <item name="formElement" xsi:type="string">input</item>
+                    <item name="component" xsi:type="string">Magento_Catalog/js/components/visible-on-option/input</item>
+                    <item name="label" xsi:type="string" translate="true">Maximum Image Height (px)</item>
+                    <item name="source" xsi:type="string">attribute</item>
+                    <item name="dataScope" xsi:type="string">validate_rules.0.max_image_height.max_image_height</item>
+                    <item name="visible" xsi:type="boolean">false</item>
+                    <item name="validation" xsi:type="array">
+                        <item name="validate-integer" xsi:type="boolean">true</item>
+                    </item>
+                    <item name="valuesForOptions" xsi:type="array">
+                        <item name="image" xsi:type="string">image</item>
+                    </item>
+                    <item name="imports" xsi:type="array">
+                        <item name="toggleVisibility" xsi:type="string">${ $.ns }.${ $.ns }.attribute_properties.frontend_input:value</item>
+                    </item>
+                </item>
+            </argument>
+        </field>
+        <field name="file_extensions">
+            <argument name="data" xsi:type="array">
+                <item name="config" xsi:type="array">
+                    <item name="dataType" xsi:type="string">text</item>
+                    <item name="formElement" xsi:type="string">input</item>
+                    <item name="component" xsi:type="string">Magento_Catalog/js/components/visible-on-option/input</item>
+                    <item name="label" xsi:type="string" translate="true">File Extensions</item>
+                    <item name="source" xsi:type="string">attribute</item>
+                    <item name="dataScope" xsi:type="string">validate_rules.0.file_extensions.file_extensions</item>
+                    <item name="notice" xsi:type="string" translate="true">Comma separated.</item>
+                    <item name="visible" xsi:type="boolean">false</item>
+                    <item name="valuesForOptions" xsi:type="array">
+                        <item name="file" xsi:type="string">file</item>
+                    </item>
+                    <item name="imports" xsi:type="array">
+                        <item name="toggleVisibility" xsi:type="string">${ $.ns }.${ $.ns }.attribute_properties.frontend_input:value</item>
+                    </item>
+                </item>
+            </argument>
+        </field>
+        <field name="default_value_text" class="Aheadworks\CustomerAttributes\Ui\Component\Form\Element\ScopeField">
+            <argument name="data" xsi:type="array">
+                <item name="config" xsi:type="array">
+                    <item name="dataType" xsi:type="string">text</item>
+                    <item name="formElement" xsi:type="string">input</item>
+                    <item name="component" xsi:type="string">Magento_Catalog/js/components/visible-on-option/input</item>
+                    <item name="label" xsi:type="string" translate="true">Default Value</item>
+                    <item name="source" xsi:type="string">attribute</item>
+                    <item name="scopeLabel" xsi:type="string">[website]</item>
+                    <item name="dataScope" xsi:type="string">default_value_text</item>
+                    <item name="valuesForOptions" xsi:type="array">
+                        <item name="text" xsi:type="string">text</item>
+                        <item name="multiline" xsi:type="string">multiline</item>
+                    </item>
+                    <item name="imports" xsi:type="array">
+                        <item name="toggleVisibility" xsi:type="string">${ $.ns }.${ $.ns }.attribute_properties.frontend_input:value</item>
+                        <item name="disabled" xsi:type="string">${ $.provider }:data.is_disabled.default_value_text</item>
+                    </item>
+                </item>
+            </argument>
+        </field>
+        <field name="default_value_textarea" class="Aheadworks\CustomerAttributes\Ui\Component\Form\Element\ScopeField">
+            <argument name="data" xsi:type="array">
+                <item name="config" xsi:type="array">
+                    <item name="dataType" xsi:type="string">text</item>
+                    <item name="formElement" xsi:type="string">textarea</item>
+                    <item name="component" xsi:type="string">Magento_Catalog/js/components/visible-on-option/textarea</item>
+                    <item name="label" xsi:type="string" translate="true">Default Value</item>
+                    <item name="source" xsi:type="string">attribute</item>
+                    <item name="scopeLabel" xsi:type="string">[website]</item>
+                    <item name="dataScope" xsi:type="string">default_value_textarea</item>
+                    <item name="valuesForOptions" xsi:type="array">
+                        <item name="textarea" xsi:type="string">textarea</item>
+                    </item>
+                    <item name="imports" xsi:type="array">
+                        <item name="toggleVisibility" xsi:type="string">${ $.ns }.${ $.ns }.attribute_properties.frontend_input:value</item>
+                        <item name="disabled" xsi:type="string">${ $.provider }:data.is_disabled.default_value_textarea</item>
+                    </item>
+                </item>
+            </argument>
+        </field>
+        <field name="default_value_boolean" class="Aheadworks\CustomerAttributes\Ui\Component\Form\Element\ScopeField">
+            <argument name="data" xsi:type="array">
+                <item name="options" xsi:type="object">Magento\Config\Model\Config\Source\Yesno</item>
+                <item name="config" xsi:type="array">
+                    <item name="dataType" xsi:type="string">number</item>
+                    <item name="formElement" xsi:type="string">select</item>
+                    <item name="component" xsi:type="string">Magento_Catalog/js/components/visible-on-option/select</item>
+                    <item name="scopeLabel" xsi:type="string">[website]</item>
+                    <item name="label" xsi:type="string" translate="true">Default Value</item>
+                    <item name="source" xsi:type="string">attribute</item>
+                    <item name="dataScope" xsi:type="string">default_value_boolean</item>
+                    <item name="valuesForOptions" xsi:type="array">
+                        <item name="boolean" xsi:type="string">boolean</item>
+                    </item>
+                    <item name="imports" xsi:type="array">
+                        <item name="toggleVisibility" xsi:type="string">${ $.ns }.${ $.ns }.attribute_properties.frontend_input:value</item>
+                        <item name="disabled" xsi:type="string">${ $.provider }:data.is_disabled.default_value_boolean</item>
+                    </item>
+                </item>
+            </argument>
+        </field>
+        <field name="default_value_date" class="Aheadworks\CustomerAttributes\Ui\Component\Form\Element\ScopeField">
+            <argument name="data" xsi:type="array">
+                <item name="config" xsi:type="array">
+                    <item name="dataType" xsi:type="string">text</item>
+                    <item name="formElement" xsi:type="string">date</item>
+                    <item name="component" xsi:type="string">Aheadworks_CustomerAttributes/js/ui/form/attribute/element/visible-on/date</item>
+                    <item name="label" xsi:type="string" translate="true">Default Value</item>
+                    <item name="scopeLabel" xsi:type="string">[website]</item>
+                    <item name="source" xsi:type="string">attribute</item>
+                    <item name="dataScope" xsi:type="string">default_value_date</item>
+                    <item name="visible" xsi:type="boolean">false</item>
+                    <item name="validation" xsi:type="array">
+                        <item name="validate-date" xsi:type="boolean">true</item>
+                    </item>
+                    <item name="valuesForOptions" xsi:type="array">
+                        <item name="date" xsi:type="string">date</item>
+                    </item>
+                    <item name="imports" xsi:type="array">
+                        <item name="toggleVisibility" xsi:type="string">${ $.ns }.${ $.ns }.attribute_properties.frontend_input:value</item>
+                        <item name="disabled" xsi:type="string">${ $.provider }:data.is_disabled.default_value_date</item>
+                    </item>
+                </item>
+            </argument>
+        </field>
+        <field name="date_range_min">
+            <argument name="data" xsi:type="array">
+                <item name="config" xsi:type="array">
+                    <item name="dataType" xsi:type="string">text</item>
+                    <item name="formElement" xsi:type="string">date</item>
+                    <item name="component" xsi:type="string">Aheadworks_CustomerAttributes/js/ui/form/attribute/element/visible-on/date</item>
+                    <item name="label" xsi:type="string" translate="true">Minimum Value</item>
+                    <item name="source" xsi:type="string">attribute</item>
+                    <item name="dataScope" xsi:type="string">validate_rules.0.date_range_min.date_range_min</item>
+                    <item name="visible" xsi:type="boolean">false</item>
+                    <item name="validation" xsi:type="array">
+                        <item name="validate-date" xsi:type="boolean">true</item>
+                    </item>
+                    <item name="valuesForOptions" xsi:type="array">
+                        <item name="date" xsi:type="string">date</item>
+                    </item>
+                    <item name="imports" xsi:type="array">
+                        <item name="toggleVisibility" xsi:type="string">${ $.ns }.${ $.ns }.attribute_properties.frontend_input:value</item>
+                    </item>
+                </item>
+            </argument>
+        </field>
+        <field name="date_range_max">
+            <argument name="data" xsi:type="array">
+                <item name="config" xsi:type="array">
+                    <item name="dataType" xsi:type="string">text</item>
+                    <item name="formElement" xsi:type="string">date</item>
+                    <item name="component" xsi:type="string">Aheadworks_CustomerAttributes/js/ui/form/attribute/element/visible-on/date</item>
+                    <item name="label" xsi:type="string" translate="true">Maximum Value</item>
+                    <item name="source" xsi:type="string">attribute</item>
+                    <item name="dataScope" xsi:type="string">validate_rules.0.date_range_max.date_range_max</item>
+                    <item name="visible" xsi:type="boolean">false</item>
+                    <item name="validation" xsi:type="array">
+                        <item name="validate-date" xsi:type="boolean">true</item>
+                    </item>
+                    <item name="valuesForOptions" xsi:type="array">
+                        <item name="date" xsi:type="string">date</item>
+                    </item>
+                    <item name="imports" xsi:type="array">
+                        <item name="toggleVisibility" xsi:type="string">${ $.ns }.${ $.ns }.attribute_properties.frontend_input:value</item>
+                    </item>
+                </item>
+            </argument>
+        </field>
+        <field name="min_text_length">
+            <argument name="data" xsi:type="array">
+                <item name="config" xsi:type="array">
+                    <item name="dataType" xsi:type="string">text</item>
+                    <item name="formElement" xsi:type="string">input</item>
+                    <item name="component" xsi:type="string">Magento_Catalog/js/components/visible-on-option/input</item>
+                    <item name="label" xsi:type="string" translate="true">Minimum Text Length</item>
+                    <item name="source" xsi:type="string">attribute</item>
+                    <item name="dataScope" xsi:type="string">validate_rules.0.min_text_length.min_text_length</item>
+                    <item name="visible" xsi:type="boolean">false</item>
+                    <item name="validation" xsi:type="array">
+                        <item name="validate-integer" xsi:type="boolean">true</item>
+                    </item>
+                    <item name="valuesForOptions" xsi:type="array">
+                        <item name="alphanumeric" xsi:type="string">alphanumeric</item>
+                        <item name="alphanum-with-spaces" xsi:type="string">alphanum-with-spaces</item>
+                        <item name="numeric" xsi:type="string">numeric</item>
+                        <item name="alpha" xsi:type="string">alpha</item>
+                        <item name="url" xsi:type="string">url</item>
+                        <item name="email" xsi:type="string">email</item>
+                        <item name="date" xsi:type="string">date</item>
+                        <item name="length" xsi:type="string">length</item>
+                    </item>
+                    <item name="imports" xsi:type="array">
+                        <item name="toggleVisibility" xsi:type="string">${ $.ns }.${ $.ns }.attribute_properties.input_validation:value</item>
+                    </item>
+                </item>
+            </argument>
+        </field>
+        <field name="max_text_length">
+            <argument name="data" xsi:type="array">
+                <item name="config" xsi:type="array">
+                    <item name="dataType" xsi:type="string">text</item>
+                    <item name="formElement" xsi:type="string">input</item>
+                    <item name="component" xsi:type="string">Magento_Catalog/js/components/visible-on-option/input</item>
+                    <item name="label" xsi:type="string" translate="true">Maximum Text Length</item>
+                    <item name="source" xsi:type="string">attribute</item>
+                    <item name="dataScope" xsi:type="string">validate_rules.0.max_text_length.max_text_length</item>
+                    <item name="visible" xsi:type="boolean">false</item>
+                    <item name="validation" xsi:type="array">
+                        <item name="validate-integer" xsi:type="boolean">true</item>
+                    </item>
+                    <item name="valuesForOptions" xsi:type="array">
+                        <item name="alphanumeric" xsi:type="string">alphanumeric</item>
+                        <item name="alphanum-with-spaces" xsi:type="string">alphanum-with-spaces</item>
+                        <item name="numeric" xsi:type="string">numeric</item>
+                        <item name="alpha" xsi:type="string">alpha</item>
+                        <item name="url" xsi:type="string">url</item>
+                        <item name="email" xsi:type="string">email</item>
+                        <item name="date" xsi:type="string">date</item>
+                        <item name="length" xsi:type="string">length</item>
+                    </item>
+                    <item name="imports" xsi:type="array">
+                        <item name="toggleVisibility" xsi:type="string">${ $.ns }.${ $.ns }.attribute_properties.input_validation:value</item>
+                    </item>
+                </item>
+            </argument>
+        </field>
+        <field name="is_used_in_grid">
+            <argument name="data" xsi:type="array">
+                <item name="options" xsi:type="object">Magento\Config\Model\Config\Source\Yesno</item>
+                <item name="config" xsi:type="array">
+                    <item name="dataType" xsi:type="string">text</item>
+                    <item name="label" xsi:type="string" translate="true">Add to Column Options in the Customers Grid</item>
+                    <item name="formElement" xsi:type="string">select</item>
+                    <item name="component" xsi:type="string">Aheadworks_CustomerAttributes/js/ui/form/attribute/element/visible-on/select</item>
+                    <item name="source" xsi:type="string">attribute</item>
+                    <item name="dataScope" xsi:type="string">is_used_in_grid</item>
+                    <item name="default" xsi:type="number">0</item>
+                    <item name="visible" xsi:type="boolean">false</item>
+                    <item name="valuesForOptions" xsi:type="array">
+                        <item name="text" xsi:type="string">text</item>
+                        <item name="textarea" xsi:type="string">textarea</item>
+                        <item name="date" xsi:type="string">date</item>
+                        <item name="boolean" xsi:type="string">boolean</item>
+                        <item name="multiselect" xsi:type="string">multiselect</item>
+                        <item name="select" xsi:type="string">select</item>
+                    </item>
+                    <item name="imports" xsi:type="array">
+                        <item name="toggleVisibility" xsi:type="string">${ $.ns }.${ $.ns }.attribute_properties.frontend_input:value</item>
+                    </item>
+                </item>
+            </argument>
+        </field>
+        <field name="is_filterable_in_grid">
+            <argument name="data" xsi:type="array">
+                <item name="options" xsi:type="object">Magento\Config\Model\Config\Source\Yesno</item>
+                <item name="config" xsi:type="array">
+                    <item name="dataType" xsi:type="string">text</item>
+                    <item name="label" xsi:type="string" translate="true">Use in Filter Options in the Customers Grid</item>
+                    <item name="formElement" xsi:type="string">select</item>
+                    <item name="component" xsi:type="string">Aheadworks_CustomerAttributes/js/ui/form/attribute/element/visible-on/select</item>
+                    <item name="source" xsi:type="string">attribute</item>
+                    <item name="dataScope" xsi:type="string">is_filterable_in_grid</item>
+                    <item name="default" xsi:type="number">0</item>
+                    <item name="visible" xsi:type="boolean">false</item>
+                    <item name="valuesForOptions" xsi:type="array">
+                        <item name="text" xsi:type="string">text</item>
+                        <item name="textarea" xsi:type="string">textarea</item>
+                        <item name="date" xsi:type="string">date</item>
+                        <item name="boolean" xsi:type="string">boolean</item>
+                        <item name="multiselect" xsi:type="string">multiselect</item>
+                        <item name="select" xsi:type="string">select</item>
+                    </item>
+                    <item name="imports" xsi:type="array">
+                        <item name="toggleVisibility" xsi:type="string">${ $.ns }.${ $.ns }.attribute_properties.frontend_input:value</item>
+                    </item>
+                </item>
+            </argument>
+        </field>
+        <field name="is_searchable_in_grid">
+            <argument name="data" xsi:type="array">
+                <item name="options" xsi:type="object">Magento\Config\Model\Config\Source\Yesno</item>
+                <item name="config" xsi:type="array">
+                    <item name="dataType" xsi:type="string">text</item>
+                    <item name="label" xsi:type="string" translate="true">Use in Search Options in the Customers Grid</item>
+                    <item name="formElement" xsi:type="string">select</item>
+                    <item name="component" xsi:type="string">Aheadworks_CustomerAttributes/js/ui/form/attribute/element/visible-on/select</item>
+                    <item name="source" xsi:type="string">attribute</item>
+                    <item name="dataScope" xsi:type="string">is_searchable_in_grid</item>
+                    <item name="default" xsi:type="number">0</item>
+                    <item name="visible" xsi:type="boolean">false</item>
+                    <item name="valuesForOptions" xsi:type="array">
+                        <item name="text" xsi:type="string">text</item>
+                        <item name="textarea" xsi:type="string">textarea</item>
+                        <item name="date" xsi:type="string">date</item>
+                        <item name="boolean" xsi:type="string">boolean</item>
+                        <item name="multiselect" xsi:type="string">multiselect</item>
+                        <item name="select" xsi:type="string">select</item>
+                    </item>
+                    <item name="imports" xsi:type="array">
+                        <item name="toggleVisibility" xsi:type="string">${ $.ns }.${ $.ns }.attribute_properties.frontend_input:value</item>
+                    </item>
+                </item>
+            </argument>
+        </field>
+        <field name="used_in_order_grid">
+            <argument name="data" xsi:type="array">
+                <item name="options" xsi:type="object">Magento\Config\Model\Config\Source\Yesno</item>
+                <item name="config" xsi:type="array">
+                    <item name="dataType" xsi:type="string">text</item>
+                    <item name="label" xsi:type="string" translate="true">Use in the Orders Grid</item>
+                    <item name="formElement" xsi:type="string">select</item>
+                    <item name="component" xsi:type="string">Aheadworks_CustomerAttributes/js/ui/form/attribute/element/visible-on/select</item>
+                    <item name="source" xsi:type="string">attribute</item>
+                    <item name="dataScope" xsi:type="string">used_in_order_grid</item>
+                    <item name="default" xsi:type="number">0</item>
+                    <item name="visible" xsi:type="boolean">false</item>
+                    <item name="valuesForOptions" xsi:type="array">
+                        <item name="text" xsi:type="string">text</item>
+                        <item name="textarea" xsi:type="string">textarea</item>
+                        <item name="date" xsi:type="string">date</item>
+                        <item name="boolean" xsi:type="string">boolean</item>
+                        <item name="multiselect" xsi:type="string">multiselect</item>
+                        <item name="select" xsi:type="string">select</item>
+                    </item>
+                    <item name="imports" xsi:type="array">
+                        <item name="toggleVisibility" xsi:type="string">${ $.ns }.${ $.ns }.attribute_properties.frontend_input:value</item>
+                    </item>
+                </item>
+            </argument>
+        </field>
+        <field name="used_in_order_view">
+            <argument name="data" xsi:type="array">
+                <item name="options" xsi:type="object">Magento\Config\Model\Config\Source\Yesno</item>
+                <item name="config" xsi:type="array">
+                    <item name="dataType" xsi:type="string">text</item>
+                    <item name="label" xsi:type="string" translate="true">Show on the Order View Page</item>
+                    <item name="formElement" xsi:type="string">select</item>
+                    <item name="component" xsi:type="string">Aheadworks_CustomerAttributes/js/ui/form/attribute/element/visible-on/select</item>
+                    <item name="source" xsi:type="string">attribute</item>
+                    <item name="dataScope" xsi:type="string">used_in_order_view</item>
+                    <item name="default" xsi:type="number">0</item>
+                    <item name="visible" xsi:type="boolean">false</item>
+                    <item name="valuesForOptions" xsi:type="array">
+                        <item name="text" xsi:type="string">text</item>
+                        <item name="textarea" xsi:type="string">textarea</item>
+                        <item name="date" xsi:type="string">date</item>
+                        <item name="boolean" xsi:type="string">boolean</item>
+                        <item name="multiselect" xsi:type="string">multiselect</item>
+                        <item name="select" xsi:type="string">select</item>
+                    </item>
+                    <item name="imports" xsi:type="array">
+                        <item name="toggleVisibility" xsi:type="string">${ $.ns }.${ $.ns }.attribute_properties.frontend_input:value</item>
+                    </item>
+                </item>
+            </argument>
+        </field>
+    </fieldset>
+    <fieldset name="storefront_properties">
+        <argument name="data" xsi:type="array">
+            <item name="config" xsi:type="array">
+                <item name="label" xsi:type="string" translate="true">Storefront Properties</item>
+                <item name="collapsible" xsi:type="boolean">true</item>
+                <item name="opened" xsi:type="boolean">true</item>
+            </item>
+        </argument>
+        <field name="is_visible" class="Aheadworks\CustomerAttributes\Ui\Component\Form\Element\ScopeField">
+            <argument name="data" xsi:type="array">
+                <item name="options" xsi:type="object">Magento\Config\Model\Config\Source\Yesno</item>
+                <item name="config" xsi:type="array">
+                    <item name="dataType" xsi:type="string">text</item>
+                    <item name="label" xsi:type="string" translate="true">Show on Storefront</item>
+                    <item name="formElement" xsi:type="string">select</item>
+                    <item name="scopeLabel" xsi:type="string">[website]</item>
+                    <item name="source" xsi:type="string">attribute</item>
+                    <item name="dataScope" xsi:type="string">is_visible</item>
+                    <item name="default" xsi:type="number">0</item>
+                    <item name="imports" xsi:type="array">
+                        <item name="disabled" xsi:type="string">${ $.provider }:data.is_disabled.is_visible</item>
+                    </item>
+                </item>
+            </argument>
+        </field>
+        <field name="sort_order">
+            <argument name="data" xsi:type="array">
+                <item name="config" xsi:type="array">
+                    <item name="dataType" xsi:type="string">text</item>
+                    <item name="formElement" xsi:type="string">input</item>
+                    <item name="label" xsi:type="string" translate="true">Sort Order</item>
+                    <item name="source" xsi:type="string">attribute</item>
+                    <item name="dataScope" xsi:type="string">sort_order</item>
+                    <item name="validation" xsi:type="array">
+                        <item name="validate-integer" xsi:type="boolean">true</item>
+                        <item name="required-entry" xsi:type="boolean">true</item>
+                    </item>
+                </item>
+            </argument>
+        </field>
+        <field name="used_in_forms">
+            <argument name="data" xsi:type="array">
+                <item name="options" xsi:type="object">Aheadworks\CustomerAttributes\Model\Source\Attribute\UsedInForms</item>
+                <item name="config" xsi:type="array">
+                    <item name="dataType" xsi:type="string">number</item>
+                    <item name="component" xsi:type="string">Aheadworks_CustomerAttributes/js/ui/form/attribute/element/visible-on/multiselect</item>
+                    <item name="label" xsi:type="string" translate="true">Display on Forms</item>
+                    <item name="formElement" xsi:type="string">multiselect</item>
+                    <item name="source" xsi:type="string">attribute</item>
+                    <item name="dataScope" xsi:type="string">used_in_forms</item>
+                </item>
+            </argument>
+        </field>
+    </fieldset>
+    <fieldset name="labels_and_options">
+        <argument name="data" xsi:type="array">
+            <item name="config" xsi:type="array">
+                <item name="label" xsi:type="string" translate="true">Manage Labels / Options</item>
+                <item name="collapsible" xsi:type="boolean">true</item>
+                <item name="opened" xsi:type="boolean">true</item>
+            </item>
+        </argument>
+        <dynamicRows name="frontend_labels">
+            <argument name="data" xsi:type="array">
+                <item name="config" xsi:type="array">
+                    <item name="componentType" xsi:type="string">dynamicRows</item>
+                    <item name="component" xsi:type="string">Magento_Ui/js/dynamic-rows/dynamic-rows</item>
+                    <item name="addButton" xsi:type="boolean">true</item>
+                    <item name="template" xsi:type="string">ui/dynamic-rows/templates/default</item>
+                    <item name="addButtonLabel" xsi:type="string" translate="true">Add</item>
+                    <item name="label" xsi:type="string">Manage Labels</item>
+                    <item name="pageSize" xsi:type="string">100</item>
+                    <item name="dndConfig" xsi:type="array">
+                        <item name="enabled" xsi:type="boolean">false</item>
+                    </item>
+                    <item name="additionalClasses" xsi:type="string">admin__field-wide aw-customer-attributes dynamic-rows</item>
+                </item>
+            </argument>
+            <container name="record">
+                <argument name="data" xsi:type="array">
+                    <item name="config" xsi:type="array">
+                        <item name="isTemplate" xsi:type="boolean">true</item>
+                        <item name="is_collection" xsi:type="boolean">true</item>
+                        <item name="componentType" xsi:type="string">container</item>
+                    </item>
+                </argument>
+                <field name="store_id">
+                    <argument name="data" xsi:type="array">
+                        <item name="options" xsi:type="object">Aheadworks\CustomerAttributes\Ui\Component\Form\Element\Store\Options</item>
+                        <item name="config" xsi:type="array">
+                            <item name="dataType" xsi:type="string">text</item>
+                            <item name="label" xsi:type="string" translate="true">Store View</item>
+                            <item name="formElement" xsi:type="string">select</item>
+                            <item name="component" xsi:type="string">Magento_Ui/js/form/element/select</item>
+                            <item name="template" xsi:type="string">ui/form/field</item>
+                            <item name="elementTmpl" xsi:type="string">ui/form/element/select</item>
+                            <item name="source" xsi:type="string">attribute</item>
+                            <item name="dataScope" xsi:type="string">store_id</item>
+                            <item name="default" xsi:type="string">0</item>
+                            <item name="additionalClasses" xsi:type="string">select_field</item>
+                        </item>
+                    </argument>
+                </field>
+                <field name="label">
+                    <argument name="data" xsi:type="array">
+                        <item name="config" xsi:type="array">
+                            <item name="dataType" xsi:type="string">text</item>
+                            <item name="formElement" xsi:type="string">input</item>
+                            <item name="dataScope" xsi:type="string">label</item>
+                            <item name="label" xsi:type="string" translate="true">Label</item>
+                            <item name="additionalClasses" xsi:type="string">value_field</item>
+                            <item name="validation" xsi:type="array">
+                                <item name="required-entry" xsi:type="boolean">true</item>
+                            </item>
+                        </item>
+                    </argument>
+                </field>
+                <actionDelete>
+                    <argument name="data" xsi:type="array">
+                        <item name="config" xsi:type="array">
+                            <item name="dataType" xsi:type="string">text</item>
+                            <item name="additionalClasses" xsi:type="string">action_delete_button</item>
+                        </item>
+                    </argument>
+                </actionDelete>
+            </container>
+        </dynamicRows>
+        <dynamicRows name="options">
+            <argument name="data" xsi:type="array">
+                <item name="config" xsi:type="array">
+                    <item name="componentType" xsi:type="string">dynamicRows</item>
+                    <item name="component" xsi:type="string">Aheadworks_CustomerAttributes/js/ui/form/attribute/element/dynamic-rows</item>
+                    <item name="template" xsi:type="string">ui/dynamic-rows/templates/default</item>
+                    <item name="addButton" xsi:type="boolean">true</item>
+                    <item name="addButtonLabel" xsi:type="string" translate="true">Add</item>
+                    <item name="label" xsi:type="string">Manage Options</item>
+                    <item name="pageSize" xsi:type="string">100</item>
+                    <item name="dndConfig" xsi:type="array">
+                        <item name="enabled" xsi:type="boolean">true</item>
+                    </item>
+                    <item name="additionalClasses" xsi:type="string">admin__field-wide aw-customer-attributes dynamic-rows</item>
+                    <item name="valuesForOptions" xsi:type="array">
+                        <item name="select" xsi:type="string">select</item>
+                        <item name="multiselect" xsi:type="string">multiselect</item>
+                    </item>
+                    <item name="imports" xsi:type="array">
+                        <item name="toggleVisibility" xsi:type="string">${ $.ns }.${ $.ns }.attribute_properties.frontend_input:value</item>
+                    </item>
+                </item>
+            </argument>
+            <container name="record">
+                <argument name="data" xsi:type="array">
+                    <item name="config" xsi:type="array">
+                        <item name="isTemplate" xsi:type="boolean">true</item>
+                        <item name="is_collection" xsi:type="boolean">true</item>
+                        <item name="componentType" xsi:type="string">container</item>
+                        <item name="positionProvider" xsi:type="string">sort_order</item>
+                        <item name="component" xsi:type="string">Aheadworks_CustomerAttributes/js/ui/form/attribute/element/dynamic-rows/record</item>
+                    </item>
+                </argument>
+                <field name="sort_order">
+                    <argument name="data" xsi:type="array">
+                        <item name="config" xsi:type="array">
+                            <item name="dataType" xsi:type="string">number</item>
+                            <item name="formElement" xsi:type="string">input</item>
+                            <item name="source" xsi:type="string">attribute</item>
+                            <item name="dataScope" xsi:type="string">sort_order</item>
+                            <item name="visible" xsi:type="boolean">false</item>
+                        </item>
+                    </argument>
+                </field>
+                <field name="option_id">
+                    <argument name="data" xsi:type="array">
+                        <item name="config" xsi:type="array">
+                            <item name="dataType" xsi:type="string">number</item>
+                            <item name="formElement" xsi:type="string">input</item>
+                            <item name="source" xsi:type="string">attribute</item>
+                            <item name="dataScope" xsi:type="string">option_id</item>
+                            <item name="visible" xsi:type="boolean">false</item>
+                        </item>
+                    </argument>
+                </field>
+                <field name="is_default">
+                    <argument name="data" xsi:type="array">
+                        <item name="config" xsi:type="array">
+                            <item name="dataType" xsi:type="string">number</item>
+                            <item name="label" xsi:type="string" translate="true">Is Default</item>
+                            <item name="formElement" xsi:type="string">checkbox</item>
+                            <item name="prefer" xsi:type="string">radio</item>
+                            <item name="component" xsi:type="string">Aheadworks_CustomerAttributes/js/ui/form/attribute/element/is-default</item>
+                            <item name="template" xsi:type="string">ui/form/field</item>
+                            <item name="source" xsi:type="string">attribute</item>
+                            <item name="dataScope" xsi:type="string">is_default</item>
+                            <item name="valueMap" xsi:type="array">
+                                <item name="true" xsi:type="number">1</item>
+                                <item name="false" xsi:type="number">0</item>
+                            </item>
+                            <item name="default" xsi:type="string">0</item>
+                        </item>
+                    </argument>
+                </field>
+            </container>
+        </dynamicRows>
+    </fieldset>
+    <fieldset name="relations_configuration">
+        <argument name="data" xsi:type="array">
+            <item name="config" xsi:type="array">
+                <item name="label" xsi:type="string" translate="true">Manage Relations</item>
+                <item name="component" xsi:type="string">Aheadworks_CustomerAttributes/js/ui/form/attribute/components/visible-on/fieldset</item>
+                <item name="collapsible" xsi:type="boolean">true</item>
+                <item name="opened" xsi:type="boolean">true</item>
+                <item name="valuesForOptions" xsi:type="array">
+                    <item name="select" xsi:type="string">select</item>
+                    <item name="boolean" xsi:type="string">boolean</item>
+                </item>
+                <item name="imports" xsi:type="array">
+                    <item name="toggleVisibility" xsi:type="string">${ $.provider }:data.frontend_input</item>
+                </item>
+            </item>
+        </argument>
+        <container name="relations_notice">
+            <argument name="data" xsi:type="array">
+                <item name="config" xsi:type="array">
+                    <item name="template" xsi:type="string">Aheadworks_CustomerAttributes/ui/form/components/notice</item>
+                    <item name="notice" xsi:type="string" translate="true">Dependent attribute show up on the front end only when the related primary attribute option is selected.</item>
+                </item>
+            </argument>
+        </container>
+        <dynamicRows name="attribute_relations">
+            <argument name="data" xsi:type="array">
+                <item name="config" xsi:type="array">
+                    <item name="componentType" xsi:type="string">dynamicRows</item>
+                    <item name="component" xsi:type="string">Magento_Ui/js/dynamic-rows/dynamic-rows</item>
+                    <item name="addButton" xsi:type="boolean">true</item>
+                    <item name="template" xsi:type="string">ui/dynamic-rows/templates/default</item>
+                    <item name="addButtonLabel" xsi:type="string" translate="true">Add</item>
+                    <item name="pageSize" xsi:type="string">100</item>
+                    <item name="dndConfig" xsi:type="array">
+                        <item name="enabled" xsi:type="boolean">false</item>
+                    </item>
+                    <item name="additionalClasses" xsi:type="string">admin__field-wide aw-customer-attributes dynamic-rows</item>
+                </item>
+            </argument>
+            <container name="record">
+                <argument name="data" xsi:type="array">
+                    <item name="config" xsi:type="array">
+                        <item name="isTemplate" xsi:type="boolean">true</item>
+                        <item name="is_collection" xsi:type="boolean">true</item>
+                        <item name="componentType" xsi:type="string">container</item>
+                    </item>
+                </argument>
+                <field name="option_value">
+                    <argument name="data" xsi:type="array">
+                        <item name="options" xsi:type="object">Aheadworks\CustomerAttributes\Model\Source\Attribute\DependentOption</item>
+                        <item name="config" xsi:type="array">
+                            <item name="dataType" xsi:type="string">text</item>
+                            <item name="label" xsi:type="string" translate="true">Option</item>
+                            <item name="formElement" xsi:type="string">select</item>
+                            <item name="component" xsi:type="string">Magento_Ui/js/form/element/select</item>
+                            <item name="template" xsi:type="string">ui/form/field</item>
+                            <item name="elementTmpl" xsi:type="string">ui/form/element/select</item>
+                            <item name="source" xsi:type="string">attribute</item>
+                            <item name="dataScope" xsi:type="string">option_value</item>
+                            <item name="additionalClasses" xsi:type="string">select_field</item>
+                        </item>
+                    </argument>
+                </field>
+                <field name="dependent_attribute_id">
+                    <argument name="data" xsi:type="array">
+                        <item name="options" xsi:type="object">Aheadworks\CustomerAttributes\Model\Source\Attribute\DependentAttribute</item>
+                        <item name="config" xsi:type="array">
+                            <item name="dataType" xsi:type="string">text</item>
+                            <item name="label" xsi:type="string" translate="true">Dependent Attribute</item>
+                            <item name="formElement" xsi:type="string">select</item>
+                            <item name="component" xsi:type="string">Magento_Ui/js/form/element/select</item>
+                            <item name="template" xsi:type="string">ui/form/field</item>
+                            <item name="elementTmpl" xsi:type="string">ui/form/element/select</item>
+                            <item name="source" xsi:type="string">attribute</item>
+                            <item name="dataScope" xsi:type="string">dependent_attribute_id</item>
+                            <item name="additionalClasses" xsi:type="string">select_field</item>
+                        </item>
+                    </argument>
+                </field>
+                <actionDelete>
+                    <argument name="data" xsi:type="array">
+                        <item name="config" xsi:type="array">
+                            <item name="dataType" xsi:type="string">text</item>
+                            <item name="additionalClasses" xsi:type="string">action_delete_button</item>
+                        </item>
+                    </argument>
+                </actionDelete>
+            </container>
+        </dynamicRows>
+    </fieldset>
+</form>
